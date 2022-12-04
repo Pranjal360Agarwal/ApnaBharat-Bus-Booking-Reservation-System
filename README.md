@@ -8,7 +8,7 @@
 </p>
 Bus Reservation System is a preety fully functional system developed in Tkinter(GUI),SQLite,Python, which is designed to automate the online ticket purchasing through an easy online bus booking system.With the bus ticket reservation system you can manage/book reservations, clients data and passengers lists , can add new bus or new route as an Operator admin. At end teh user will have a proper ticket for his/her booking.     
 
-# (Feel free to fork &amp; make changes , don't forget to make a PR.)
+### (Feel free to fork &amp; make changes , don't forget to make a PR.)
 
 # Technology Used 
 
