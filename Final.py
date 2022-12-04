@@ -384,10 +384,10 @@ def tab1():
     my_label = Label(f1,image = my_img, anchor = CENTER).pack()
     Label(f1,text = "Python Bus Service", font=("Arial",25), bg = 'yellow', fg = 'red' ).pack()
     Label(f1,text = "Name : Pranjal Agarwal", font=("Arial",15),fg='blue',anchor = S,pady=50).pack()
-    Label(f1,text = "Enrollment No. : 211B218", font=("Arial",14),fg='blue',anchor = S).pack()
+    #Label(f1,text = "Enrollment No. : 211B218", font=("Arial",14),fg='blue',anchor = S).pack()
     Label(f1,text = "Mobile : +919451492673", font=("Arial",14),fg='blue',anchor = S, pady=50).pack()
-    Label(f1,text = "Submitted to : Dr. Mahesh Kumar", font=("Arial",20), bg = 'yellow', fg = 'red' , pady = 10).pack()
-    Label(f1,text = "Project Based learning",font="Arial 16 bold",fg='red').pack()
+    #Label(f1,text = "Submitted to : Dr. Mahesh Kumar", font=("Arial",20), bg = 'yellow', fg = 'red' , pady = 10).pack()
+    #Label(f1,text = "Project Based learning",font="Arial 16 bold",fg='red').pack()
 
     button1 = Button(f1,text = "Start",command = tab2).pack()
 #-------------------------------------------------------------------------------------------------------------
