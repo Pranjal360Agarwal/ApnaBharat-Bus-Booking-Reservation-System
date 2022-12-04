@@ -23,7 +23,7 @@ I have developed this project using the below technology
 
 # Features
 
-1.Built with Python 3.6, SQLITE3    
+ 1.Built with Python 3.6, SQLITE3    
 
 2. Seat Booking      
 
