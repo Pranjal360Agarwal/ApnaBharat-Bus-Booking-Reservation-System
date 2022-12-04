@@ -6,9 +6,9 @@
 <a href="https://github.com/Dragsters/Nutrihelp"><img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=yellow"></a>
 <a href="https://github.com/Dragsters"><img src="https://img.shields.io/badge/maintenance-yes-brightgreen"></a>
 </p>
-Bus Reservation System is a preety fully functional system developed in Tkinter(GUI),SQLite,Python, which is designed to automate the online ticket purchasing through an easy online bus booking system.With the bus ticket reservation system you can manage/book reservations, clients data and passengers lists , can add new bus or new route as an Operator admin. At end teh user will have a proper ticket for hi/her booking.
+Bus Reservation System is a preety fully functional system developed in Tkinter(GUI),SQLite,Python, which is designed to automate the online ticket purchasing through an easy online bus booking system.With the bus ticket reservation system you can manage/book reservations, clients data and passengers lists , can add new bus or new route as an Operator admin. At end teh user will have a proper ticket for his/her booking.     
 
-(Feel free to fork &amp; make changes , don't forget to make a PR.)
+# (Feel free to fork &amp; make changes , don't forget to make a PR.)
 
 # Technology Used 
 
