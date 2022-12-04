@@ -14,7 +14,8 @@ Bus Reservation System is a preety fully functional system developed in Tkinter(
 
 I have developed this project using the below technology
 
-1.Python : All the business logic has been implemented in Python
+1.Python : All the business logic has been implemented in Python        
+
 2.Tkinter : All the frontend interface has been made up using GUI(Graphical user interface)
 3.SQLite : SQLite database has been used as database for the project(backend part).
 
