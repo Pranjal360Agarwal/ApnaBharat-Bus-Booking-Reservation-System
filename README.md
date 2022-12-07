@@ -14,30 +14,30 @@ Bus Reservation System is a preety fully functional system developed in Tkinter(
 
 I have developed this project using the below technology
 
-1.Python : All the business logic has been implemented in Python        
+• Python : All the business logic has been implemented in Python        
 
-2.Tkinter : All the frontend interface has been made up using GUI(Graphical user interface)       
+• Tkinter : All the frontend interface has been made up using GUI(Graphical user interface)       
 
-3.SQLite : SQLite database has been used as database for the project(backend part).  
+• SQLite : SQLite database has been used as database for the project(backend part).  
 
 
 # Features
 
- 1.Built with Python 3.6, SQLITE3    
+• Built with Python 3.6, SQLITE3    
 
-2. Seat Booking      
+• Seat Booking      
 
-3. Checking booking seat   
+• Checking booking seat   
  
-4. Adding the bus details   
+• Adding the bus details   
  
-5. Showing the availabe buses and number of seats available while seat booking   
+• Showing the availabe buses and number of seats available while seat booking   
  
-6. Added the features of adding new bus , route id etc as an Operator Admin    
+• Added the features of adding new bus , route id etc as an Operator Admin    
 
-7. Ticket generation         
+• Ticket generation         
 
-# KWOC'22
+# Kharagpur Winter of Code'22
 
 :star: Feel free to use this project to make your first contribution to an open-source project on GitHub. as problems should be unique so that people learn as well as contribute togeather
 
