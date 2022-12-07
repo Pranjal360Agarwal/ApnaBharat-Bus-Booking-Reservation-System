@@ -45,14 +45,14 @@ I have developed this project using the below technology
 
 ### This repository is open to all members of the GitHub community. Any member can contribute to this project!
 
-# Guidelines
+# Guidelines 🙋‍
 
     1. No spam pull requests
     2. No changes on the core part of the project
     
 ---
 
-# Steps For Contribution
+# Steps For Contribution⚡
 
 0. Star 
 
