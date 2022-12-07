@@ -10,7 +10,7 @@ Bus Reservation System is a preety fully functional system developed in Tkinter(
 
 ### (Feel free to fork &amp; make changes , don't forget to make a PR.)
 
-# Technology Used 
+# Technology Used 🔭
 
 I have developed this project using the below technology
 
@@ -21,7 +21,7 @@ I have developed this project using the below technology
 • SQLite : SQLite database has been used as database for the project(backend part).  
 
 
-# Features
+# Features 🚀
 
 • Built with Python 3.6, SQLITE3    
 
@@ -37,7 +37,7 @@ I have developed this project using the below technology
 
 • Ticket generation         
 
-# Kharagpur Winter of Code'22
+# Kharagpur Winter of Code'22 ❤❤
 
 :star: Feel free to use this project to make your first contribution to an open-source project on GitHub. as problems should be unique so that people learn as well as contribute togeather
 
