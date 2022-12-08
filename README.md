@@ -112,6 +112,7 @@ git push -u origin <your_branch_name>
   <a href="https://kwoc.kossiitkgp.org/"><img alt="Dark" src="https://user-images.githubusercontent.com/77617189/205456062-b28a333d-c48b-41ef-96c3-676ef2363ade.png" width="47%" height="400"></a>
 </p>
 
+## Thanks to all Contributors 💪
 
 Thanks a lot for spending your time helping this project grow. Thanks a lot! Keep rocking 🍻
 
