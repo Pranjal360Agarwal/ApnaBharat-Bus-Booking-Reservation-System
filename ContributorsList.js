@@ -9,4 +9,9 @@ let contributors = [
     name: "Shreyansh Khaitan",
     linkedin: "https://www.linkedin.com/in/shreyansh-khaitan/",
   },
+  {
+      github: "https://github.com/hdmtp",
+      name: "Pritam Dhara",
+      linkedin: "https://www.linkedin.com/in/hdmtp/",
+    },
   ];
