@@ -14,4 +14,8 @@ let contributors = [
       name: "Pritam Dhara",
       linkedin: "https://www.linkedin.com/in/hdmtp/",
     },
+  {
+      github: "https://github.com/jainsujan11",
+      name: "Sujan Jain",
+    },
   ];
