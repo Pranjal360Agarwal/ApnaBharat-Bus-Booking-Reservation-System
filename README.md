@@ -115,6 +115,6 @@ git push -u origin <your_branch_name>
 
 Thanks a lot for spending your time helping this project grow. Thanks a lot! Keep rocking 🍻
 
-[![Contributors](https://contrib.rocks/image?repo=Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)(https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)](https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/graphs/contributors)
 
 
