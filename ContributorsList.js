@@ -18,4 +18,9 @@ let contributors = [
       github: "https://github.com/jainsujan11",
       name: "Sujan Jain",
     },
+  {
+    GitHub: "https://github.com/yashpatel08",
+    name: "Patel Yash",
+    linkedin: "https://www.linkedin.com/in/yash-patel-ab2740225/",
+  },
   ];
