@@ -23,4 +23,9 @@ let contributors = [
     name: "Patel Yash",
     linkedin: "https://www.linkedin.com/in/yash-patel-ab2740225/",
   },
+  {
+    GitHub: "https://github.com/Codeblade98",
+    name: "Agnij Biswas",
+    linkedin: "https://www.linkedin.com/in/agnij-biswas-82a62124a/",
+  },
   ];
