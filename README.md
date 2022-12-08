@@ -13,7 +13,7 @@
 ![Pull requests](https://img.shields.io/github/issues-pr/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)
 ![Forks](https://img.shields.io/github/forks/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)
 ![Stars](https://img.shields.io/github/stars/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)
-![Licence](https://img.shields.io/github/license/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System?color=orange)
+
 
 ---
 </div>
@@ -106,13 +106,15 @@ git push -u origin <your_branch_name>
 
 ---
 
-## Open Source Programs
+## Open Source Programs🚀
 
 <p align="center">
   <a href="https://kwoc.kossiitkgp.org/"><img alt="Dark" src="https://user-images.githubusercontent.com/77617189/205456062-b28a333d-c48b-41ef-96c3-676ef2363ade.png" width="47%" height="400"></a>
 </p>
 
 
+Thanks a lot for spending your time helping this project grow. Thanks a lot! Keep rocking 🍻
 
+[![Contributors](https://contrib.rocks/image?repo=Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)(https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/graphs/contributors)
 
 
