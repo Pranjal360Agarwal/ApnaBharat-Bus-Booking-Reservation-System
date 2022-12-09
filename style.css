@@ -101,13 +101,13 @@ body.active
 {
     left: 100%;
     transition-delay: 0s;
-
+    transform: translateX(100%);
 }
 .formB.active .signupForm 
 {
     left: 0;
     transition-delay: 0.25s;
-    
+    transform: translateX(0);
 }
 .formB .form
 {
