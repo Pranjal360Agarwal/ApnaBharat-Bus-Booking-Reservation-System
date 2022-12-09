@@ -54,10 +54,10 @@ def signIn():
 # Adding the code of dataset here
 def signup_command():
     window=Toplevel(windows)
-    windows.title("Sign Up")
-    windows.geometry('925x500+300+200')
-    windows.configure(bg='#fff')
-    windows.resizable(False,False)
+    window.title("Sign Up")
+    window.geometry('925x500+300+200')
+    window.configure(bg='#fff')
+    window.resizable(False,False)
 
     # Syncing it up with text file which will work after two clicks
     def SignUp():
@@ -80,7 +80,7 @@ def signup_command():
                 w=file.write(str(r))
 
                 messagebox.showinfo('Signup','Successfully Signed Up')
-                windows.destroy()
+                window.destroy()
 
             except: # if the file is not available
                 file=open('dataset.txt','w')
@@ -92,14 +92,14 @@ def signup_command():
             messagebox.showerror('Invalid',"Both password should match")
 
     def sign():
-        windows.destroy()
+        window.destroy()
 
     # Adding the background image
     img=PhotoImage(file='Sign Up.png')
-    Label(windows,image=img,border=0,bg='white').place(x=50,y=90)
+    Label(window,image=img,border=0,bg='white').place(x=50,y=90)
 
     # Adding the 'sign Up' section
-    frame=Frame(windows,width=350,height=390,bg='#fff')
+    frame=Frame(window,width=350,height=390,bg='#fff')
     frame.place(x=480,y=50)
 
     heading=Label(frame,text='Sign Up',fg="#57a1f8",bg='white',font=('Microsoft Yahei UI Light',23,'bold'))
@@ -162,7 +162,7 @@ def signup_command():
     signIn.place(x=200,y=340)
 
 
-    windows.mainloop()
+    window.mainloop()
 # -------------------------------------------------------------------------------------------------
 
 
