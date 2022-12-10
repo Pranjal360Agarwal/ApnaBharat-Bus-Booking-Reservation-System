@@ -15,6 +15,11 @@ let contributors = [
       linkedin: "https://www.linkedin.com/in/hdmtp/",
     },
   {
+      github: "https://github.com/Sapt-pal",
+      name: "Saptarshi Pal",
+      linkedin: "https://www.linkedin.com/in/Sapt-pal/",
+    },
+  {
       github: "https://github.com/jainsujan11",
       name: "Sujan Jain",
     },
