@@ -15,6 +15,11 @@ let contributors = [
       linkedin: "https://www.linkedin.com/in/hdmtp/",
     },
   {
+      github: "https://github.com/Sapt-pal",
+      name: "Saptarshi Pal",
+      linkedin: "https://www.linkedin.com/in/Sapt-pal/",
+    },
+  {
       github: "https://github.com/jainsujan11",
       name: "Sujan Jain",
     },
@@ -38,4 +43,14 @@ let contributors = [
     name: "Devichand",
     linkedin: "https://www.linkedin.com/in/devichand-budagam-834b2322a",
   },
+  {
+    Github: "https://github.com/Garvit414",
+    Name: "Garvit Agarwal",
+    Linkedin: "https://www.linkedin.com/in/garvit-agarwal-675b81229/"
+  }
+  {
+    GitHub: "https://github.com/ManasviEmmadi",
+    Name: "Manasvi Emmadi",
+    Linkedin: "https://www.linkedin.com/in/manasvi-emmadi-05425320b/"
+  }
   ];
