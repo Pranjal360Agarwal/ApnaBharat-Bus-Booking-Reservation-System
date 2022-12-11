@@ -2,6 +2,7 @@ from datetime import date
 from tkinter import*
 import sqlite3
 from tkinter.messagebox import *
+from tkcalendar import *
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
 root = Tk()
@@ -236,8 +237,10 @@ def seat_book():
     e2 = Entry(f5)
     e2.grid(row=0,column=3)
     Label(f5,text = "JOURNEY DATE (DD-MM-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
-    e3 = Entry(f5)
-    e3.grid(row=0,column=5)
+    cal=DateEntry(f5,selectmode='day')
+    cal.grid(row=0,column=5,padx=15)
+    '''e3 = Entry(f5)
+    e3.grid(row=0,column=5)'''
 
     def proceed_to(f5,busch,fare):
         if type(busch)!=int:
@@ -265,19 +268,19 @@ def seat_book():
             e7 = Entry(f6)
             e7.grid(row=1,column=9)
             def booked(fare):
-                if e6.get()=="" or e4.get()=="" or e7.get()=="" or e3.get()=="" or e5.get()=="" or e2.get()=="" or e1.get()=="":
+                if e6.get()=="" or e4.get()=="" or e7.get()=="" or cal.get()=="" or e5.get()=="" or e2.get()=="" or e1.get()=="":
                     showerror("Invalid Data","Please fill all the data!")
                 else:                    
-                    insertRow = (int(e6.get()),e4.get(),menu.get(),int(e7.get()),busch,e3.get(),int(e5.get()),fare,e2.get(),e1.get())
+                    insertRow = (int(e6.get()),e4.get(),menu.get(),int(e7.get()),busch,cal.get(),int(e5.get()),fare,e2.get(),e1.get())
                     fare*=insertRow[6]
-                    cur.execute('select seat_available from runs where bus_id='+str(busch)+' and journey_date="'+e3.get()+'"')
+                    cur.execute('select seat_available from runs where bus_id='+str(busch)+' and journey_date="'+cal.get()+'"')
                     seats_avail=cur.fetchall()
                     seats_avl=int(seats_avail[0][0])
                     if int(e5.get())<seats_avl:
                         resp = askyesno("Book","Total fare = "+str(fare)+"\nProceed to book?")
                         if resp:
                             cur.execute('insert into Booking (Mobile ,Name ,sex ,age ,Bus_id , journey_date ,Ticket, Fare ,FromSt ,Tost ) values (?,?,?,?,?,?,?,?,?,?)',insertRow)
-                            cur.execute('update runs set seat_available='+str(seats_avl-int(e5.get()))+' where bus_id='+str(busch)+' and journey_date="'+e3.get()+'"')
+                            cur.execute('update runs set seat_available='+str(seats_avl-int(e5.get()))+' where bus_id='+str(busch)+' and journey_date="'+cal.get()+'"')
                             con.commit()
                             ticketShow(insertRow)
                     else:
@@ -286,10 +289,10 @@ def seat_book():
             button8 = Button(f6,text="Book Seat", font=("Arial",15), activebackground = 'light green', bg = 'SpringGreen3',command = lambda: booked(fare)).grid(row=1,column=10,padx=20,pady=20)
 
     def show_bus(f5):
-        if e1.get()=="" or e2.get()=="" or e3.get()=="":
+        if e1.get()=="" or e2.get()=="" or cal.get()=="":
             showinfo("Invalid Inputs","Please enter all the details!")
         else:
-            data=cur.execute('select b.bus_id,o.name,b.type,t.seat_available,b.fare from route r,route s,runs t,bus b,operator o where o.op_id=b.op_id and r.route_id=s.route_id and t.bus_id=b.bus_id and b.route_id=r.route_id and t.journey_date= "'+str(e3.get())+'" and r.station="'+str(e1.get())+'" and s.station="'+str(e2.get())+'" and r.s_id>s.s_id')
+            data=cur.execute('select b.bus_id,o.name,b.type,t.seat_available,b.fare from route r,route s,runs t,bus b,operator o where o.op_id=b.op_id and r.route_id=s.route_id and t.bus_id=b.bus_id and b.route_id=r.route_id and t.journey_date= "'+str(cal.get())+'" and r.station="'+str(e1.get())+'" and s.station="'+str(e2.get())+'" and r.s_id>s.s_id')
             f6=Frame(f5)
             f6.grid(row = 5, column = 0, columnspan = 10,pady = 20)
             Label(f6,text = "Select BUS ", font=("Arial",15),fg='light green').grid(row=0,column=0,padx = 20)
