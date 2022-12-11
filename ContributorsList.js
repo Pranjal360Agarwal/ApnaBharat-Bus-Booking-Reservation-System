@@ -43,4 +43,9 @@ let contributors = [
     Name: "Garvit Agarwal",
     Linkedin: "https://www.linkedin.com/in/garvit-agarwal-675b81229/"
   }
+  {
+    GitHub: "https://github.com/ManasviEmmadi",
+    Name: "Manasvi Emmadi",
+    Linkedin: "https://www.linkedin.com/in/manasvi-emmadi-05425320b/"
+  }
   ];
