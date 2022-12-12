@@ -1,3 +1,8 @@
+#   ISSUES:
+##  1. Add forgot password feature
+##  2. Change back colours of text in register
+##  3. Add confirm password in register and forgot passwords
+
 #import modules
  
 from tkinter import *
