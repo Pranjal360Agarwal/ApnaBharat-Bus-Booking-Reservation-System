@@ -47,10 +47,15 @@ let contributors = [
     Github: "https://github.com/Garvit414",
     Name: "Garvit Agarwal",
     Linkedin: "https://www.linkedin.com/in/garvit-agarwal-675b81229/"
-  }
+  },
   {
     GitHub: "https://github.com/ManasviEmmadi",
     Name: "Manasvi Emmadi",
     Linkedin: "https://www.linkedin.com/in/manasvi-emmadi-05425320b/"
+  },
+  {
+    GitHub: "https://github.com/Sahajj",
+    Name: "Sahaj Jain",
+    Linkedin: "https://www.linkedin.com/in/sahaj-jain-410100228/"
   }
   ];
