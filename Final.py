@@ -359,7 +359,7 @@ def new_operator():
                 "insert into operator (op_id ,name ,address ,phone , email) values (?,?,?,?,?)",
                 (int(e9.get()), e10.get(), e11.get(), int(e12.get()), e13.get()),
             )
-            cur.execute('select * from operator where op_id=' + e9.get()))
+            cur.execute('select * from operator where op_id=' + e9.get())
             row = cur.fetchall()
             row = row[0]
             con.commit()
