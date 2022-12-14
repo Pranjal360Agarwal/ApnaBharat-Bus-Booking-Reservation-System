@@ -67,5 +67,10 @@ let contributors = [
     GitHub: "https://github.com/blip100",
     Name: "parthiv reddy",
     Linkedin: "https://www.linkedin.com/in/parthiv-reddy-b39113223/"
-  }
+  },
+  {
+    github: "https://github.com/Krishnadeshpande2907",
+    name: "Krishna Deshpande",
+    linkedin: "https://www.linkedin.com/in/krishna-deshpande-347188223/",
+  },
   ];
