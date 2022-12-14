@@ -57,5 +57,10 @@ let contributors = [
     GitHub: "https://github.com/Sahajj",
     Name: "Sahaj Jain",
     Linkedin: "https://www.linkedin.com/in/sahaj-jain-410100228/"
+  },
+  {
+    GitHub: "https://github.com/can-ishk",
+    Name: "Kanishk Chathley",
+    Linkedin: "https://www.linkedin.com/in/kanishk-chathley/"
   }
   ];
