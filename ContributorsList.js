@@ -73,4 +73,9 @@ let contributors = [
     name: "Krishna Deshpande",
     linkedin: "https://www.linkedin.com/in/krishna-deshpande-347188223/",
   },
+  {
+    github: "https://github.com/Uncle-Pi",
+    name: "Sumit Bagchi",
+    linkedin: "https://www.linkedin.com/in/sumit-bagchi-b66576236/",
+  },
   ];

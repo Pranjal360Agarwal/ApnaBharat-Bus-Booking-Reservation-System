@@ -18,9 +18,9 @@
 ---
 </div>
 
-Bus Reservation System is a preety fully functional system developed in Tkinter(GUI),SQLite,Python, which is designed to automate the online ticket purchasing through an easy online bus booking system.With the bus ticket reservation system you can manage/book reservations, clients data and passengers lists , can add new bus or new route as an Operator admin. At end the user will have a proper ticket for his/her booking.     
+Bus Reservation System is a pretty fully functional system developed using Tkinter(GUI), SQLite, Python, which is designed to automate the online ticket purchasing through an easy online bus booking system. With the bus ticket reservation system, you can manage/book reservations, clients data and passengers lists, can add new bus or new route as an Operator admin. At the end, the user will have a proper ticket for his/her booking.     
 
-### (Feel free to fork &amp; make changes , don't forget to make a PR.)
+### (Feel free to fork &amp; make changes, don't forget to make a PR.)
 
 # Technology Used 🔭
 
@@ -30,7 +30,7 @@ I have developed this project using the below technology
 
 • Tkinter : All the frontend interface has been made up using GUI(Graphical user interface)       
 
-• SQLite : SQLite database has been used as database for the project(backend part).  
+• SQLite : SQLite database has been used as database for the project(backend part) 
 
 
 # Features 🚀
@@ -45,15 +45,15 @@ I have developed this project using the below technology
  
 • Showing the availabe buses and number of seats available while seat booking   
  
-• Added the features of adding new bus , route id etc as an Operator Admin    
+• Added the features of adding new bus, route id etc. as an Operator Admin    
 
 • Ticket generation         
 
 # Kharagpur Winter of Code'22 ❤❤
 
-:star: Feel free to use this project to make your first contribution to an open-source project on GitHub. as problems should be unique so that people learn as well as contribute togeather
+:star: Feel free to use this project to make your first contribution to an open-source project on GitHub. Here, problems should be unique so that people learn as well as contribute together
 
-:star: Learn , Revise and Contribute 😄❤
+:star: Learn, Revise and Contribute 😄❤
 
 ### This repository is open to all members of the GitHub community. Any member can contribute to this project!
 
