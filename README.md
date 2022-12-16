@@ -30,7 +30,7 @@ I have developed this project using the below technology
 
 • Tkinter : All the frontend interface has been made up using GUI(Graphical user interface)       
 
-• SQLite : SQLite database has been used as database for the project(backend part).  
+• SQLite : SQLite database has been used as database for the project(backend part) 
 
 
 # Features 🚀
