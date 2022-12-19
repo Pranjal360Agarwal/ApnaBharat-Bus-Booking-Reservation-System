@@ -466,13 +466,12 @@ def seat_book():
     Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
     e2 = Entry(f5)
     e2.grid(row=0,column=3)
-    Label(f5,text = "JOURNEY DATE (DD-MM-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
-    cal=DateEntry(f5,selectmode='day')
+    Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
+    cal=DateEntry(f5,selectmode='day', date_pattern = "MM-DD-YYYY")
     cal.grid(row=0,column=5,padx=15)
     '''e3 = Entry(f5)
     e3.grid(row=0,column=5)'''
-
-
+    
     def proceed_to(f5, busch, fare):
         if type(busch) != int:
             showinfo("Invalid Choice", "Please choose a bus!")
