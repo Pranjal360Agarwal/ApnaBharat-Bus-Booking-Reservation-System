@@ -78,4 +78,9 @@ let contributors = [
     name: "Sumit Bagchi",
     linkedin: "https://www.linkedin.com/in/sumit-bagchi-b66576236/",
   },
+  {
+    github: "https://github.com/KrishGaur1354",
+    name: "Krish Gaur",
+    linkedin: "https://www.linkedin.com/in/thatonekrish/",
+  },
   ];

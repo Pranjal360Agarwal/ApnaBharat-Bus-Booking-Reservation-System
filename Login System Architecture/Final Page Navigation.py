@@ -1,4 +1,5 @@
 # importing the required modules
+from idlelib import window
 from tkinter import *
 import os
 from tkinter import messagebox
@@ -32,12 +33,14 @@ def signIn():
 
     if (username in r.keys() and password==r[username]):
         screen=Toplevel(windows)
-        screen.title("Prototype")
+        screen.title("ApnaBharat")
         screen.geometry('925x500+300+200')
-        screen.config(bg="white")
+        screen.config(bg="light blue")
 
-        Label(screen, text="Hey There ;)", bg='#fff', font=('Calibri(Body)', 50, 'bold')).pack(expand=True)
-        screen.mainloop()
+        img = PhotoImage(file='busproject.png')
+        Label(window, image=img, border=0, bg='blue')
+    # Label(screen, text="Hey There ;)", bg='#fff', font=('Calibri(Body)', 30, 'bold')).pack(expand=True)
+    # screen.mainloop()
 
     # elif (username!='admin' and password!='1234'):
     #     messagebox.showerror("Invalid", "Both credentials are incorrect")

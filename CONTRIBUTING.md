@@ -111,6 +111,10 @@ We want your work to be readable by others; therefore, we encourage you to note 
 2. Git : Git is a distributed version-control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files.
   * [Videos to get started](https://www.youtube.com/watch?v=xAAmje1H9YM&list=PLeo1K3hjS3usJuxZZUBdjAcilgfQHkRzW)
   * [Cheat Sheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
+  * [Kunal Kushwaha GIT tutorial](https://youtu.be/apGV9Kg7ics)
+
+3. Python : Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.
+  * [Python Documentation](https://docs.python.org/3/download.html)
 
 
 ## 🤔Need more help?
