@@ -440,6 +440,7 @@ def ticketShow(row):
     )
 
 
+
 def seat_book():
     f4 = Frame()
     f4.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
