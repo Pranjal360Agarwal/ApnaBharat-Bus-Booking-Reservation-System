@@ -32,6 +32,7 @@ let contributors = [
     GitHub: "https://github.com/Codeblade98",
     name: "Agnij Biswas",
     linkedin: "https://www.linkedin.com/in/agnij-biswas-82a62124a/",
+    
   },
   {
     GitHub: "https://github.com/YashGovil",
@@ -82,5 +83,10 @@ let contributors = [
     github: "https://github.com/KrishGaur1354",
     name: "Krish Gaur",
     linkedin: "https://www.linkedin.com/in/thatonekrish/",
+  },
+  {
+    github: "https://github.com/ravikumar117211",
+    name: "Ravi Kumar",
+    linkedin: "https://www.linkedin.com/in/ravikumar117211/",
   },
   ];
