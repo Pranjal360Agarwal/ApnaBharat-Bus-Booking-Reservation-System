@@ -66,7 +66,7 @@ I have developed this project using the below technology
 
 # Steps For Contribution⚡
 
-0. Star 
+0. Star ⭐
 
 1. Fork 
 
