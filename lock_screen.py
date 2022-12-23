@@ -18,7 +18,7 @@ def register():
     username = StringVar()
     password = StringVar()
  
-    Label(register_screen, text="Please enter details below", bg="green").pack()
+    Label(register_screen, text="Please enter details below").pack()
     Label(register_screen, text="").pack()
     username_lable = Label(register_screen, text="Username * ")
     username_lable.pack()
@@ -106,7 +106,7 @@ def login_sucess():
     login_success_screen = Toplevel(login_screen)
     login_success_screen.title("Success")
     login_success_screen.geometry("300x250")
-    Label(login_success_screen, text="Login Success").pack()
+    Label(login_success_screen, text="Login Success", fg="green").pack()
     Button(login_success_screen, text="OK", command=delete_login_success).pack()
  
 # Designing popup for login invalid password
@@ -116,7 +116,7 @@ def password_not_recognised():
     password_not_recog_screen = Toplevel(login_screen)
     password_not_recog_screen.title("Success")
     password_not_recog_screen.geometry("300x250")
-    Label(password_not_recog_screen, text="Invalid Password ").pack()
+    Label(password_not_recog_screen, text="Invalid Password ", fg="red").pack()
     Button(password_not_recog_screen, text="OK", command=delete_password_not_recognised).pack()
  
 # Designing popup for user not found
@@ -126,7 +126,7 @@ def user_not_found():
     user_not_found_screen = Toplevel(login_screen)
     user_not_found_screen.title("Success")
     user_not_found_screen.geometry("300x250")
-    Label(user_not_found_screen, text="User Not Found").pack()
+    Label(user_not_found_screen, text="User Not Found", fg="red").pack()
     Button(user_not_found_screen, text="OK", command=delete_user_not_found_screen).pack()
  
 # Deleting popups
@@ -158,5 +158,6 @@ def main_account_screen():
  
     main_screen.mainloop()
  
- 
-main_account_screen()
+
+if __name__ == "__main__":
+    main_account_screen()
