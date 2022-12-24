@@ -22,14 +22,6 @@ def signIn():
     d=file.read()
     r=ast.literal_eval(d)
     file.close()
-    # print(r.keys())
-    # print(r.values())
-
-
-    # if (username=='admin' and password=='1234'): 
-    # constant username & password
-        # Output will be displayed on terminal
-        # print('Hey There ;)')
 
     if (username in r.keys() and password==r[username]):
         screen=Toplevel(windows)
@@ -39,17 +31,6 @@ def signIn():
 
         img = PhotoImage(file='busproject.png')
         Label(window, image=img, border=0, bg='blue')
-    # Label(screen, text="Hey There ;)", bg='#fff', font=('Calibri(Body)', 30, 'bold')).pack(expand=True)
-    # screen.mainloop()
-
-    # elif (username!='admin' and password!='1234'):
-    #     messagebox.showerror("Invalid", "Both credentials are incorrect")
-
-    # elif(password!="1234"):
-    #     messagebox.showerror("Invalid", "Incorrect Password")
-
-    # elif(username!="admin"):
-    #     messagebox.showerror("Invalid","Incorrect Username")
 
     else:
         messagebox.showerror('Invalid', 'Invalid Username or Password')

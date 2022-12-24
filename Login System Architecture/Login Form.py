@@ -29,11 +29,9 @@ def signIn():
     elif (username!='admin' and password!='1234'):
         messagebox.showerror("Invalid", "Both credentials are incorrect")
 
-    elif(password!="1234"):
-        messagebox.showerror("Invalid", "Incorrect Password")
+    elif(username!="admin" or password!="1234"):
+        messagebox.showerror("Invalid", "Incorrect Username/Password")
 
-    elif(username!="admin"):
-        messagebox.showerror("Invalid","Incorrect Username")
 
 # Adding the background image
 img=PhotoImage(file='Login.png')
@@ -47,7 +45,7 @@ heading.place(x=100,y=5)
 
 # Adding Username Section
 
-    #Adding functions for writing the password
+#Adding functions for writing the password
 def on_enter(e):
     user.delete(0, 'end')
 
