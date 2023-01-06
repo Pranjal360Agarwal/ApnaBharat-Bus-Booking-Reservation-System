@@ -57,7 +57,7 @@ def data_entry(username, password):
     -------
     None.
     """
-    cmd = f"INSERT INTO passwords_data (site_name, site_url, username, password, password_nature) VALUES ('{site_name}', '{site_URL}', '{username}', '{password}', '{password_nature}')"
+    cmd = f"INSERT INTO passwords_data (username, password) VALUES ({username}', '{password}')"
     data_entry = cmd
     infobox("Storing your credentials...")
     try:
