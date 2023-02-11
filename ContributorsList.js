@@ -85,6 +85,11 @@ let contributors = [
     linkedin: "https://www.linkedin.com/in/thatonekrish/",
   },
   {
+   github: "https://github.com/Bharadwajshivam28",
+    name: "Shivam Kumar"
+    linkedin: "https://www.linkedin.com/in/shivam-kumar-70a746256/",
+    },
+  {
     github: "https://github.com/ravikumar117211",
     name: "Ravi Kumar",
     linkedin: "https://www.linkedin.com/in/ravikumar117211/",
