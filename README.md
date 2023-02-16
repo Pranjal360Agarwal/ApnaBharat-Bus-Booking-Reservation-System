@@ -39,6 +39,33 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
    📌 Implementation of the ticket generation and delivery feature: <br>
        👉 Once the user has successfully booked and paid for their tickets we generate the tickets and deliver them to the user through email or other digital means. <br>
        
+       
+# Detailed Process of ApnaBharat-Bus-Booking-Reservation-system
+
+   📌 User Registration <br>
+       👉 Users can register on the website by providing basic details such as name, contact number, email ID, and password. <br>
+       
+    📌 Bus Search 
+       👉 Users can search for buses based on various criteria such as source, destination, date of travel, type of bus, etc. 
+       
+    📌 Seat Selection 
+       👉 After selecting the bus, users can choose their preferred seats from the available options 
+       
+     📌 Payment 
+       👉 Users can make payment for the booking using various payment modes such as credit/debit cards, net banking, wallets, etc. 
+       
+     📌 Confirmation 
+       👉 Once the payment is successful, users will receive a confirmation of their booking via email or SMS. 
+       
+     📌 One can add new bus 
+     
+      📌 Add Route
+     
+     
+# Our Plede
+  
+  ## The aim of the "Apnabharat bus booking reservation system" project is to provide a convenient and efficient way for users to book bus tickets online. This system will eliminate the need for users to stand in long queues at bus ticket counters and provide a hassle-free booking experience. The project aims to be user-friendly, easy to navigate, and secure. It will provide users with a variety of bus options to choose from, along with various payment modes, making it a one-stop solution for all their bus booking needs. The project aims to provide a seamless booking experience for users and help bus operators streamline their booking process.
+  
 <hr>
 
 # Our Aim
