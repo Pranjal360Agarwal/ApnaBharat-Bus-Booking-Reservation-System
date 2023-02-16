@@ -27,7 +27,7 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
   📌 Programming Languages used: <br>
        👉 Javascript and Python <br>
        
-  📌 User-interface
+  📌 User-interface <br>
        👉 It is simple with a clear view. <br>
        
    📌 Store information and data: <br>
