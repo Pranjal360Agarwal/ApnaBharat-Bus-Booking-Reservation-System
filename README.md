@@ -18,7 +18,7 @@
 ---
 </div>
 
-Bus Reservation System is a pretty fully functional system developed using Tkinter(GUI), SQLite, Python, which is designed to automate the online ticket purchasing through an easy online bus booking system. With the bus ticket reservation system, you can manage/book reservations, clients data and passengers lists, can add new bus or new route as an Operator admin. At the end, the user will have a proper ticket for his/her booking.     
+Bus Reservation System is a pretty fully functional system developed using Tkinter (GUI), SQLite, Python, which is designed to automate the online ticket purchasing through an easy online bus booking system. With the bus ticket reservation system, you can manage/book reservations, clients data and passengers lists, can add new bus or new route as an Operator admin. At the end, the user will have a proper ticket for his/her booking.     
 
 ### (Feel free to fork &amp; make changes, don't forget to make a PR.)
 
@@ -162,7 +162,7 @@ git push -u origin <your_branch_name>
 
 9. Congratulations! 🎉 you've made your contribution.
 
-
+[Click here to read in Hindi](README-hindi.md)
 ---
 
 ## Open Source Programs🚀
