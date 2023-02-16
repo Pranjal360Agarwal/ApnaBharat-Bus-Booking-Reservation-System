@@ -22,6 +22,36 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
 
 ### (Feel free to fork &amp; make changes, don't forget to make a PR.)
 
+# Workflow of Our Project
+
+  📌 Programming Languages used: <br>
+       👉 Javascript and Python <br>
+       
+  📌 User-interface
+       👉 It is simple with a clear view. <br>
+       
+   📌 Store information and data:
+       👉 We have a secure storage box for our user data  such as name,date,time,loaction and availability of tickets. <br>
+       
+   📌 Developing ticket booking and payment processing features: 
+       👉 We have a booking feature that allows users to select the event they want to attend, choose the number of tickets, and make payment through a secure payment gateway. <br>
+       
+   📌 Implementation of the ticket generation and delivery feature: 
+       👉 Once the user has successfully booked and paid for their tickets we generate the tickets and deliver them to the user through email or other digital means. <br>
+       
+<hr>
+
+# Our Aim
+
+  📌 Provide user simple interface which will be easy to understand. <br>
+  📌 Choose the number of tickets they require, make secure payments, and receive their tickets in a timely manner. <br>
+  📌 User-friendly interface and optimized user experience to enhance the user's interaction and engagement with the platform. <br>
+  📌 Streamline the ticket booking process, improve customer satisfaction. <br>
+  📌 A platform that is secure, fast, and easy to use for booking tickets. <br>
+  
+
+<hr>
+
 # Technology Used 🔭
 
 I have developed this project using the below technology
