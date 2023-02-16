@@ -30,13 +30,13 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
   📌 User-interface
        👉 It is simple with a clear view. <br>
        
-   📌 Store information and data:
+   📌 Store information and data: <br>
        👉 We have a secure storage box for our user data  such as name,date,time,loaction and availability of tickets. <br>
        
-   📌 Developing ticket booking and payment processing features: 
+   📌 Developing ticket booking and payment processing features: <br> 
        👉 We have a booking feature that allows users to select the event they want to attend, choose the number of tickets, and make payment through a secure payment gateway. <br>
        
-   📌 Implementation of the ticket generation and delivery feature: 
+   📌 Implementation of the ticket generation and delivery feature: <br>
        👉 Once the user has successfully booked and paid for their tickets we generate the tickets and deliver them to the user through email or other digital means. <br>
        
 <hr>
