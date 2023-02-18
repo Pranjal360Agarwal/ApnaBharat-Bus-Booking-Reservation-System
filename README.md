@@ -64,7 +64,7 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
      
 # Our Pledge
   
-  ### The aim of the "Apnabharat bus booking reservation system" project is to provide a convenient and efficient way for users to book bus tickets online. This system will eliminate the need for users to stand in long queues at bus ticket counters and provide a hassle-free booking experience. The project aims to be user-friendly, easy to navigate, and secure. It will provide users with a variety of bus options to choose from, along with various payment modes, making it a one-stop solution for all their bus booking needs. The project aims to provide a seamless booking experience for users and help bus operators streamline their booking process.
+  #### The aim of the "Apnabharat bus booking reservation system" project is to provide a convenient and efficient way for users to book bus tickets online. This system will eliminate the need for users to stand in long queues at bus ticket counters and provide a hassle-free booking experience. The project aims to be user-friendly, easy to navigate, and secure. It will provide users with a variety of bus options to choose from, along with various payment modes, making it a one-stop solution for all their bus booking needs. The project aims to provide a seamless booking experience for users and help bus operators streamline their booking process.
   
 <hr>
 
