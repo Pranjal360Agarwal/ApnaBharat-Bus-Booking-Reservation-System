@@ -17,7 +17,7 @@
 
 ---
 </div>
-<div align="center" width="50%">
+<div align="center" height="50%" width="50%>
   <img src="./logo/project.png" width="100%">
 </div>
 
