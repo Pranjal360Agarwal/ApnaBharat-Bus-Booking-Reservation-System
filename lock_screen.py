@@ -77,6 +77,30 @@ def register_user():
     password_entry.delete(0, END)
  
     Label(register_screen, text="Registration Success", fg="green", font=("calibri", 11)).pack()
+    
+    import re
+
+def check_password_strength(password_info):
+   
+    if len(password_info) < 8:
+        return False
+    elif not re.search("[a-z]", password_info):
+        return False
+    elif not re.search("[A-Z]", password_info):
+        return False
+    elif not re.search("[0-9]", password_info):
+        return False
+    elif not re.search("[!@#$%^&*()_+-=]", password_info):
+        return False
+    else:
+        return True
+
+password_info = input("Enter a password: ")
+if not check_password_strength(password_info):
+    print("The password is not strong enough. Please ensure it has at least 8 characters, including uppercase and lowercase letters, numbers, and symbols.")
+else:
+    print("Password is strong enough.")
+
  
 # Implementing event on login button 
  
