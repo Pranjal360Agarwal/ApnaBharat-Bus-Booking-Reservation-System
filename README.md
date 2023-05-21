@@ -12,7 +12,7 @@
 <a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/graphs/contributors"><img src="https://img.shields.io/github/contributors/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System?color=brightgreen"></a>
 <a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/stargazers"><img src="https://img.shields.io/github/stars/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System?color=0059b3"></a>
 <a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/network/members"><img src="https://img.shields.io/github/forks/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System?color=yellow"></a>
-<a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/issues"><img src="https://img.shields.io/github/issues/awantika10/Desgen?color=0059b3"></a>
+<a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/issues"><img src="https://img.shields.io/github/issues/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System?color=0059b3"></a>
 <a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed-raw/awantika10/Desgen?color=yellow"></a>
 <a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/pulls"><img src="https://img.shields.io/github/issues-pr/awantika10/Desgen?color=brightgreen"></a>
 <a href="https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed-raw/awantika10/Desgen?color=0059b3"></a> 
