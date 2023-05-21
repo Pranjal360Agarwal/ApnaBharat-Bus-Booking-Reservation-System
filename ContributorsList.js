@@ -86,7 +86,7 @@ let contributors = [
   },
   {
    github: "https://github.com/Bharadwajshivam28",
-    name: "Shivam Kumar"
+    name: "Shivam Kumar",
     linkedin: "https://www.linkedin.com/in/shivam-kumar-70a746256/",
     },
   {
@@ -98,5 +98,10 @@ let contributors = [
     GitHub: "https://github.com/Dragonstac",
     name: "Shreyash Srivastava",
     linkedin: "https://www.linkedin.com/in/dragonstac/",
+  },
+  {
+    GitHub: "https://github.com/hemansh",
+    name: "Hemansh Agnihotri",
+    linkedin: "https://www.linkedin.com/in/hemansh-agnihotri/",
   }
   ];
