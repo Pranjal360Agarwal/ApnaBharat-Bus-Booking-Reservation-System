@@ -3,6 +3,7 @@ from tkinter import *
 import sqlite3
 from tkinter.messagebox import *
 from tkcalendar import *
+import scrypt
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
 
@@ -676,6 +677,52 @@ def check_booked_seat(f2):
         row=4, column=0, columnspan=5
     )
 
+def login():
+    f19 = Frame()
+    f19.place(x=0,y=0,width=root.winfo_screenwidth(),height = root.winfo_screenheight())
+    my_label = Label(f19,image=login_img,anchor=CENTER,width=width).grid(
+        row = 0,column=0,columnspan=5
+    )
+    Label(
+        f19,
+        text="ADMIN LOGIN",
+        font=("Arial", 25),
+        bg="deep sky blue",
+        fg="red",
+        anchor=CENTER,
+    ).grid(row=1, column=0, columnspan=5)
+    f20 = Frame(f19, pady=20)
+    f20.grid(row=2, column=0, columnspan=5)
+    name_var=StringVar()
+    passw_var=StringVar()
+    Label(f20,text='Username').grid(row=3)
+    uname = Entry(f20,textvariable=name_var).grid(row=3,column=1)
+    Label(f20,text='Password').grid(row=4)
+    pswd = Entry(f20,show='*',textvariable=passw_var).grid(row=4,column=1)
+    def check():
+        cur.execute('select * from admin where username="'+name_var.get()+'"')
+        res = cur.fetchone()
+        h = scrypt.hash(passw_var.get(),"ApnaBharat")
+        if str(h) == res[1]:
+            return add_bus()
+        else :
+            wrongpassword()
+    
+    def wrongpassword():
+        showerror(title="Wrong Password",message="Please check your password and try again")
+
+    button10 = Button(
+        f20,
+        text="Login",
+        font=("Arial", 15),
+        bg="light green",
+        command=lambda : check(),
+    ).grid(row=5, column=0, columnspan=5)
+
+    button23 = Button(f19, image=home_img, anchor=CENTER, command=tab2).grid(
+        row=6, column=0, columnspan=5
+    )
+
 
 def add_bus():
     f9 = Frame()
@@ -782,7 +829,7 @@ def tab2():
         bg="light green",
         padx=10,
         pady=10,
-        command=add_bus,
+        command=login,
     ).grid(row=1, column=4)
     Label(f3, text="For Admins Only", fg="red").grid(row=2, column=4)
     button4 = Button(f2, image=home_img, anchor=CENTER, command=tab2).grid(
@@ -824,5 +871,6 @@ def tab1():
 
 my_img = PhotoImage(file="Bus_for_project.png")
 home_img = PhotoImage(file="home.png")
+login_img = PhotoImage(file="login.png")
 tab1()
 root.mainloop()
