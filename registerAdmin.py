@@ -49,13 +49,13 @@ pswd = Entry(frame2,show='*',textvariable=cpassw_var).grid(row=7,column=1)
 def handlesubmit():
     if(cpassw_var.get() != passw_var.get()):
         showinfo(title="Password Not Match",message="Please enter same password in both the field")
-
-    hashed_password = scrypt.hash(passw_var.get(),"ApnaBharat")
-    cur.execute("insert into admin(username,pass,name,email) values(?,?,?,?)",
+    else:
+        hashed_password = scrypt.hash(passw_var.get(),"ApnaBharat")
+        cur.execute("insert into admin(username,pass,name,email) values(?,?,?,?)",
             (uname_var.get(),str(hashed_password),name_var.get(),email_var.get()),
-    )
-    con.commit()
-    showinfo(title="Successful",message="Admin Registered successfully");
+        )
+        con.commit()
+        showinfo(title="Successful",message="Admin Registered successfully");
     
 Button(frame2,text="SUBMIT",anchor=CENTER, command=handlesubmit).grid(
     row=8, column=0, columnspan=5
