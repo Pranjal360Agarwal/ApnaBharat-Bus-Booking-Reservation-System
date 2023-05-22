@@ -591,6 +591,7 @@ def seat_book():
     button6 = Button(f5, image=home_img, command=tab2).grid(row=0, column=7, padx=20)
 
 
+text = ""
 def check_booked_seat(f2):
     f7 = Frame(f2)
     f7.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -634,6 +635,7 @@ def check_booked_seat(f2):
             con.commit()
             details = cur.fetchall()
             i = 5
+            
             for row in details:
                 box = Label(
                     f8,
@@ -666,7 +668,16 @@ def check_booked_seat(f2):
                     relief="groove",
                 )
                 box.grid(row=i, column=0, columnspan=3)
+                #Adding Ticket data into pdf
+                label_text = box.cget("text") 
+                global text 
+                text = label_text
                 i += 1
+                 #Download Ticket 
+                button10 = Button(f7, text="Download Ticket", anchor=CENTER, command=download_ticket).grid(
+                    row=4, column=0, columnspan=5)
+                temp_label = Label(f7, text="", anchor=CENTER).grid(
+                    row=5, column=0, columnspan=5)
             if i == 5:
                 showerror("Test", "No tickets found!!")
 
@@ -674,7 +685,7 @@ def check_booked_seat(f2):
         f8, text="Check Booking", font=("Arial", 15), command=checkHistory
     ).grid(row=0, column=2, padx=20)
     button9 = Button(f7, image=home_img, anchor=CENTER, command=tab2).grid(
-        row=4, column=0, columnspan=5
+        row=6, column=0, columnspan=5
     )
 
 def login():
@@ -865,6 +876,39 @@ def tab1():
     # Label(f1,text = "Project Based learning",font="Arial 16 bold",fg='red').pack()
 
     button1 = Button(f1, text="Start", command=tab2).pack()
+
+def download_ticket():
+  from fpdf import FPDF
+  pdf = FPDF()
+  pdf.add_page()
+
+  # Set font as heading font
+  pdf.set_font("Arial", style="B", size=22)
+  pdf.multi_cell(0, 10, txt="Python Bus Service", align='C')
+  pdf.multi_cell(0, 10, txt="", align='C')
+  pdf.multi_cell(0, 10, txt="", align='C')
+  pdf.multi_cell(0, 10, txt="Booked Ticket Details : ", align='L')
+  pdf.multi_cell(0, 10, txt="", align='C')
+ 
+  # Set font for the remaining lines
+  pdf.set_font("Arial", size=15)
+
+  # Split the text into individual lines
+  lines = text.splitlines()
+
+  # Add the remaining lines to the PDF
+  for line in lines:
+     pdf.multi_cell(0, 10, txt=line, align='L')
+
+  pdf.output("Ticket_Details.pdf")
+
+  from tkinter import messagebox
+  messagebox.showinfo("PDF Downloaded", "Your Ticket has been downloaded.")
+
+
+
+
+
 
 
 # -------------------------------------------------------------------------------------------------------------
