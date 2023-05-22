@@ -182,7 +182,7 @@ git push -u origin <your_branch_name>
 
 ## Open Source Programs🚀
 
-<img width="553" alt="image" src="https://user-images.githubusercontent.com/73153808/156029225-91362c76-b04e-4af9-84fa-3d61b7ed52b1.png">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/73153808/156029225-91362c76-b04e-4af9-84fa-3d61b7ed52b1.png">
 
   <a href="https://kwoc.kossiitkgp.org/"><img alt="Dark" src="https://user-images.githubusercontent.com/77617189/205456062-b28a333d-c48b-41ef-96c3-676ef2363ade.png" width="80%" height="600"></a>
   
