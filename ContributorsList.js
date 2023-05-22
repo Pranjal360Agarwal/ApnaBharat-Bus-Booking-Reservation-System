@@ -40,6 +40,11 @@ let contributors = [
     linkedin: "https://www.linkedin.com/in/yash-govil-26762722a/",
   },
   {
+    GitHub: "https://github.com/karthikbhandary2",
+    name: "Karthik Bhandary",
+    linkedin: "https://www.linkedin.com/in/karthikbhandary2/",
+  },
+  {
     GitHub: "https://github.com/devichand579",
     name: "Devichand",
     linkedin: "https://www.linkedin.com/in/devichand-budagam-834b2322a",
