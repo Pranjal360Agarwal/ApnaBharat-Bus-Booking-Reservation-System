@@ -5,6 +5,7 @@ from tkinter import messagebox
 from tkinter.font import Font
 import customtkinter
 from PIL import Image, ImageTk
+import tkinter as tk
 
 
 customtkinter.set_appearance_mode("dark")
@@ -40,8 +41,8 @@ class Login(customtkinter.CTk):
         # TEXT : "Welcome!\nUnified Travelling & Transport System"
         self.login_frame = customtkinter.CTkFrame(self, corner_radius=15)
         self.login_frame.grid(row=0, column=0, sticky="ns")
-        # self.login_label = customtkinter.CTkLabel(self.login_frame, text="Welcome!\nUnified Travelling & Transport System",font=customtkinter.CTkFont(size=24, weight="bold", slant="roman", family="Helvetica"))
-        # self.login_label.grid(row=0, column=0, padx=30, pady=(150, 15))
+        self.login_label = customtkinter.CTkLabel(self.login_frame, text="Welcome!\n",font=customtkinter.CTkFont(size=24, weight="bold", slant="roman", family="Helvetica"))
+        self.login_label.grid(row=0, column=0, padx=30, pady=(150, 15))
 
         #TEXT : LOGIN PAGE
         self.login_label_2 = customtkinter.CTkLabel(self.login_frame, text="Login Page",font=customtkinter.CTkFont(size=40, weight="bold"))
@@ -59,6 +60,13 @@ class Login(customtkinter.CTk):
         self.login_button = customtkinter.CTkButton(self.login_frame, text="Login", command=self.login_event, width=200)
         self.login_button.grid(row=4, column=0, padx=30, pady=(15, 15))
 
+        #TEXT to register
+        self.login_label_3 = customtkinter.CTkLabel(self.login_frame, text="Register now if you don't have an account.",font=customtkinter.CTkFont(size=12, weight="normal"))
+        self.login_label_3.grid(row=6, column=0, padx=30, pady=(20, 5))
+        #TEXT : Register BUTTON TEXT
+        self.login_button = customtkinter.CTkButton(self.login_frame, text="Register", command=self.Register_event, width=200)
+        self.login_button.grid(row=7, column=0, padx=30, pady=(0, 15))
+
     def login_event(self):
         
         entered_username = self.username_entry.get()
@@ -74,6 +82,45 @@ class Login(customtkinter.CTk):
         
         #for debugging if any error encountered
         #print("Login pressed - username:", entered_username, "password:",entered_password)
+
+    def Register_event(self):
+
+        import tkinter as tk
+
+        def register():
+            username = entry_username.get()
+            password = entry_password.get()
+
+            # Save username and password in text files
+            with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
+                username_file.write(username+"\n")
+            with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
+                password_file.write(password+"\n")
+
+            print("Username:", username)
+            print("Password:", password)
+            window.destroy()
+
+        window = tk.Tk()
+        window.title("Registration")
+        window.geometry("300x200")
+
+        label_username = tk.Label(window, text="Username:")
+        label_username.pack()
+
+        entry_username = tk.Entry(window)
+        entry_username.pack()
+
+        label_password = tk.Label(window, text="Password:")
+        label_password.pack()
+
+        entry_password = tk.Entry(window, show="*")
+        entry_password.pack()
+
+        btn_register = tk.Button(window, text="Register", command=register)
+        btn_register.pack()
+
+        window.mainloop()
 
 if __name__ == "__main__":
     app9 = Login()
