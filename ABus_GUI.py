@@ -192,86 +192,134 @@ import tkinter as tk
 from tkinter import ttk
 
 
-def infobox(val):
-    infobox = tk.Tk()
-    infobox.geometry("800x600+100+100")
-    infobox.configure(bg="#B7C3EC")
-    infobox.resizable(False, False)
+def show_info_box(message):
+    infobox = tk.Toplevel(window)
     infobox.title("--Info--")
-    tk.Label(text=val, bg="#B7C3EC", font=("Calibri", 20)).place(
-        relx=0.5, rely=0.35, anchor="center"
-    )
+    infobox.geometry("400x200")
+    infobox.resizable(False, False)
+    infobox.configure(bg="#B7C3EC")
+    tk.Label(infobox, text=message, bg="#B7C3EC", font=("Calibri", 16)).pack(pady=20)
     tk.Button(
-        text="Ok ✔",
+        infobox,
+        text="Ok",
         command=infobox.destroy,
         bg="#113870",
         fg="#B1D6C6",
         font=("Calibri", 12),
-    ).place(anchor="center", relx=0.5, rely=0.58, height=40, width=100)
-    infobox.mainloop()
+    ).pack(pady=10)
 
+def main():
+    # Create the main window
+    window = tk.Tk()
+    window.title("ApnaBharat Bus Booking Reservation")
+    window.geometry("1600x800")
+    window.resizable(False, False)
+    window.configure(bg="#B7C3EC")
 
-def mysql_pass():
-    infobox = tk.Tk()
-    infobox.geometry("800x600+100+100")
-    infobox.configure(bg="#B7C3EC")
-    infobox.resizable(False, False)
-    infobox.title("--Info--")
-    tk.Label(
-        text="Enter MySQL Password (Leave blank if no password set)",
+    # Create a thin ribbon across the top of the window
+    ribbon = tk.Frame(window, bg="#B1D6C6", height=30)
+    ribbon.pack(side=tk.TOP, fill=tk.X)
+
+    # Add the Welcome text in the middle of the ribbon
+    welcome_text = tk.Label(
+        ribbon,
+        text="ApnaBharat Bus Booking Reservation - Signin/Register to continue",
+        bg="#B1D6C6",
+        font=("Calibri Light", 14)
+    )
+    welcome_text.place(relx=0.5, rely=0.5, anchor="center")
+
+    # Add text on the left edge of the window
+    edge_text = tk.Label(
+        window,
+        text="Welcome to ApnaBharat Bus",
         bg="#B7C3EC",
-        font=("Calibri", 20),
-    ).place(relx=0.5, rely=0.35, anchor="center")
-    global sql_pass
-    sql_pass = tk.StringVar()
-    inpt = ttk.Entry(show="*", textvariable=sql_pass).place(
-        relx=0.5, rely=0.40, anchor="center", width=250
+        font=("Georgia", 35)
     )
+    edge_text.place(relx=0.5, rely=0.15, anchor="center")
+
+    tk.Label(
+        text="Username",
+        bg="#B7C3EC",
+        font=("Calibri", 20)
+    ).place(relx=0.5, rely=0.45, anchor="center")
+
+    username = tk.StringVar()
+    usernm = ttk.Entry(textvariable=username)
+    usernm.place(relx=0.5, rely=0.50, anchor="center", width=250)
+
     tk.Button(
-        text="Login ✔",
-        command=infobox.destroy,
+        text="Next ➤",
+        command=new_user,
         bg="#113870",
         fg="#B1D6C6",
-        font=("Calibri", 12),
-    ).place(anchor="center", relx=0.5, rely=0.58, height=40, width=100)
-    infobox.mainloop()
-    return sql_pass.get()
+        font=("Calibri", 12)
+    ).place(anchor="center", relx=0.5, rely=0.55, height=40, width=100)
+
+    window.mainloop()
 
 
-conn_obj = sql_conn.connect(host="localhost", user="root", passwd=mysql_pass())
+def connect_to_mysql():
+    password = mysql_pass_entry.get()
+    conn_obj = sql_conn.connect(host="localhost", user="root", passwd=password)
 
-if conn_obj.is_connected():
-    infobox("Connection established...")
-    sql_cursor = conn_obj.cursor()
-    sql_cursor.execute("CREATE DATABASE IF NOT EXISTS Py_PassCred")
-    sql_cursor.execute("USE Py_PassCred")
-    infobox("Py_Pass database created")
-    table = "CREATE TABLE IF NOT EXISTS passwords_data (SNo INTEGER AUTO_INCREMENT PRIMARY KEY,username VARCHAR(20),password VARCHAR(50))"
-    sql_cursor.execute(table)
-else:
-    infobox("MySQL connection failed.")
-    infobox("Please restart app after logging in to your MySQL interface.")
-
+    if conn_obj.is_connected():
+        show_info_box("Connection established...")
+        sql_cursor = conn_obj.cursor()
+        sql_cursor.execute("CREATE DATABASE IF NOT EXISTS Py_PassCred")
+        sql_cursor.execute("USE Py_PassCred")
+        show_info_box("Py_Pass database created")
+        table = "CREATE TABLE IF NOT EXISTS passwords_data (SNo INTEGER AUTO_INCREMENT PRIMARY KEY,username VARCHAR(20),password VARCHAR(50))"
+        sql_cursor.execute(table)
+    else:
+        show_info_box("MySQL connection failed.")
+        show_info_box("Please restart the app after logging in to your MySQL interface.")
 
 def data_entry(username, password):
-    """
-    Actual insertion of data into RDBMS.
-    Parameters
-    ----------
-    username : STRING
-        .
-    password : STRING
-    Returns
-    -------
-    None.
-    """
     cmd = f"INSERT INTO passwords_data (username, password) VALUES ('{username}', '{password}')"
-    data_entry = cmd
-    infobox("Storing your credentials...")
     try:
-        sql_cursor.execute(data_entry)
+        sql_cursor.execute(cmd)
         conn_obj.commit()
-        infobox("Your data was entered.")
+        show_info_box("Your data was entered.")
     except (sql_conn.ProgrammingError, sql_conn.IntegrityError):
-        err = "Only one password per URL is allowed for data integrity\n Please try again with a unique URL"
-        infobox(err)
+        err = "Only one password per URL is allowed for data integrity. Please try again with a unique URL."
+        show_info_box(err)
+
+def mysql_pass():
+    infobox = tk.Toplevel(window)
+    infobox.geometry("400x200")
+    infobox.configure(bg="#B7C3EC")
+    infobox.title("--MySQL Password--")
+
+    tk.Label(
+        infobox,
+        text="Enter MySQL Password (Leave blank if no password set)",
+        bg="#B7C3EC",
+        font=("Calibri", 14),
+    ).pack(pady=10)
+
+    mysql_pass_entry = tk.StringVar()
+    entry = ttk.Entry(
+        infobox,
+        show="*",
+        textvariable=mysql_pass_entry,
+        font=("Calibri", 12),
+        width=25,
+    )
+    entry.pack(pady=10)
+
+    login_button = tk.Button(
+        infobox,
+        text="Login",
+        command=connect_to_mysql,
+        bg="#113870",
+        fg="#B1D6C6",
+        font=("Calibri", 12),
+    )
+    login_button.pack(pady=10)
+
+    infobox.mainloop()
+    return mysql_pass_entry.get()
+window.mainloop()
+
+       
