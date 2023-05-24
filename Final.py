@@ -464,15 +464,15 @@ def seat_book():
 
     f5 = Frame(f4, pady=20)
     f5.grid(row=4, column=0, columnspan=5)
-    Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
+    Label(f5, text="TO ", font=("Arial", 10,"bold")).grid(row=0, column=0, sticky=E)
     e1 = Entry(f5)
     e1.grid(row=0, column=1)
-    Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
+    Label(f5, text="FROM ", font=("Arial", 10,"bold")).grid(row=1, column=0)
     e2 = Entry(f5)
-    e2.grid(row=0,column=3)
-    Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
+    e2.grid(row=1,column=1)
+    Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10,"bold")).grid(row=0,column=10,padx=40)
     cal=DateEntry(f5,selectmode='day', date_pattern = "MM-DD-YYYY")
-    cal.grid(row=0,column=5,padx=15)
+    cal.grid(row=0,column=11,padx=0)
     '''e3 = Entry(f5)
     e3.grid(row=0,column=5)'''
     
@@ -619,7 +619,7 @@ def seat_book():
         else:
             data=cur.execute('select b.bus_id,o.name,b.type,t.seat_available,b.fare from route r,route s,runs t,bus b,operator o where o.op_id=b.op_id and r.route_id=s.route_id and t.bus_id=b.bus_id and b.route_id=r.route_id and t.journey_date= "'+str(cal.get())+'" and r.station="'+str(e1.get())+'" and s.station="'+str(e2.get())+'" and r.s_id>s.s_id')
             f6=Frame(f5)
-            f6.grid(row = 5, column = 0, columnspan = 10,pady = 20)
+            f6.grid(row = 5, column = 1, columnspan = 10,pady = 20)
             Label(f6,text = "Select BUS ", font=("Arial",15),fg='light green').grid(row=0,column=0,padx = 20)
             Label(f6,text = "Operator ", font=("Arial",15),fg='light green').grid(row=0,column=1,padx=20)
             Label(f6,text = "Bus Type ", font=("Arial",15),fg='light green').grid(row=0,column=2,padx= 20)
@@ -644,16 +644,18 @@ def seat_book():
                 bg="SpringGreen3",
                 command=lambda: proceed_to(f5, busch.get(), row[4]),
             ).grid(row=1, column=5, padx=20, pady=20)
-
+    
+    frame_seat_booking = Frame(f5)
+    frame_seat_booking.grid(row = 12,column = 3,columnspan = 10,pady=20)
     button5 = Button(
-        f5,
+        frame_seat_booking,
         text="Show Bus",
         font=("Arial", 15),
         activebackground="light green",
         bg="SpringGreen3",
         command=lambda: show_bus(f5),
-    ).grid(row=0, column=6, padx=20)
-    button6 = Button(f5, image=home_img, command=tab2).grid(row=0, column=7, padx=20)
+     ).grid(row=7, column=3, padx=20)
+    button6 = Button( frame_seat_booking ,image=home_img, command=tab2).grid(row=7, column=4, padx=20)
 
    
 
