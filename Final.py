@@ -624,15 +624,71 @@ def seat_book():
                         showerror(
                             "Limited Seats", "Insufficient seats avilable in the bus!"
                         )
+            def seat_matrix():
+                import tkinter as tk
+                from tkinter import messagebox
 
+                def submit(root):
+                    selected_seats = []
+                    for seat_var in seat_vars:
+                        if seat_var.get() != "":
+                            selected_seats.append(seat_var.get())
+                    #print("Selected seats:", selected_seats)
+                    root.destroy()  # Close the window after submitting
+                    messagebox.showinfo("Tickets Selected","Tickets Selected")
+
+                root = tk.Tk()
+                root.title("Seat Matrix")
+                bus_frame = tk.Frame(root)
+                root.geometry("400x500")
+                bus_frame.pack()
+
+                seat_vars = []
+                seat_checkboxes = []
+
+                for row in range(1, 11):
+                    seat_row = tk.Frame(bus_frame)
+                    seat_row.grid(row=row, column=1)
+                    row_label = tk.Label(seat_row, text=f"Row {row}", font=("Arial", 10, "bold"))
+                    row_label.pack(side=tk.TOP)
+
+                    for col in range(1, 5):
+                        seat_var = tk.StringVar()
+                        seat_checkbox = tk.Checkbutton(seat_row, text=f"Seat {col}", variable=seat_var, onvalue=f"Seat {col}", offvalue="")
+                        seat_checkbox.pack(side=tk.LEFT)
+                        seat_vars.append(seat_var)
+                        seat_checkboxes.append(seat_checkbox)
+
+                        if col == 2:
+                            empty_label = tk.Label(seat_row, text=" ", width=5)
+                            empty_label.pack(side=tk.LEFT)
+
+                    seat_row.grid(row=row, column=1)
+
+                submit_button = tk.Button(root, text="Submit", command=lambda: submit(root))
+                submit_button.pack(pady=10)
+
+                root.mainloop()
+
+
+            #Button For seat matrix
             button8 = Button(
+                f6,
+                text="Seat Matrix",
+                font=("Arial", 15),
+                activebackground="light green",
+                bg="SpringGreen3",
+                command=seat_matrix,
+            ).grid(row=1, column=10, padx=20, pady=20)
+
+            button9 = Button(
                 f6,
                 text="Book Seat",
                 font=("Arial", 15),
                 activebackground="light green",
                 bg="SpringGreen3",
                 command=lambda: booked(fare),
-            ).grid(row=1, column=10, padx=20, pady=20)
+            ).grid(row=1, column=11, padx=20, pady=20)
 
     def show_bus(f5):
         if e1.get()=="" or e2.get()=="" or cal.get()=="":
@@ -689,6 +745,7 @@ def seat_book():
         row=6, column=0, columnspan=5
     )      
 
+   
 
 text = ""
 def check_booked_seat(f2):
@@ -1013,11 +1070,6 @@ def download_ticket():
 
   from tkinter import messagebox
   messagebox.showinfo("PDF Downloaded", "Your Ticket has been downloaded.")
-
-
-
-
-
 
 
 # -------------------------------------------------------------------------------------------------------------
