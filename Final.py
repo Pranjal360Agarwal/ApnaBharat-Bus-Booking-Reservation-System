@@ -1,5 +1,6 @@
 from datetime import date
 from tkinter import *
+from tkinter import ttk
 import sqlite3
 from tkinter.messagebox import *
 from tkcalendar import *
@@ -464,12 +465,31 @@ def seat_book():
 
     f5 = Frame(f4, pady=20)
     f5.grid(row=4, column=0, columnspan=5)
-    Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
-    e1 = Entry(f5)
-    e1.grid(row=0, column=1)
-    Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
-    e2 = Entry(f5)
-    e2.grid(row=0,column=3)
+    label=Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
+    cities= [
+    "Mumbai",
+    "Delhi",
+    "Bangalore",
+    "Hyderabad",
+    "Ahmedabad",
+    "Chennai",
+    "Kolkata",
+    "Surat",
+    "Pune",
+    "Jaipur",
+    "Lucknow",
+    "Kanpur",
+    "Nagpur",
+    "Indore",
+    "Thane",
+    "Bhopal"]
+    dropdown_to = ttk.Combobox(f5,values=cities)
+    dropdown_to.grid(row=0, column=1, padx=10)
+    e1 = dropdown_to
+    label=Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
+    dropdown_from = ttk.Combobox(f5,values=cities)
+    dropdown_from.grid(row=0, column=3, padx=10)
+    e2 = dropdown_from
     Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
     cal=DateEntry(f5,selectmode='day', date_pattern = "MM-DD-YYYY")
     cal.grid(row=0,column=5,padx=15)
