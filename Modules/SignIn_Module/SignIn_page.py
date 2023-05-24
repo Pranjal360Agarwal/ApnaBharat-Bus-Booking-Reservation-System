@@ -74,7 +74,9 @@ class Login(customtkinter.CTk):
 
         if check_credentials(entered_username, entered_password):
             self.destroy()            
-            print("Login successful!")
+            value = True
+            with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file:
+                file.write(str(value))            
 
         else:
             print("error")

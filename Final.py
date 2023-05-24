@@ -7,7 +7,22 @@ import Modules.SignIn_Module.SignIn_page as SignIn
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
 
-SignIn.Login().mainloop()
+Check=SignIn.Login().mainloop()
+
+def Transition_LoginToMain():
+    with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'r') as file:
+        content = file.read()
+    value = bool(content)
+    #For debugging
+    print(value)
+
+    if not value:
+        exit()
+
+    with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file2:
+        file2.truncate(0)
+
+Transition_LoginToMain()
 
 root = Tk()
 root.title("Python Bus Service")
@@ -692,7 +707,6 @@ def check_booked_seat(f2):
 
    
 
-
 def add_bus():
     f9 = Frame()
     f9.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -753,7 +767,6 @@ def add_bus():
         row=4, column=0, columnspan=5
     )
 
-
 def tab2():
     f2 = Frame()
     f2.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -804,7 +817,6 @@ def tab2():
     button4 = Button(f2, image=home_img, anchor=CENTER, command=tab2).grid(
         row=3, column=0, columnspan=5
     )
-
 
 def tab1():
     f1 = Frame()
