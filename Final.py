@@ -467,22 +467,12 @@ def seat_book():
     f5.grid(row=4, column=0, columnspan=5)
     label=Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
     cities= [
-    "Mumbai",
+    "Guna",
     "Delhi",
-    "Bangalore",
-    "Hyderabad",
-    "Ahmedabad",
-    "Chennai",
-    "Kolkata",
-    "Surat",
-    "Pune",
-    "Jaipur",
-    "Lucknow",
-    "Kanpur",
-    "Nagpur",
-    "Indore",
-    "Thane",
-    "Bhopal"]
+    "Bhopal",
+    "Kota",
+    "Amritsar",
+    "Jaipur"]
     dropdown_to = ttk.Combobox(f5,values=cities)
     dropdown_to.grid(row=0, column=1, padx=10)
     e1 = dropdown_to
