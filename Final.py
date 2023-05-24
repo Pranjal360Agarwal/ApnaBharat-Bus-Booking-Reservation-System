@@ -607,7 +607,14 @@ def seat_book():
             ).grid(row=1, column=11, padx=20, pady=20)
 
     def show_bus(f5):
-        if e1.get()=="" or e2.get()=="" or cal.get()=="":
+        if e1.get() == "":
+            showinfo("Invalid Inputs","Please enter the Source location!")
+        elif e2.get() == "":
+            showinfo("Invalid Inputs","Please enter the Destination location!")
+        elif e1.get() == e2.get():
+            showinfo("Invalid Inputs","Source and Destination cannot be same!")
+        
+        elif e1.get()=="" or e2.get()=="" or cal.get()=="":
             showinfo("Invalid Inputs","Please enter all the details!")
         else:
             data=cur.execute('select b.bus_id,o.name,b.type,t.seat_available,b.fare from route r,route s,runs t,bus b,operator o where o.op_id=b.op_id and r.route_id=s.route_id and t.bus_id=b.bus_id and b.route_id=r.route_id and t.journey_date= "'+str(cal.get())+'" and r.station="'+str(e1.get())+'" and s.station="'+str(e2.get())+'" and r.s_id>s.s_id')
