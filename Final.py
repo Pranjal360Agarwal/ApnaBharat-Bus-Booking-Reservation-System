@@ -5,6 +5,8 @@ import sqlite3
 from tkinter.messagebox import *
 from tkcalendar import *
 import Modules.SignIn_Module.SignIn_page as SignIn
+import Modules.DeleteAccount.AccountDelete as Acc_delete
+
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
 
@@ -25,12 +27,13 @@ def Transition_LoginToMain():
 
 Transition_LoginToMain()
 
+
 root = Tk()  
-root.title("Python Bus Service")
+root.title("Python Bus Service") 
  
 width = root.winfo_screenwidth()
-height = root.winfo_screenheight()
-root.geometry("%dx%d" % (width, height)) 
+height = root.winfo_screenheight() 
+root.geometry("%dx%d" % (width, height))  
 
 
 
@@ -1052,6 +1055,11 @@ def tab1():
     buttonTheme = Button(f1, text="Theme", command=change_theme,width=35).pack(anchor=S)
 
 
+    def delete_account():
+        Acc_delete.AccountDelete().mainloop()
+
+    buttonDeleteAccount = Button(f1, text="Delete Your Account", command=delete_account, width=35)
+    buttonDeleteAccount.pack(anchor=W, padx=(20,0),pady=(150,0))
 
 
 def download_ticket():
