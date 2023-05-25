@@ -39,13 +39,13 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
   📌 User-interface <br>
        👉 It is simple with a clear view. <br>
        
-   📌 Store information and data: <br>
+  📌 Store information and data: <br>
        👉 We have a secure storage box for our user data  such as name,date,time,loaction and availability of tickets. <br>
        
-   📌 Developing ticket booking and payment processing features: <br> 
+  📌 Developing ticket booking and payment processing features: <br> 
        👉 We have a booking feature that allows users to select the event they want to attend, choose the number of tickets, and make payment through a secure payment gateway. <br>
        
-   📌 Implementation of the ticket generation and delivery feature: <br>
+  📌 Implementation of the ticket generation and delivery feature: <br>
        👉 Once the user has successfully booked and paid for their tickets we generate the tickets and deliver them to the user through email or other digital means. <br>
        
        
@@ -54,22 +54,24 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
    📌 User Registration <br>
        👉 Users can register on the website by providing basic details such as name, contact number, email ID, and password. <br>
        
-    📌 Bus Search 
+   📌 Bus Search 
        👉 Users can search for buses based on various criteria such as source, destination, date of travel, type of bus, etc. 
        
-    📌 Seat Selection 
+   📌 Seat Selection 
        👉 After selecting the bus, users can choose their preferred seats from the available options 
        
-     📌 Payment 
+   📌 Payment 
        👉 Users can make payment for the booking using various payment modes such as credit/debit cards, net banking, wallets, etc. 
        
-     📌 Confirmation 
+   📌 Confirmation 
        👉 Once the payment is successful, users will receive a confirmation of their booking via email or SMS. 
        
-     📌 One can add new bus 
+   📌 One can add new bus 
      
-      📌 Add Route
-      
+   📌 Add Route
+       👉If a person knows a new route which may be a shortcut then he can add route which may be beneficial for others.
+
+
 ---
 
 📌 Check out our Blog on Hashnode 
@@ -90,8 +92,8 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
   📌 User-friendly interface and optimized user experience to enhance the user's interaction and engagement with the platform. <br>
   📌 Streamline the ticket booking process, improve customer satisfaction. <br>
   📌 A platform that is secure, fast, and easy to use for booking tickets. <br>
-  
-
+  📌 Providing themes like dark theme so that it is enhances the website. <br>
+  📌 Ticket generation so that it can be used in offline mode too. <br>
 <hr>
 
 # Technology Used 🔭
@@ -109,6 +111,8 @@ I have developed this project using the below technology
 
 • Built with Python 3.6, SQLITE3    
 
+• Account creation and deletion if needed.
+
 • Seat Booking      
 
 • Checking booking seat   
@@ -119,7 +123,9 @@ I have developed this project using the below technology
  
 • Added the features of adding new bus, route id etc. as an Operator Admin    
 
-• Ticket generation         
+• Ticket generation    
+
+• Themes enhancing GUI
 
 # Kharagpur Winter of Code'22 ❤❤ 
 
