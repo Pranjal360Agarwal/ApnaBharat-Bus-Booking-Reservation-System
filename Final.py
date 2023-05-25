@@ -1,5 +1,6 @@
 from datetime import date
 from tkinter import *
+from tkinter import Button
 import sqlite3
 from tkinter.messagebox import *
 from tkcalendar import *
@@ -7,14 +8,30 @@ import Modules.SignIn_Module.SignIn_page as SignIn
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
 
-SignIn.Login().mainloop()
+Check=SignIn.Login().mainloop()
 
-root = Tk()
+def Transition_LoginToMain():
+    with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'r') as file:
+        content = file.read()
+    value = bool(content)
+    #For debugging
+    # print(value)
+
+    if not value:
+        exit()
+ 
+    with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file2:
+        file2.truncate(0)
+
+Transition_LoginToMain()
+
+root = Tk()  
 root.title("Python Bus Service")
-
+ 
 width = root.winfo_screenwidth()
 height = root.winfo_screenheight()
-root.geometry("%dx%d" % (width, height))
+root.geometry("%dx%d" % (width, height)) 
+
 
 
 def new_run():
@@ -105,6 +122,19 @@ def new_run():
     button22 = Button(f17, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
     )
+    def change_theme():
+        current_bg = f17.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f17.configure(bg="gray70")
+            f18.configure(bg="gray70")
+        else:
+            f17.configure(bg="white")
+            f18.configure(bg="white")
+
+    buttonTheme = Button(f17, text="Theme",command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )     
 
 
 def new_route():
@@ -191,6 +221,20 @@ def new_route():
     button22 = Button(f15, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
     )
+
+    def change_theme():
+        current_bg = f15.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f15.configure(bg="gray70")
+            f16.configure(bg="gray70")
+        else:
+            f15.configure(bg="white")
+            f16.configure(bg="white")
+
+    buttonTheme = Button(f15, text="Theme",command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )     
 
 
 def new_bus():
@@ -307,6 +351,19 @@ def new_bus():
     button19 = Button(f13, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
     )
+    def change_theme():
+        current_bg = f13.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f13.configure(bg="gray70")
+            f14.configure(bg="gray70")
+        else:
+            f13.configure(bg="white")
+            f14.configure(bg="white")
+
+    buttonTheme = Button(f13, text="Theme",command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )     
 
 
 def new_operator():
@@ -396,6 +453,19 @@ def new_operator():
     button14 = Button(f11, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
     )
+    def change_theme():
+        current_bg = f11.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f11.configure(bg="gray70")
+            f12.configure(bg="gray70")
+        else:
+            f11.configure(bg="white")
+            f12.configure(bg="white")
+
+    buttonTheme = Button(f11, text="Theme",command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )     
 
 
 def ticketShow(row):
@@ -443,6 +513,20 @@ def ticketShow(row):
     )
 
 
+    def change_theme():
+        current_bg = f4.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f4.configure(bg="gray70")
+            final.configure(bg="gray70")
+        else:
+            f4.configure(bg="white")
+            final.configure(bg="white")
+
+    buttonTheme = Button(f4, text="Theme",command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )     
+
 
 def seat_book():
     f4 = Frame()
@@ -450,10 +534,10 @@ def seat_book():
     my_label = Label(f4, image=my_img, anchor=CENTER, width=width).grid(
         row=0, column=0, columnspan=5
     )
-    Label(
+    label1=Label(
         f4, text="Python Bus Service", font=("Arial", 25), bg="deep sky blue", fg="red"
     ).grid(row=1, column=0, columnspan=5)
-    Label(
+    label2=Label(
         f4,
         text="Enter Journey Details",
         font=("Arial", 20),
@@ -464,13 +548,13 @@ def seat_book():
 
     f5 = Frame(f4, pady=20)
     f5.grid(row=4, column=0, columnspan=5)
-    Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
+    label3=Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
     e1 = Entry(f5)
     e1.grid(row=0, column=1)
-    Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
+    label4=Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
     e2 = Entry(f5)
     e2.grid(row=0,column=3)
-    Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
+    label5=Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
     cal=DateEntry(f5,selectmode='day', date_pattern = "MM-DD-YYYY")
     cal.grid(row=0,column=5,padx=15)
     '''e3 = Entry(f5)
@@ -647,6 +731,19 @@ def seat_book():
         command=lambda: show_bus(f5),
     ).grid(row=0, column=6, padx=20)
     button6 = Button(f5, image=home_img, command=tab2).grid(row=0, column=7, padx=20)
+    def change_theme():
+        current_bg = f5.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f5.configure(bg="gray70")
+            f4.configure(bg="gray70")
+        else:
+            f5.configure(bg="white")
+            f4.configure(bg="white")
+
+    buttonTheme = Button(f4, text="Theme",command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )      
 
    
 
@@ -746,9 +843,22 @@ def check_booked_seat(f2):
     button9 = Button(f7, image=home_img, anchor=CENTER, command=tab2).grid(
         row=6, column=0, columnspan=5
     )
+    button9 = Button(f7, image=home_img, anchor=CENTER, command=tab2).grid(
+        row=6, column=0, columnspan=5
+    )
+    def change_theme():
+        current_bg = f7.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f7.configure(bg="gray70")
+            f8.configure(bg="gray70")
+        else:
+            f7.configure(bg="white")
+            f8.configure(bg="white")
 
-   
-
+    buttonTheme = Button(f7, text="Theme",command=change_theme, width=35).grid(
+        row=7, column=0, columnspan=5
+    )      
 
 def add_bus():
     f9 = Frame()
@@ -810,7 +920,21 @@ def add_bus():
         row=4, column=0, columnspan=5
     )
 
+    #bg varibale 0 = white and  bg variable 1 = dark mode
+    def change_theme():
+        current_bg = f9.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f9.configure(bg="gray70")
+            f10.configure(bg="gray70")
+        else:
+            f9.configure(bg="white")
+            f10.configure(bg="white")
 
+    buttonTheme = Button(f9, text="Theme",command=change_theme, width=35).grid(
+        row=5, column=0, columnspan=5
+    )    
+ 
 def tab2():
     f2 = Frame()
     f2.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -825,7 +949,7 @@ def tab2():
         fg="red",
         anchor=CENTER,
     ).grid(row=1, column=0, columnspan=5)
-    f3 = Frame(f2, pady=20)
+    f3 = Frame(f2, pady=0)
     f3.grid(row=2, column=0, columnspan=5)
 
     button2 = Button(
@@ -862,35 +986,62 @@ def tab2():
         row=3, column=0, columnspan=5
     )
 
+    #bg varibale 0 = white and  bg variable 1 = dark mode
+    def change_theme():
+        current_bg = f2.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f2.configure(bg="gray70")
+        else:
+            f2.configure(bg="white")
+
+    button5 = Button(f2, text="Theme",command=change_theme, width=35).grid(
+        row=4, column=0, columnspan=5
+    )
 
 def tab1():
     f1 = Frame()
     f1.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
     my_label = Label(f1, image=my_img, anchor=CENTER).pack()
     Label(
-        f1, text="Python Bus Service", font=("Arial", 25), bg="yellow", fg="red"
-    ).pack()
+        f1, text="Python Bus Service", font=("Arial", 25), bg="yellow", fg="red",
+    ).pack(padx=0, pady=50)
+
     Label(
         f1,
-        text="Name : Pranjal Agarwal",
+        text="Name :  Pranjal Agarwal",
         font=("Arial", 15),
-        fg="blue",
+        fg="white",
         anchor=S,
-        pady=50,
-    ).pack()
+        pady=0,
+        bg="gray70"
+    ).pack(padx=0, pady=0)
     # Label(f1,text = "Enrollment No. : 211B218", font=("Arial",14),fg='blue',anchor = S).pack()
     Label(
         f1,
         text="Mobile : +919451492673",
-        font=("Arial", 14),
-        fg="blue",
+        font=("Arial", 14), 
+        fg="white", 
         anchor=S,
-        pady=50,
-    ).pack()
+        pady=0,
+        bg="gray70"
+    ).pack(padx=0, pady=50)
     # Label(f1,text = "Submitted to : Dr. Mahesh Kumar", font=("Arial",20), bg = 'yellow', fg = 'red' , pady = 10).pack()
     # Label(f1,text = "Project Based learning",font="Arial 16 bold",fg='red').pack()
 
-    button1 = Button(f1, text="Start", command=tab2).pack()
+    button1 = Button(f1, text="Start", command=tab2,width=35).pack(pady=(0,50))
+
+    #bg varibale 0 = white and  bg variable 1 = dark mode
+    def change_theme():
+        current_bg = f1.cget("bg")  # Get the current background color
+    
+        if current_bg == "white":
+            f1.configure(bg="gray70")
+        else:
+            f1.configure(bg="white")
+    
+    buttonTheme = Button(f1, text="Theme", command=change_theme,width=35).pack(anchor=S)
+
 
 def download_ticket():
   from fpdf import FPDF

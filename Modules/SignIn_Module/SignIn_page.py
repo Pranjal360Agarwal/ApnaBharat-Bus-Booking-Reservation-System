@@ -24,6 +24,7 @@ def check_credentials(username, password):
     return False
 
 
+
 class Login(customtkinter.CTk):
     width = 1240  #helps in image width
     height = 1080 #helps in image height
@@ -67,6 +68,17 @@ class Login(customtkinter.CTk):
         self.login_button = customtkinter.CTkButton(self.login_frame, text="Register", command=self.Register_event, width=200)
         self.login_button.grid(row=7, column=0, padx=30, pady=(0, 15))
 
+        #Theme button
+        self.appearance_mode_label = customtkinter.CTkLabel(self.login_frame, text="Appearance Mode", anchor="s")
+        self.appearance_mode_label.grid(row=11, column=0, padx=10, pady=(5,0))
+        #Theme mode buttom
+        self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.login_frame, values=["Light", "Dark", "System"],command=self.change_appearance_mode_event)
+        self.appearance_mode_optionemenu.grid(row=12, column=0, padx=20, pady =(10,10))
+
+    
+    def change_appearance_mode_event(self, new_appearance_mode: str):
+        customtkinter.set_appearance_mode(new_appearance_mode)
+    
     def login_event(self):
         
         entered_username = self.username_entry.get()
@@ -74,7 +86,9 @@ class Login(customtkinter.CTk):
 
         if check_credentials(entered_username, entered_password):
             self.destroy()            
-            print("Login successful!")
+            value = True
+            with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file:
+                file.write(str(value))            
 
         else:
             print("error")
