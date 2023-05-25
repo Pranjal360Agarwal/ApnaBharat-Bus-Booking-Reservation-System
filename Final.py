@@ -5,6 +5,8 @@ import sqlite3
 from tkinter.messagebox import *
 from tkcalendar import *
 import Modules.SignIn_Module.SignIn_page as SignIn
+import Modules.DeleteAccount.AccountDelete as Acc_delete
+
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
 
@@ -25,12 +27,13 @@ def Transition_LoginToMain():
 
 Transition_LoginToMain()
 
+
 root = Tk()  
-root.title("Python Bus Service")
+root.title("Python Bus Service") 
  
 width = root.winfo_screenwidth()
-height = root.winfo_screenheight()
-root.geometry("%dx%d" % (width, height)) 
+height = root.winfo_screenheight() 
+root.geometry("%dx%d" % (width, height))  
 
 
 
@@ -953,6 +956,8 @@ def add_bus():
         row=5, column=0, columnspan=5
     )    
  
+
+#Second tkinter GUI page
 def tab2():
     f2 = Frame()
     f2.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -967,7 +972,7 @@ def tab2():
         fg="red",
         anchor=CENTER,
     ).grid(row=1, column=0, columnspan=5)
-    f3 = Frame(f2, pady=0)
+    f3 = Frame(f2, pady=25)
     f3.grid(row=2, column=0, columnspan=5)
 
     button2 = Button(
@@ -979,7 +984,7 @@ def tab2():
         pady=10,
         command=seat_book,
     ).grid(row=1, column=0)
-    Label(f3, text="    ").grid(row=0, column=1)
+    # Label(f3, text="    ").grid(row=0, column=1)
     button2 = Button(
         f3,
         text="CHECK BOOKED SEAT",
@@ -989,9 +994,9 @@ def tab2():
         pady=10,
         command=lambda: check_booked_seat(f2),
     ).grid(row=1, column=2)
-    Label(f3, text="    ").grid(row=0, column=3)
+    # Label(f3, text="    ").grid(row=0, column=3)
     button3 = Button(
-        f3,
+        f3, 
         text="ADD BUS DETAILS",
         font=("Arial", 15),
         bg="light green",
@@ -999,7 +1004,10 @@ def tab2():
         pady=10,
         command=add_bus,
     ).grid(row=1, column=4)
-    Label(f3, text="For Admins Only", fg="red").grid(row=2, column=4)
+    
+    adminlabel=Label(f3, text="For Admins Only", fg="red")
+    adminlabel.grid(row=2, column=4)
+    
     button4 = Button(f2, image=home_img, anchor=CENTER, command=tab2).grid(
         row=3, column=0, columnspan=5
     )
@@ -1010,21 +1018,25 @@ def tab2():
     
         if current_bg == "white":
             f2.configure(bg="gray70")
+            f3.configure(bg="gray70")
+            adminlabel.config(bg="gray70")
         else:
             f2.configure(bg="white")
+            f3.configure(bg="white")
+            adminlabel.config(bg="white")
 
     button5 = Button(f2, text="Theme",command=change_theme, width=35).grid(
         row=4, column=0, columnspan=5
     )
-
+#first or landing page 
 def tab1():
     f1 = Frame()
     f1.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
     my_label = Label(f1, image=my_img, anchor=CENTER).pack()
-    Label(
+    PythonBusService=Label(
         f1, text="Python Bus Service", font=("Arial", 25), bg="yellow", fg="red",
     ).pack(padx=0, pady=50)
-
+    
     Label(
         f1,
         text="Name :  Pranjal Agarwal",
@@ -1059,6 +1071,13 @@ def tab1():
             f1.configure(bg="white")
     
     buttonTheme = Button(f1, text="Theme", command=change_theme,width=35).pack(anchor=S)
+
+
+    def delete_account():
+        Acc_delete.AccountDelete().mainloop()
+
+    buttonDeleteAccount = Button(f1, text="Delete Your Account", command=delete_account, width=35)
+    buttonDeleteAccount.pack(anchor=W, padx=(20,0),pady=(150,0))
 
 
 def download_ticket():
