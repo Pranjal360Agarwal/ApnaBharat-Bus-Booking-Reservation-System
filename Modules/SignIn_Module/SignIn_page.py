@@ -85,7 +85,13 @@ class Login(customtkinter.CTk):
         entered_password = self.password_entry.get()
 
         if check_credentials(entered_username, entered_password):
-            self.destroy()            
+            self.destroy()       
+            #writing data in buffer 
+            with open('BufferData\\CurrentUser\\username.txt', 'w') as username:
+                username.write(str(entered_username))  
+            with open('BufferData\\CurrentUser\\password.txt', 'w') as password:
+                password.write(str(entered_password))    
+            #correct transition check
             value = True
             with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file:
                 file.write(str(value))            
@@ -111,8 +117,8 @@ class Login(customtkinter.CTk):
             with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
                 password_file.write(password+"\n")
 
-            print("Username:", username)
-            print("Password:", password)
+            # print("Username:", username)
+            # print("Password:", password)
             window.destroy()
 
         window = tk.Tk()
