@@ -10,20 +10,6 @@ cur=con.cursor()
 
 Check=SignIn.Login().mainloop()
 
-def Transition_LoginToMain():
-    with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'r') as file:
-        content = file.read()
-    value = bool(content)
-    #For debugging
-    # print(value)
-
-    if not value:
-        exit()
- 
-    with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file2:
-        file2.truncate(0)
-
-Transition_LoginToMain()
 
 root = Tk()  
 root.title("Python Bus Service")
