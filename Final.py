@@ -442,14 +442,14 @@ def ticketShow(row):
         + str(row[7] * row[6])
         + " you have to pay at the time of boarding: ",
     ).grid(row=11, column=0, columnspan=3)
-    showinfo("Successful", "Ticket Book Sucessfully")
+    showinfo("Successful", "Ticket Book Successfully")
     button2 = Button(f4, image=home_img, anchor=CENTER, command=tab2).grid(
         row=16, column=2, pady=50
     )
 
 
 # This get_weather function is called by button5 inside e1 and Frame no4 is passed
-# note this api offers free calls upto 250 montly
+# note this api offers free calls upto 250 monthly
 def get_weather(location,Outer_frame):
  valid_cities = ["Mumbai", "Delhi", "Bangalore", "Kolkata", "Chennai", "Hyderabad", "Ahmedabad", "Pune", "Surat",
                     "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", "Patna", "Vadodara","Amritsar","Kota"
@@ -644,7 +644,8 @@ def seat_book():
                             ticketShow(insertRow)
                     else:
                         showerror(
-                            "Limited Seats", "Insufficient seats avilable in the bus!"
+                            "Limited Seats", "Insufficient seats available in the bus!"
+
                         )
 
             button8 = Button(
