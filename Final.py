@@ -25,8 +25,8 @@ def Transition_LoginToMain():
     with open('Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file2:
         file2.truncate(0)
 
-Transition_LoginToMain()
-
+Transition_LoginToMain() 
+ 
 
 root = Tk()  
 root.title("Python Bus Service") 
@@ -564,25 +564,26 @@ def seat_book():
     '''e3 = Entry(f5)
     e3.grid(row=0,column=5)'''
     
+    f6 = Frame(f5)
     def proceed_to(f5, busch, fare):
         if type(busch) != int:
             showinfo("Invalid Choice", "Please choose a bus!")
         else:
-            f6 = Frame(f5)
-            f6.grid(row=6, column=0, columnspan=10, pady=20)
+            f6.grid(row=6, column=0, columnspan=11, pady=20)
             Label(
                 f6,
                 text="Fill Passenger Details To Book The Bus Ticket",
-                font=("Arial", 25),
+                font=("Arial", 16),
                 bg="deep sky blue",
                 fg="red",
             ).grid(row=0, column=0, columnspan=15)
-            Label(f6, text="Name", font=("Arial", 15)).grid(
+
+            Label(f6, text="Name", font=("Arial", 10)).grid(
                 row=1, column=0, padx=20, pady=20
             )
             e4 = Entry(f6)
             e4.grid(row=1, column=1)
-            Label(f6, text="Gender", font=("Arial", 15)).grid(
+            Label(f6, text="Gender", font=("Arial", 10)).grid(
                 row=1, column=2, padx=20, pady=20
             )
             menu = StringVar()
@@ -590,19 +591,19 @@ def seat_book():
             drop1 = OptionMenu(f6, menu, "MALE", "FEMALE", "TRANS").grid(
                 row=1, column=3
             )
-            Label(f6, text="No. of seats.", font=("Arial", 15)).grid(
+            Label(f6, text="No. of seats.", font=("Arial", 10)).grid(
                 row=1, column=4, padx=20, pady=20
             )
 
             e5 = Entry(f6)
             e5.grid(row=1, column=5)
-            Label(f6, text="Mobile No", font=("Arial", 15)).grid(
+            Label(f6, text="Mobile No", font=("Arial", 10)).grid(
                 row=1, column=6, padx=20, pady=20
             )
 
             e6 = StringVar()
             Entry(f6, textvariable=e6).grid(row=1, column=7)
-            Label(f6, text="Age", font=("Arial", 15)).grid(
+            Label(f6, text="Age", font=("Arial", 10)).grid(
                 row=1, column=8, padx=20, pady=20
             )
             e7 = Entry(f6)
@@ -646,6 +647,7 @@ def seat_book():
                 bus_frame = tk.Frame(root)
                 root.geometry("400x500")
                 bus_frame.pack()
+                bus_frame.config(bg="gray70")
 
                 seat_vars = []
                 seat_checkboxes = []
@@ -679,7 +681,7 @@ def seat_book():
             button8 = Button(
                 f6,
                 text="Seat Matrix",
-                font=("Arial", 15),
+                font=("Arial", 10),
                 activebackground="light green",
                 bg="SpringGreen3",
                 command=seat_matrix,
@@ -688,7 +690,7 @@ def seat_book():
             button9 = Button(
                 f6,
                 text="Book Seat",
-                font=("Arial", 15),
+                font=("Arial", 10),
                 activebackground="light green",
                 bg="SpringGreen3",
                 command=lambda: booked(fare),
@@ -747,13 +749,15 @@ def seat_book():
 
     def change_theme():
         current_bg = f5.cget("bg")  # Get the current background color
-    
+
         if current_bg == "white":
             f5.configure(bg="gray70")
             f4.configure(bg="gray70")
+            f6.configure(bg="gray70")
         else:
             f5.configure(bg="white")
             f4.configure(bg="white")
+            f6.configure(bg="white")
 
     buttonTheme = Button(f4, text="Theme",command=change_theme, width=35).grid(
         row=6, column=0, columnspan=5
