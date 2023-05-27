@@ -479,8 +479,7 @@ def new_operator():
 def get_weather(location, Outer_frame):
     valid_cities = ["Mumbai", "Delhi", "Bangalore", "Kolkata", "Chennai", "Hyderabad", "Ahmedabad", "Pune", "Surat",
                     "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", "Patna", "Vadodara",
-                    "Amritsar", "Kota"
-                                "Ghaziabad", "Guna", "Ludhiana"]
+                    "Amritsar", "Kota","Ghaziabad", "Guna", "Ludhiana"]
     weather_icons = {
         "395": "🌨️",  # Moderate or heavy snow in an area with thunder
         "392": "🌨️",  # Patchy light snow in an area with thunder
