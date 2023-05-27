@@ -1,3 +1,5 @@
+<div id="top">
+  
 # ApnaBharat-Bus-Booking-Reservation-System
 
 <div align="center"> 
@@ -31,6 +33,19 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
 
 ### (Feel free to fork &amp; make changes, don't forget to make a PR.)
 
+# Table of contents
+ - [Workflow of Our Project](#workflow)
+ - [Detailed Process of ApnaBharat-Bus-Booking-Reservation-system](#process)
+ - [Our Pledge](#pledge)
+ - [Aim](#aim)
+ - [Technology Used](#tech)
+ - [Features](#features)
+ - [Guidelines](#guidelines)
+ - [Steps for contribution](#steps)
+ - [Open-source](#open-source)
+ - [Contributors](#contributors)
+
+<a name="workflow"></a>
 # Workflow of Our Project
 
   📌 Programming Languages used: <br>
@@ -48,7 +63,7 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
    📌 Implementation of the ticket generation and delivery feature: <br>
        👉 Once the user has successfully booked and paid for their tickets we generate the tickets and deliver them to the user through email or other digital means. <br>
        
-       
+<a name="process"></a>
 # Detailed Process of ApnaBharat-Bus-Booking-Reservation-system
 
    📌 User Registration <br>
@@ -76,12 +91,16 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
         🔗 https://codeshivam28.hashnode.dev/apnabharat-bus-booking-reservation-system
         
 ---
+
+<p align ="right"><a href = "#top">Back to top</a></p>
+<a name="pledge"></a>
      
 # Our Pledge
   
   #### The aim of the "Apnabharat bus booking reservation system" project is to provide a convenient and efficient way for users to book bus tickets online. This system will eliminate the need for users to stand in long queues at bus ticket counters and provide a hassle-free booking experience. The project aims to be user-friendly, easy to navigate, and secure. It will provide users with a variety of bus options to choose from, along with various payment modes, making it a one-stop solution for all their bus booking needs. The project aims to provide a seamless booking experience for users and help bus operators streamline their booking process.
   
 <hr>
+<a name="aim"></a>
 
 # Our Aim
 
@@ -93,6 +112,7 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
   
 
 <hr>
+<a name="tech"></a>
 
 # Technology Used 🔭
 
@@ -104,7 +124,7 @@ I have developed this project using the below technology
 
 • SQLite : SQLite database has been used as database for the project(backend part) 
 
-
+<a name="features"></a>
 # Features 🚀
 
 • Built with Python 3.6, SQLITE3    
@@ -119,7 +139,10 @@ I have developed this project using the below technology
  
 • Added the features of adding new bus, route id etc. as an Operator Admin    
 
-• Ticket generation         
+• Ticket generation   
+
+<p align ="right"><a href = "#top">Back to top</a></p>
+
 
 # Kharagpur Winter of Code'22 ❤❤ 
 
@@ -130,14 +153,14 @@ I have developed this project using the below technology
 :star: Learn, Revise and Contribute 😄❤
 
 ### This repository is open to all members of the GitHub community. Any member can contribute to this project!
-
+<a name="guidelines"></a>
 # Guidelines 🙋‍
 
     1. No spam pull requests
     2. No changes on the core part of the project
     
 ---
-
+<a name="steps"></a>
 # Steps For Contribution⚡
 
 0. Star ⭐
@@ -177,9 +200,11 @@ git push -u origin <your_branch_name>
 
 9. Congratulations! 🎉 you've made your contribution.
 
+<p align ="right"><a href = "#top">Back to top</a></p>
+
 [Click here to read in Hindi](README-hindi.md)
 ---
-
+<a name="open-source"></a>
 ## Open Source Programs🚀
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/73153808/156029225-91362c76-b04e-4af9-84fa-3d61b7ed52b1.png">
@@ -190,11 +215,12 @@ git push -u origin <your_branch_name>
 
 
 
-
+<a name="contributors"></a>
 ## Thanks to all Contributors 💪
 
 Thanks a lot for spending your time helping this project grow. Thanks a lot! Keep rocking 🍻
 
 [![Contributors](https://contrib.rocks/image?repo=Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System)](https://github.com/Pranjal360Agarwal/ApnaBharat-Bus-Booking-Reservation-System/graphs/contributors)
-
-
+<br><br>
+<p align ="right"><a href = "#top">Back to top</a></p>
+</div>
