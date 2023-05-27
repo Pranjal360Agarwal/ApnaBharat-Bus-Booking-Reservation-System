@@ -1,8 +1,12 @@
+import tkinter
 from datetime import date
 from tkinter import *
 from tkinter import Button
 import sqlite3
 from tkinter.messagebox import *
+
+import requests
+from opencage.geocoder import RateLimitExceededError
 from tkcalendar import *
 import Modules.SignIn_Module.SignIn_page as SignIn
 import Modules.DeleteAccount.AccountDelete as Acc_delete
@@ -470,6 +474,106 @@ def new_operator():
         row=6, column=0, columnspan=5
     )     
 
+# This get_weather function is called by button5 inside e1 and Frame no4 is passed
+# note this api offers free calls upto 250 monthly
+def get_weather(location, Outer_frame):
+    valid_cities = ["Mumbai", "Delhi", "Bangalore", "Kolkata", "Chennai", "Hyderabad", "Ahmedabad", "Pune", "Surat",
+                    "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", "Patna", "Vadodara",
+                    "Amritsar", "Kota"
+                                "Ghaziabad", "Guna", "Ludhiana"]
+    weather_icons = {
+        "395": "🌨️",  # Moderate or heavy snow in an area with thunder
+        "392": "🌨️",  # Patchy light snow in an area with thunder
+        "389": "⛈️",  # Moderate or heavy rain in an area with thunder
+        "386": "⛈️",  # Patchy light rain in an area with thunder
+        "377": "🌨️",  # Moderate or heavy showers of ice pellets
+        "374": "🌨️",  # Light showers of ice pellets
+        "371": "🌨️",  # Moderate or heavy snow showers
+        "368": "🌨️",  # Light snow showers
+        "365": "🌨️",  # Moderate or heavy sleet showers
+        "362": "🌨️",  # Light sleet showers
+        "359": "🌧️",  # Torrential rain shower
+        "356": "🌧️",  # Moderate or heavy rain shower
+        "353": "🌧️",  # Light rain shower
+        "350": "🌨️",  # Ice pellets
+        "338": "🌨️",  # Heavy snow
+        "335": "🌨️",  # Patchy heavy snow
+        "332": "🌨️",  # Moderate snow
+        "329": "🌨️",  # Patchy moderate snow
+        "326": "🌨️",  # Light snow
+        "323": "🌨️",  # Patchy light snow
+        "320": "🌨️",  # Moderate or heavy sleet
+        "317": "🌨️",  # Light sleet
+        "314": "🌨️",  # Moderate or heavy freezing rain
+        "311": "🌨️",  # Light freezing rain
+        "308": "🌧️",  # Heavy rain
+        "305": "🌧️",  # Heavy rain at times
+        "302": "🌧️",  # Moderate rain
+        "299": "🌧️",  # Moderate rain at times
+        "296": "🌧️",  # Light rain
+        "293": "🌧️",  # Patchy light rain
+        "284": "🌨️",  # Heavy freezing drizzle
+        "281": "🌨️",  # Freezing drizzle
+        "266": "🌧️",  # Light drizzle
+        "263": "🌧️",  # Patchy light drizzle
+        "260": "🌫️",  # Freezing fog
+        "248": "🌫️",  # Fog
+        "230": "🌨️",  # Blizzard
+        "227": "🌨️",  # Blowing snow
+        "200": "⛈️",  # Thundery outbreaks in nearby
+        "185": "🌨️",  # Patchy freezing drizzle nearby
+        "182": "🌨️",  # Patchy sleet nearby
+        "179": "🌨️",  # Patchy snow nearby
+        "176": "🌧️",  # Patchy rain nearby
+        "143": "🌫️",  # Mist
+        "122": "☁️",  # Overcast
+        "119": "☁️",  # Cloudy
+        "116": "🌤️",  # Partly Cloudy
+        "113": "☀️",  # Clear/Sunny
+    }
+    if location != '':
+        if location in valid_cities:
+            try:
+                api_access_key = "1c612a821aa42c79d13eb57c831c4c2f"  # Access key for Weatherstack api it is on free plan "Monthly 250 calls"
+                url = f"http://api.weatherstack.com/current?access_key={api_access_key}&query={location + ',India'}"
+                response = requests.get(url)
+                data = response.json()
+
+                # weather information
+                temperature = data["current"]["temperature"]
+                weather_description = data["current"]["weather_descriptions"][0]
+                weather_code = data["current"]["weather_code"]
+                weather_code = str(weather_code)
+                icon = weather_icons[weather_code]
+                # Inner frame
+                inner_frame = tkinter.Frame(Outer_frame, bg="white", bd=2, width=450, height=250)
+                inner_frame.place(relx=0.3, rely=0.1, anchor="n")
+
+                # displaying the icons
+                icon_weather = tkinter.Label(inner_frame, text=icon, font=("Arial", 20))
+                icon_weather.pack()
+
+                # Display weather information in a label
+                weather_label = tkinter.Label(inner_frame,
+                                              text=f"Temperature of {location} : {temperature}°C\nDescription: {weather_description}",
+                                              bg="white")
+                weather_label.pack()
+
+            except RateLimitExceededError as rlee:
+                showinfo("Error Occurred  : ", rlee)
+            except requests.exceptions.RequestException as rqstexcptn:
+                showinfo("Error Occurred  ", rqstexcptn)
+            except ValueError:
+                showinfo("Error Occurred", " Incomplete or incorrect data received.")
+            except KeyError as kE:
+                showinfo("Error Occurred KeyError Or", 'You Might have Entered Wrong Spelling of  Destination')
+        else:
+            showinfo("Error Occured:", 'Invalid City')
+    else:
+        showinfo("Error Occurred", "Destination Not Entered ")
+
+
+
 
 def ticketShow(row):
     f4 = Frame()
@@ -740,7 +844,7 @@ def seat_book():
         font=("Arial", 15),
         activebackground="light green",
         bg="SpringGreen3",
-        command=lambda: show_bus(f5),
+        command=lambda: (show_bus(f5),get_weather(e1.get(),f4)),
     ).grid(row=7, column=3, padx=20)
     
     button6 = Button(frame_seat_booking, image=home_img, command=tab2).grid(row=7, column=4, padx=20)
