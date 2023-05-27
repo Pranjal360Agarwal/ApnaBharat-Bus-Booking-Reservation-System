@@ -3,10 +3,7 @@ from datetime import date
 
 from tkinter import *
 import sqlite3
-from PIL import Image, ImageTk
 from tkinter.messagebox import *
-from urllib.request import urlopen
-from io import BytesIO
 from opencage.geocoder import RateLimitExceededError
 from tkcalendar import *
 import requests
@@ -542,7 +539,7 @@ def get_weather(location,Outer_frame):
     except KeyError as kE:
           showinfo("Error Occurred KeyError Or",'You Might have Entered Wrong Spelling of  Destination')
    else :
-        showinfo("Error Occured:",'Invalid City')
+        showinfo("Error Occurred:",'Invalid City')
  else:
      showinfo("Error Occurred", "Destination Not Entered ")
 
