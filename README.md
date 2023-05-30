@@ -148,6 +148,7 @@ I have developed this project using the below technology
 
 # Innogeeks Winter of Code'23 ❤❤
 
+# GirlsScript Summer of Code'23 ❤❤
 :star: Feel free to use this project to make your first contribution to an open-source project on GitHub. Here, problems should be unique so that people learn as well as contribute together
 
 :star: Learn, Revise and Contribute 😄❤
