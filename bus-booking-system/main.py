@@ -1211,7 +1211,7 @@ def download_ticket():
 
 # -------------------------------------------------------------------------------------------------------------
 
-my_img = PhotoImage(file="Bus_for_project.png")
-home_img = PhotoImage(file="home.png")
+my_img = PhotoImage(file="Image/Bus_for_project.png")
+home_img = PhotoImage(file="Image/home.png")
 tab1()
 root.mainloop()
