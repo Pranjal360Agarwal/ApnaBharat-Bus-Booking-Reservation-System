@@ -225,3 +225,5 @@ Thanks a lot for spending your time helping this project grow. Thanks a lot! Kee
 <br><br>
 <p align ="right"><a href = "#top">Back to top</a></p>
 </div>
+
+# Made with ❤ by [Pranjal Agarwal](https://github.com/Pranjal360Agarwal).
