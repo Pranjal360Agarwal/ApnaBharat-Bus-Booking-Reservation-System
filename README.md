@@ -24,7 +24,7 @@
 ---
 </div>
 <div align="center" height="50%">
-  <img src=".bus-boooking-system/Image/logo.png" width="50%">
+  <img src=".bus-booking-system/Image/logo.png" width="50%">
 </div>
 
 ---
