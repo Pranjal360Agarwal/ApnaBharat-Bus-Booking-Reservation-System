@@ -4,6 +4,7 @@ from tkinter import PhotoImage
 from tkinter import messagebox
 from tkinter.font import Font
 import customtkinter
+import re
 from PIL import Image, ImageTk
 import tkinter as tk
 
@@ -141,6 +142,43 @@ class Login(customtkinter.CTk):
             username = entry_username.get()
             password = entry_password.get()
 
+            def check_username(username):
+                if len(username) <= 4:
+                    return False
+                return True
+            def check_password(password):
+                # Check if the password has at least one uppercase letter
+                if not re.search(r'[A-Z]', password):
+                    return False
+            
+                # Check if the password has at least one lowercase letter
+                if not re.search(r'[a-z]', password):
+                    return False
+            
+                # Check if the password has at least one digit
+                if not re.search(r'\d', password):
+                    return False
+            
+                # Check if the password has at least one special character
+                if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+                    return False
+            
+                # All criteria are met, return True
+                return True
+
+            if not check_username(username):
+                error_label.config(
+                    text="Username must be atleast 5 characters\nPlease input again.")
+                entry_username.delete(0, tk.END)  # Clear the username input field
+                return
+            elif not check_password(password):
+                error_label.config(
+                    text="Password must have at least one uppercase, lowercase, digit, and special character.\nPlease input again.")
+                entry_password.delete(0, tk.END)  # Clear the password input field
+                return
+
+
+
             # Save username and password in text files
             with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
                 username_file.write(username + "\n")
@@ -153,7 +191,7 @@ class Login(customtkinter.CTk):
 
         window = tk.Tk()
         window.title("Registration")
-        window.geometry("300x200")
+        window.geometry("600x400")
 
         label_username = tk.Label(window, text="Username:")
         label_username.pack()
@@ -166,6 +204,9 @@ class Login(customtkinter.CTk):
 
         entry_password = tk.Entry(window, show="*")
         entry_password.pack()
+
+        error_label = tk.Label(window, text="", fg="red")
+        error_label.pack()
 
         btn_register = tk.Button(window, text="Register", command=register)
         btn_register.pack()
