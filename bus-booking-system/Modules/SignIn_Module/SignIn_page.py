@@ -28,6 +28,86 @@ def check_credentials(username, password):
     return False
 
 
+def register_event():
+    def register():
+        username = entry_username.get()
+        password = entry_password.get()
+
+        def check_username(user):
+            if len(user) <= 4:
+                return False
+            return True
+
+        def check_password(passw):
+            # Check if the password has at least one uppercase letter
+            if not re.search(r'[A-Z]', passw):
+                return False
+
+            # Check if the password has at least one lowercase letter
+            if not re.search(r'[a-z]', passw):
+                return False
+
+            # Check if the password has at least one digit
+            if not re.search(r'\d', passw):
+                return False
+
+            # Check if the password has at least one special character
+            if not re.search(r'[!@#$%^&*(),.?":{}|<>]', passw):
+                return False
+
+            # All criteria are met, return True
+            return True
+
+        if not check_username(username):
+            error_label.config(
+                text="Username must be atleast 5 characters\nPlease input again.")
+            entry_username.delete(0, tk.END)  # Clear the username input field
+            return
+        elif not check_password(password):
+            error_label.config(
+                text="Password must have at least one uppercase, lowercase, digit, and special character."
+                     "\nPlease input again.")
+            entry_password.delete(0, tk.END)  # Clear the password input field
+            return
+        # Save username and password in text files
+        with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
+            username_file.write(username + "\n")
+        with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
+            password_file.write(password + "\n")
+
+        # print("Username:", username)
+        # print("Password:", password)
+        window.destroy()
+
+    window = tk.Tk()
+    window.title("Registration")
+    window.geometry("600x400")
+
+    label_username = tk.Label(window, text="Username:")
+    label_username.pack()
+
+    entry_username = tk.Entry(window)
+    entry_username.pack()
+
+    label_password = tk.Label(window, text="Password:")
+    label_password.pack()
+
+    entry_password = tk.Entry(window, show="*")
+    entry_password.pack()
+
+    error_label = tk.Label(window, text="", fg="red")
+    error_label.pack()
+
+    btn_register = tk.Button(window, text="Register", command=register)
+    btn_register.pack()
+
+    window.mainloop()
+
+
+def change_appearance_mode_event(new_appearance_mode: str):
+    customtkinter.set_appearance_mode(new_appearance_mode)
+
+
 class Login(customtkinter.CTk):
     width = 1240  # helps in image width
     height = 1080  # helps in image height
@@ -92,7 +172,7 @@ class Login(customtkinter.CTk):
         self.login_label_3.grid(row=6, column=0, padx=30, pady=(20, 5))
         # TEXT : Register BUTTON TEXT
         self.login_button = customtkinter.CTkButton(
-            self.login_frame, text="Register", command=self.Register_event, width=200
+            self.login_frame, text="Register", command=register_event, width=200
         )
         self.login_button.grid(row=7, column=0, padx=30, pady=(0, 15))
 
@@ -105,12 +185,9 @@ class Login(customtkinter.CTk):
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(
             self.login_frame,
             values=["Light", "Dark", "System"],
-            command=self.change_appearance_mode_event,
+            command=change_appearance_mode_event,
         )
         self.appearance_mode_optionemenu.grid(row=12, column=0, padx=20, pady=(10, 10))
-
-    def change_appearance_mode_event(self, new_appearance_mode: str):
-        customtkinter.set_appearance_mode(new_appearance_mode)
 
     def login_event(self):
         entered_username = self.username_entry.get()
@@ -134,84 +211,6 @@ class Login(customtkinter.CTk):
 
         # for debugging if any error encountered
         # print("Login pressed - username:", entered_username, "password:",entered_password)
-
-    def Register_event(self):
-        import tkinter as tk
-
-        def register():
-            username = entry_username.get()
-            password = entry_password.get()
-
-            def check_username(username):
-                if len(username) <= 4:
-                    return False
-                return True
-            def check_password(password):
-                # Check if the password has at least one uppercase letter
-                if not re.search(r'[A-Z]', password):
-                    return False
-            
-                # Check if the password has at least one lowercase letter
-                if not re.search(r'[a-z]', password):
-                    return False
-            
-                # Check if the password has at least one digit
-                if not re.search(r'\d', password):
-                    return False
-            
-                # Check if the password has at least one special character
-                if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
-                    return False
-            
-                # All criteria are met, return True
-                return True
-
-            if not check_username(username):
-                error_label.config(
-                    text="Username must be atleast 5 characters\nPlease input again.")
-                entry_username.delete(0, tk.END)  # Clear the username input field
-                return
-            elif not check_password(password):
-                error_label.config(
-                    text="Password must have at least one uppercase, lowercase, digit, and special character.\nPlease input again.")
-                entry_password.delete(0, tk.END)  # Clear the password input field
-                return
-
-
-
-            # Save username and password in text files
-            with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
-                username_file.write(username + "\n")
-            with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
-                password_file.write(password + "\n")
-
-            # print("Username:", username)
-            # print("Password:", password)
-            window.destroy()
-
-        window = tk.Tk()
-        window.title("Registration")
-        window.geometry("600x400")
-
-        label_username = tk.Label(window, text="Username:")
-        label_username.pack()
-
-        entry_username = tk.Entry(window)
-        entry_username.pack()
-
-        label_password = tk.Label(window, text="Password:")
-        label_password.pack()
-
-        entry_password = tk.Entry(window, show="*")
-        entry_password.pack()
-
-        error_label = tk.Label(window, text="", fg="red")
-        error_label.pack()
-
-        btn_register = tk.Button(window, text="Register", command=register)
-        btn_register.pack()
-
-        window.mainloop()
 
 
 if __name__ == "__main__":
