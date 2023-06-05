@@ -1,13 +1,38 @@
+import tkinter
 from datetime import date
 from tkinter import *
+from tkinter import Button
 import sqlite3
 from tkinter.messagebox import *
+
+import requests
+from opencage.geocoder import RateLimitExceededError
 from tkcalendar import *
 import Modules.SignIn_Module.SignIn_page as SignIn
-con=sqlite3.Connection("My_database")
-cur=con.cursor()
+import Modules.DeleteAccount.AccountDelete as Acc_delete
 
-SignIn.Login().mainloop()
+con = sqlite3.Connection("My_database")
+cur = con.cursor()
+
+Check = SignIn.Login().mainloop()
+
+
+def Transition_LoginToMain():
+    with open("Modules\\SignIn_Module\\SignIn_Check.txt", "r") as file:
+        content = file.read()
+    value = bool(content)
+    # For debugging
+    # print(value)
+
+    if not value:
+        exit()
+
+    with open("Modules\\SignIn_Module\\SignIn_Check.txt", "w") as file2:
+        file2.truncate(0)
+
+
+Transition_LoginToMain()
+
 
 root = Tk()
 root.title("Python Bus Service")
@@ -52,7 +77,7 @@ def new_run():
 
     def add_run():
         cur.execute(
-            'select * from runs where bus_id='
+            "select * from runs where bus_id="
             + e23.get()
             + " and journey_date="
             + e24.get()
@@ -62,12 +87,12 @@ def new_run():
             showerror("Error", "Route details already exist")
         else:
             cur.execute(
-                'insert into runs(bus_id,journey_date,seat_available) values(?,?,?)',
+                "insert into runs(bus_id,journey_date,seat_available) values(?,?,?)",
                 (int(e23.get()), e24.get(), e25.get()),
             )
             con.commit()
             cur.execute(
-                'select * from runs where bus_id='
+                "select * from runs where bus_id="
                 + e23.get()
                 + ' and journey_date="'
                 + e24.get()
@@ -80,7 +105,7 @@ def new_run():
 
     def delete_run():
         cur.execute(
-            'DELETE FROM runs WHERE bus_id='
+            "DELETE FROM runs WHERE bus_id="
             + e23.get()
             + ' AND journey_date="'
             + e24.get()
@@ -104,6 +129,20 @@ def new_run():
 
     button22 = Button(f17, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
+    )
+
+    def change_theme():
+        current_bg = f17.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f17.configure(bg="gray70")
+            f18.configure(bg="gray70")
+        else:
+            f17.configure(bg="white")
+            f18.configure(bg="white")
+
+    buttonTheme = Button(f17, text="Theme", command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
     )
 
 
@@ -142,7 +181,7 @@ def new_route():
 
     def add_route():
         cur.execute(
-            'select * from route where route_id='
+            "select * from route where route_id="
             + e20.get()
             + ' and station="'
             + e21.get()
@@ -154,11 +193,11 @@ def new_route():
             showerror("Error", "Route details already exist")
         else:
             cur.execute(
-                'insert into route (route_id ,station ,s_id) values (?,?,?)',
+                "insert into route (route_id ,station ,s_id) values (?,?,?)",
                 (int(e20.get()), e21.get(), int(e22.get())),
             )
             cur.execute(
-                'select * from route where route_id='
+                "select * from route where route_id="
                 + e20.get()
                 + " and s_id="
                 + e22.get()
@@ -170,7 +209,7 @@ def new_route():
 
     def delete_route():
         cur.execute(
-            'DELETE FROM route WHERE route_id=? and station=? and s_id=?',
+            "DELETE FROM route WHERE route_id=? and station=? and s_id=?",
             (int(e20.get()), e21.get(), int(e22.get())),
         )
         con.commit()
@@ -190,6 +229,20 @@ def new_route():
 
     button22 = Button(f15, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
+    )
+
+    def change_theme():
+        current_bg = f15.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f15.configure(bg="gray70")
+            f16.configure(bg="gray70")
+        else:
+            f15.configure(bg="white")
+            f16.configure(bg="white")
+
+    buttonTheme = Button(f15, text="Theme", command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
     )
 
 
@@ -253,14 +306,14 @@ def new_bus():
 
     def add_bus():
         cur.execute(
-            'select * from bus where bus_id=' + e14.get() + ' and route_id=' + e19.get()
+            "select * from bus where bus_id=" + e14.get() + " and route_id=" + e19.get()
         )
         already = cur.fetchall()
         if len(already):
             showerror("Error", "Bus Id already exist")
         else:
             cur.execute(
-                'insert into bus (bus_id,type,capacity,fare,route_id,op_id) values (?,?,?,?,?,?)',
+                "insert into bus (bus_id,type,capacity,fare,route_id,op_id) values (?,?,?,?,?,?)",
                 (
                     int(e14.get()),
                     menu1.get(),
@@ -271,9 +324,9 @@ def new_bus():
                 ),
             )
             cur.execute(
-                'select * from bus where bus_id='
+                "select * from bus where bus_id="
                 + e14.get()
-                + ' and route_id='
+                + " and route_id="
                 + e19.get()
             )
             row = cur.fetchall()
@@ -282,7 +335,7 @@ def new_bus():
             showinfo("Successful", "Data added successfully\n" + str(row))
 
     def delete_bus():
-        cur.execute('DELETE FROM bus WHERE bus_id=' + e14.get())
+        cur.execute("DELETE FROM bus WHERE bus_id=" + e14.get())
         con.commit()
 
         showinfo("Deleted", "Bus Details Deleted Successfully")
@@ -306,6 +359,20 @@ def new_bus():
 
     button19 = Button(f13, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
+    )
+
+    def change_theme():
+        current_bg = f13.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f13.configure(bg="gray70")
+            f14.configure(bg="gray70")
+        else:
+            f13.configure(bg="white")
+            f14.configure(bg="white")
+
+    buttonTheme = Button(f13, text="Theme", command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
     )
 
 
@@ -353,7 +420,7 @@ def new_operator():
     e13.grid(row=0, column=9)
 
     def add_op():
-        cur.execute('select * from operator where op_id=' + e9.get())
+        cur.execute("select * from operator where op_id=" + e9.get())
         already = cur.fetchall()
         if len(already):
             showerror("Error", "Operator Id already exist")
@@ -362,7 +429,7 @@ def new_operator():
                 "insert into operator (op_id ,name ,address ,phone , email) values (?,?,?,?,?)",
                 (int(e9.get()), e10.get(), e11.get(), int(e12.get()), e13.get()),
             )
-            cur.execute('select * from operator where op_id=' + e9.get())
+            cur.execute("select * from operator where op_id=" + e9.get())
             row = cur.fetchall()
             row = row[0]
             con.commit()
@@ -396,6 +463,147 @@ def new_operator():
     button14 = Button(f11, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
     )
+
+    def change_theme():
+        current_bg = f11.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f11.configure(bg="gray70")
+            f12.configure(bg="gray70")
+        else:
+            f11.configure(bg="white")
+            f12.configure(bg="white")
+
+    buttonTheme = Button(f11, text="Theme", command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )
+
+
+# This get_weather function is called by button5 inside e1 and Frame no4 is passed
+# note this api offers free calls upto 250 monthly
+def get_weather(location, Outer_frame):
+    valid_cities = [
+        "Mumbai",
+        "Delhi",
+        "Bangalore",
+        "Kolkata",
+        "Chennai",
+        "Hyderabad",
+        "Ahmedabad",
+        "Pune",
+        "Surat",
+        "Jaipur",
+        "Lucknow",
+        "Kanpur",
+        "Nagpur",
+        "Indore",
+        "Thane",
+        "Bhopal",
+        "Patna",
+        "Vadodara",
+        "Amritsar",
+        "Kota",
+        "Ghaziabad",
+        "Guna",
+        "Ludhiana",
+    ]
+    weather_icons = {
+        "395": "🌨️",  # Moderate or heavy snow in an area with thunder
+        "392": "🌨️",  # Patchy light snow in an area with thunder
+        "389": "⛈️",  # Moderate or heavy rain in an area with thunder
+        "386": "⛈️",  # Patchy light rain in an area with thunder
+        "377": "🌨️",  # Moderate or heavy showers of ice pellets
+        "374": "🌨️",  # Light showers of ice pellets
+        "371": "🌨️",  # Moderate or heavy snow showers
+        "368": "🌨️",  # Light snow showers
+        "365": "🌨️",  # Moderate or heavy sleet showers
+        "362": "🌨️",  # Light sleet showers
+        "359": "🌧️",  # Torrential rain shower
+        "356": "🌧️",  # Moderate or heavy rain shower
+        "353": "🌧️",  # Light rain shower
+        "350": "🌨️",  # Ice pellets
+        "338": "🌨️",  # Heavy snow
+        "335": "🌨️",  # Patchy heavy snow
+        "332": "🌨️",  # Moderate snow
+        "329": "🌨️",  # Patchy moderate snow
+        "326": "🌨️",  # Light snow
+        "323": "🌨️",  # Patchy light snow
+        "320": "🌨️",  # Moderate or heavy sleet
+        "317": "🌨️",  # Light sleet
+        "314": "🌨️",  # Moderate or heavy freezing rain
+        "311": "🌨️",  # Light freezing rain
+        "308": "🌧️",  # Heavy rain
+        "305": "🌧️",  # Heavy rain at times
+        "302": "🌧️",  # Moderate rain
+        "299": "🌧️",  # Moderate rain at times
+        "296": "🌧️",  # Light rain
+        "293": "🌧️",  # Patchy light rain
+        "284": "🌨️",  # Heavy freezing drizzle
+        "281": "🌨️",  # Freezing drizzle
+        "266": "🌧️",  # Light drizzle
+        "263": "🌧️",  # Patchy light drizzle
+        "260": "🌫️",  # Freezing fog
+        "248": "🌫️",  # Fog
+        "230": "🌨️",  # Blizzard
+        "227": "🌨️",  # Blowing snow
+        "200": "⛈️",  # Thundery outbreaks in nearby
+        "185": "🌨️",  # Patchy freezing drizzle nearby
+        "182": "🌨️",  # Patchy sleet nearby
+        "179": "🌨️",  # Patchy snow nearby
+        "176": "🌧️",  # Patchy rain nearby
+        "143": "🌫️",  # Mist
+        "122": "☁️",  # Overcast
+        "119": "☁️",  # Cloudy
+        "116": "🌤️",  # Partly Cloudy
+        "113": "☀️",  # Clear/Sunny
+    }
+    if location != "":
+        if location in valid_cities:
+            try:
+                api_access_key = "1c612a821aa42c79d13eb57c831c4c2f"  # Access key for Weatherstack api it is on free plan "Monthly 250 calls"
+                url = f"http://api.weatherstack.com/current?access_key={api_access_key}&query={location + ',India'}"
+                response = requests.get(url)
+                data = response.json()
+
+                # weather information
+                temperature = data["current"]["temperature"]
+                weather_description = data["current"]["weather_descriptions"][0]
+                weather_code = data["current"]["weather_code"]
+                weather_code = str(weather_code)
+                icon = weather_icons[weather_code]
+                # Inner frame
+                inner_frame = tkinter.Frame(
+                    Outer_frame, bg="white", bd=2, width=450, height=250
+                )
+                inner_frame.place(relx=0.3, rely=0.1, anchor="n")
+
+                # displaying the icons
+                icon_weather = tkinter.Label(inner_frame, text=icon, font=("Arial", 20))
+                icon_weather.pack()
+
+                # Display weather information in a label
+                weather_label = tkinter.Label(
+                    inner_frame,
+                    text=f"Temperature of {location} : {temperature}°C\nDescription: {weather_description}",
+                    bg="white",
+                )
+                weather_label.pack()
+
+            except RateLimitExceededError as rlee:
+                showinfo("Error Occurred  : ", rlee)
+            except requests.exceptions.RequestException as rqstexcptn:
+                showinfo("Error Occurred  ", rqstexcptn)
+            except ValueError:
+                showinfo("Error Occurred", " Incomplete or incorrect data received.")
+            except KeyError as kE:
+                showinfo(
+                    "Error Occurred KeyError Or",
+                    "You Might have Entered Wrong Spelling of  Destination",
+                )
+        else:
+            showinfo("Error Occured:", "Invalid City")
+    else:
+        showinfo("Error Occurred", "Destination Not Entered ")
 
 
 def ticketShow(row):
@@ -442,6 +650,19 @@ def ticketShow(row):
         row=16, column=2, pady=50
     )
 
+    def change_theme():
+        current_bg = f4.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f4.configure(bg="gray70")
+            final.configure(bg="gray70")
+        else:
+            f4.configure(bg="white")
+            final.configure(bg="white")
+
+    buttonTheme = Button(f4, text="Theme", command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )
 
 
 def seat_book():
@@ -450,10 +671,10 @@ def seat_book():
     my_label = Label(f4, image=my_img, anchor=CENTER, width=width).grid(
         row=0, column=0, columnspan=5
     )
-    Label(
+    label1 = Label(
         f4, text="Python Bus Service", font=("Arial", 25), bg="deep sky blue", fg="red"
     ).grid(row=1, column=0, columnspan=5)
-    Label(
+    label2 = Label(
         f4,
         text="Enter Journey Details",
         font=("Arial", 20),
@@ -464,37 +685,44 @@ def seat_book():
 
     f5 = Frame(f4, pady=20)
     f5.grid(row=4, column=0, columnspan=5)
-    Label(f5, text="TO ", font=("Arial", 10)).grid(row=0, column=0, sticky=E)
+    label3 = Label(f5, text="TO ", font=("Arial", 10, "bold")).grid(
+        row=0, column=0, sticky=E
+    )
     e1 = Entry(f5)
     e1.grid(row=0, column=1)
-    Label(f5, text="FROM ", font=("Arial", 10)).grid(row=0, column=2)
+    label4 = Label(f5, text="FROM ", font=("Arial", 10, "bold")).grid(row=1, column=0)
     e2 = Entry(f5)
-    e2.grid(row=0,column=3)
-    Label(f5,text = "JOURNEY DATE (MM-DD-YYYY) ", font=("Arial",10)).grid(row=0,column=4)
-    cal=DateEntry(f5,selectmode='day', date_pattern = "MM-DD-YYYY")
-    cal.grid(row=0,column=5,padx=15)
-    '''e3 = Entry(f5)
-    e3.grid(row=0,column=5)'''
-    
+    e2.grid(row=1, column=1)
+    label5 = Label(
+        f5, text="JOURNEY DATE (MM-DD-YYYY) ", font=("Arial", 10, "bold")
+    ).grid(row=0, column=10, padx=10)
+    cal = DateEntry(f5, selectmode="day", date_pattern="MM-DD-YYYY")
+    cal.grid(row=0, column=11, padx=5)
+
+    """e3 = Entry(f5)
+    e3.grid(row=0,column=5)"""
+
+    f6 = Frame(f5)
+
     def proceed_to(f5, busch, fare):
         if type(busch) != int:
             showinfo("Invalid Choice", "Please choose a bus!")
         else:
-            f6 = Frame(f5)
-            f6.grid(row=6, column=0, columnspan=10, pady=20)
+            f6.grid(row=6, column=0, columnspan=11, pady=20)
             Label(
                 f6,
                 text="Fill Passenger Details To Book The Bus Ticket",
-                font=("Arial", 25),
+                font=("Arial", 16),
                 bg="deep sky blue",
                 fg="red",
             ).grid(row=0, column=0, columnspan=15)
-            Label(f6, text="Name", font=("Arial", 15)).grid(
+
+            Label(f6, text="Name", font=("Arial", 10)).grid(
                 row=1, column=0, padx=20, pady=20
             )
             e4 = Entry(f6)
             e4.grid(row=1, column=1)
-            Label(f6, text="Gender", font=("Arial", 15)).grid(
+            Label(f6, text="Gender", font=("Arial", 10)).grid(
                 row=1, column=2, padx=20, pady=20
             )
             menu = StringVar()
@@ -502,44 +730,83 @@ def seat_book():
             drop1 = OptionMenu(f6, menu, "MALE", "FEMALE", "TRANS").grid(
                 row=1, column=3
             )
-            Label(f6, text="No. of seats.", font=("Arial", 15)).grid(
+            Label(f6, text="No. of seats.", font=("Arial", 10)).grid(
                 row=1, column=4, padx=20, pady=20
             )
 
             e5 = Entry(f6)
             e5.grid(row=1, column=5)
-            Label(f6, text="Mobile No", font=("Arial", 15)).grid(
+            Label(f6, text="Mobile No", font=("Arial", 10)).grid(
                 row=1, column=6, padx=20, pady=20
             )
 
             e6 = StringVar()
             Entry(f6, textvariable=e6).grid(row=1, column=7)
-            Label(f6, text="Age", font=("Arial", 15)).grid(
+            Label(f6, text="Age", font=("Arial", 10)).grid(
                 row=1, column=8, padx=20, pady=20
             )
             e7 = Entry(f6)
             e7.grid(row=1, column=9)
 
             def booked(fare):
-                if e6.get()=="" or e4.get()=="" or e7.get()=="" or cal.get()=="" or e5.get()=="" or e2.get()=="" or e1.get()=="":
-                    showerror("Invalid Data","Please fill all the data!")
-                else:                    
-                    insertRow = (int(e6.get()),e4.get(),menu.get(),int(e7.get()),busch,cal.get(),int(e5.get()),fare,e2.get(),e1.get())
-                    fare*=insertRow[6]
-                    cur.execute('select seat_available from runs where bus_id='+str(busch)+' and journey_date="'+cal.get()+'"')
-                    seats_avail=cur.fetchall()
-                    seats_avl=int(seats_avail[0][0])
-                    if int(e5.get())<seats_avl:
-                        resp = askyesno("Book","Total fare = "+str(fare)+"\nProceed to book?")
+                if (
+                    e6.get() == ""
+                    or e4.get() == ""
+                    or e7.get() == ""
+                    or cal.get() == ""
+                    or e5.get() == ""
+                    or e2.get() == ""
+                    or e1.get() == ""
+                ):
+                    showerror("Invalid Data", "Please fill all the data!")
+                else:
+                    insertRow = (
+                        int(e6.get()),
+                        e4.get(),
+                        menu.get(),
+                        int(e7.get()),
+                        busch,
+                        cal.get(),
+                        int(e5.get()),
+                        fare,
+                        e2.get(),
+                        e1.get(),
+                    )
+                    fare *= insertRow[6]
+                    cur.execute(
+                        "select seat_available from runs where bus_id="
+                        + str(busch)
+                        + ' and journey_date="'
+                        + cal.get()
+                        + '"'
+                    )
+                    seats_avail = cur.fetchall()
+                    seats_avl = int(seats_avail[0][0])
+                    if int(e5.get()) < seats_avl:
+                        resp = askyesno(
+                            "Book", "Total fare = " + str(fare) + "\nProceed to book?"
+                        )
                         if resp:
-                            cur.execute('insert into Booking (Mobile ,Name ,sex ,age ,Bus_id , journey_date ,Ticket, Fare ,FromSt ,Tost ) values (?,?,?,?,?,?,?,?,?,?)',insertRow)
-                            cur.execute('update runs set seat_available='+str(seats_avl-int(e5.get()))+' where bus_id='+str(busch)+' and journey_date="'+cal.get()+'"')
+                            cur.execute(
+                                "insert into Booking (Mobile ,Name ,sex ,age ,Bus_id , journey_date ,Ticket, Fare ,FromSt ,Tost ) values (?,?,?,?,?,?,?,?,?,?)",
+                                insertRow,
+                            )
+                            cur.execute(
+                                "update runs set seat_available="
+                                + str(seats_avl - int(e5.get()))
+                                + " where bus_id="
+                                + str(busch)
+                                + ' and journey_date="'
+                                + cal.get()
+                                + '"'
+                            )
                             con.commit()
                             ticketShow(insertRow)
                     else:
                         showerror(
                             "Limited Seats", "Insufficient seats avilable in the bus!"
                         )
+
             def seat_matrix():
                 import tkinter as tk
                 from tkinter import messagebox
@@ -549,15 +816,16 @@ def seat_book():
                     for seat_var in seat_vars:
                         if seat_var.get() != "":
                             selected_seats.append(seat_var.get())
-                    #print("Selected seats:", selected_seats)
+                    # print("Selected seats:", selected_seats)
                     root.destroy()  # Close the window after submitting
-                    messagebox.showinfo("Tickets Selected","Tickets Selected")
+                    messagebox.showinfo("Tickets Selected", "Tickets Selected")
 
                 root = tk.Tk()
                 root.title("Seat Matrix")
                 bus_frame = tk.Frame(root)
                 root.geometry("400x500")
                 bus_frame.pack()
+                bus_frame.config(bg="gray70")
 
                 seat_vars = []
                 seat_checkboxes = []
@@ -565,12 +833,20 @@ def seat_book():
                 for row in range(1, 11):
                     seat_row = tk.Frame(bus_frame)
                     seat_row.grid(row=row, column=1)
-                    row_label = tk.Label(seat_row, text=f"Row {row}", font=("Arial", 10, "bold"))
+                    row_label = tk.Label(
+                        seat_row, text=f"Row {row}", font=("Arial", 10, "bold")
+                    )
                     row_label.pack(side=tk.TOP)
 
                     for col in range(1, 5):
                         seat_var = tk.StringVar()
-                        seat_checkbox = tk.Checkbutton(seat_row, text=f"Seat {col}", variable=seat_var, onvalue=f"Seat {col}", offvalue="")
+                        seat_checkbox = tk.Checkbutton(
+                            seat_row,
+                            text=f"Seat {col}",
+                            variable=seat_var,
+                            onvalue=f"Seat {col}",
+                            offvalue="",
+                        )
                         seat_checkbox.pack(side=tk.LEFT)
                         seat_vars.append(seat_var)
                         seat_checkboxes.append(seat_checkbox)
@@ -581,17 +857,18 @@ def seat_book():
 
                     seat_row.grid(row=row, column=1)
 
-                submit_button = tk.Button(root, text="Submit", command=lambda: submit(root))
+                submit_button = tk.Button(
+                    root, text="Submit", command=lambda: submit(root)
+                )
                 submit_button.pack(pady=10)
 
                 root.mainloop()
 
-
-            #Button For seat matrix
+            # Button For seat matrix
             button8 = Button(
                 f6,
                 text="Seat Matrix",
-                font=("Arial", 15),
+                font=("Arial", 10),
                 activebackground="light green",
                 bg="SpringGreen3",
                 command=seat_matrix,
@@ -600,25 +877,49 @@ def seat_book():
             button9 = Button(
                 f6,
                 text="Book Seat",
-                font=("Arial", 15),
+                font=("Arial", 10),
                 activebackground="light green",
                 bg="SpringGreen3",
                 command=lambda: booked(fare),
             ).grid(row=1, column=11, padx=20, pady=20)
 
     def show_bus(f5):
-        if e1.get()=="" or e2.get()=="" or cal.get()=="":
-            showinfo("Invalid Inputs","Please enter all the details!")
+        if e1.get() == "":
+            showinfo("Invalid Inputs", "Please enter the Source location!")
+        elif e2.get() == "":
+            showinfo("Invalid Inputs", "Please enter the Destination location!")
+        elif e1.get() == e2.get():
+            showinfo("Invalid Inputs", "Source and Destination cannot be same!")
+        elif e1.get() == "" or e2.get() == "" or cal.get() == "":
+            showinfo("Invalid Inputs", "Please enter all the details!")
         else:
-            data=cur.execute('select b.bus_id,o.name,b.type,t.seat_available,b.fare from route r,route s,runs t,bus b,operator o where o.op_id=b.op_id and r.route_id=s.route_id and t.bus_id=b.bus_id and b.route_id=r.route_id and t.journey_date= "'+str(cal.get())+'" and r.station="'+str(e1.get())+'" and s.station="'+str(e2.get())+'" and r.s_id>s.s_id')
-            f6=Frame(f5)
-            f6.grid(row = 5, column = 0, columnspan = 10,pady = 20)
-            Label(f6,text = "Select BUS ", font=("Arial",15),fg='light green').grid(row=0,column=0,padx = 20)
-            Label(f6,text = "Operator ", font=("Arial",15),fg='light green').grid(row=0,column=1,padx=20)
-            Label(f6,text = "Bus Type ", font=("Arial",15),fg='light green').grid(row=0,column=2,padx= 20)
-            Label(f6,text = "Availability ", font=("Arial",15),fg='light green').grid(row=0,column=3,padx = 10+10)
-            Label(f6,text = "Fare ", font=("Arial",15),fg='light green').grid(row=0,column=4, padx = 19+1)
-            i,busch=1,IntVar()
+            data = cur.execute(
+                'select b.bus_id,o.name,b.type,t.seat_available,b.fare from route r,route s,runs t,bus b,operator o where o.op_id=b.op_id and r.route_id=s.route_id and t.bus_id=b.bus_id and b.route_id=r.route_id and t.journey_date= "'
+                + str(cal.get())
+                + '" and r.station="'
+                + str(e1.get())
+                + '" and s.station="'
+                + str(e2.get())
+                + '" and r.s_id>s.s_id'
+            )
+            f6 = Frame(f5)
+            f6.grid(row=5, column=0, columnspan=10, pady=20)
+            Label(f6, text="Select BUS ", font=("Arial", 15), fg="light green").grid(
+                row=0, column=0, padx=20
+            )
+            Label(f6, text="Operator ", font=("Arial", 15), fg="light green").grid(
+                row=0, column=1, padx=20
+            )
+            Label(f6, text="Bus Type ", font=("Arial", 15), fg="light green").grid(
+                row=0, column=2, padx=20
+            )
+            Label(f6, text="Availability ", font=("Arial", 15), fg="light green").grid(
+                row=0, column=3, padx=10 + 10
+            )
+            Label(f6, text="Fare ", font=("Arial", 15), fg="light green").grid(
+                row=0, column=4, padx=19 + 1
+            )
+            i, busch = 1, IntVar()
             for row in data:
                 rb = Radiobutton(f6, text="Bus" + str(i), variable=busch, value=row[0])
                 rb.grid(row=i, column=0)
@@ -638,19 +939,41 @@ def seat_book():
                 command=lambda: proceed_to(f5, busch.get(), row[4]),
             ).grid(row=1, column=5, padx=20, pady=20)
 
+    frame_seat_booking = Frame(f5)
+    frame_seat_booking.grid(row=12, column=3, columnspan=10, pady=20)
     button5 = Button(
-        f5,
+        frame_seat_booking,
         text="Show Bus",
         font=("Arial", 15),
         activebackground="light green",
         bg="SpringGreen3",
-        command=lambda: show_bus(f5),
-    ).grid(row=0, column=6, padx=20)
-    button6 = Button(f5, image=home_img, command=tab2).grid(row=0, column=7, padx=20)
+        command=lambda: (show_bus(f5), get_weather(e1.get(), f4)),
+    ).grid(row=7, column=3, padx=20)
 
-   
+    button6 = Button(frame_seat_booking, image=home_img, command=tab2).grid(
+        row=7, column=4, padx=20
+    )
+
+    def change_theme():
+        current_bg = f5.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f5.configure(bg="gray70")
+            f4.configure(bg="gray70")
+            f6.configure(bg="gray70")
+        else:
+            f5.configure(bg="white")
+            f4.configure(bg="white")
+            f6.configure(bg="white")
+
+    buttonTheme = Button(f4, text="Theme", command=change_theme, width=35).grid(
+        row=6, column=0, columnspan=5
+    )
+
 
 text = ""
+
+
 def check_booked_seat(f2):
     f7 = Frame(f2)
     f7.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -694,7 +1017,7 @@ def check_booked_seat(f2):
             con.commit()
             details = cur.fetchall()
             i = 5
-            
+
             for row in details:
                 box = Label(
                     f8,
@@ -727,16 +1050,18 @@ def check_booked_seat(f2):
                     relief="groove",
                 )
                 box.grid(row=i, column=0, columnspan=3)
-                #Adding Ticket data into pdf
-                label_text = box.cget("text") 
-                global text 
+                # Adding Ticket data into pdf
+                label_text = box.cget("text")
+                global text
                 text = label_text
                 i += 1
-                 #Download Ticket 
-                button10 = Button(f7, text="Download Ticket", anchor=CENTER, command=download_ticket).grid(
-                    row=4, column=0, columnspan=5)
+                # Download Ticket
+                button10 = Button(
+                    f7, text="Download Ticket", anchor=CENTER, command=download_ticket
+                ).grid(row=4, column=0, columnspan=5)
                 temp_label = Label(f7, text="", anchor=CENTER).grid(
-                    row=5, column=0, columnspan=5)
+                    row=5, column=0, columnspan=5
+                )
             if i == 5:
                 showerror("Test", "No tickets found!!")
 
@@ -746,8 +1071,23 @@ def check_booked_seat(f2):
     button9 = Button(f7, image=home_img, anchor=CENTER, command=tab2).grid(
         row=6, column=0, columnspan=5
     )
+    button9 = Button(f7, image=home_img, anchor=CENTER, command=tab2).grid(
+        row=6, column=0, columnspan=5
+    )
 
-   
+    def change_theme():
+        current_bg = f7.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f7.configure(bg="gray70")
+            f8.configure(bg="gray70")
+        else:
+            f7.configure(bg="white")
+            f8.configure(bg="white")
+
+    buttonTheme = Button(f7, text="Theme", command=change_theme, width=35).grid(
+        row=7, column=0, columnspan=5
+    )
 
 
 def add_bus():
@@ -810,7 +1150,23 @@ def add_bus():
         row=4, column=0, columnspan=5
     )
 
+    # bg varibale 0 = white and  bg variable 1 = dark mode
+    def change_theme():
+        current_bg = f9.cget("bg")  # Get the current background color
 
+        if current_bg == "white":
+            f9.configure(bg="gray70")
+            f10.configure(bg="gray70")
+        else:
+            f9.configure(bg="white")
+            f10.configure(bg="white")
+
+    buttonTheme = Button(f9, text="Theme", command=change_theme, width=35).grid(
+        row=5, column=0, columnspan=5
+    )
+
+
+# Second tkinter GUI page
 def tab2():
     f2 = Frame()
     f2.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
@@ -825,7 +1181,7 @@ def tab2():
         fg="red",
         anchor=CENTER,
     ).grid(row=1, column=0, columnspan=5)
-    f3 = Frame(f2, pady=20)
+    f3 = Frame(f2, pady=25)
     f3.grid(row=2, column=0, columnspan=5)
 
     button2 = Button(
@@ -837,7 +1193,7 @@ def tab2():
         pady=10,
         command=seat_book,
     ).grid(row=1, column=0)
-    Label(f3, text="    ").grid(row=0, column=1)
+    # Label(f3, text="    ").grid(row=0, column=1)
     button2 = Button(
         f3,
         text="CHECK BOOKED SEAT",
@@ -847,7 +1203,7 @@ def tab2():
         pady=10,
         command=lambda: check_booked_seat(f2),
     ).grid(row=1, column=2)
-    Label(f3, text="    ").grid(row=0, column=3)
+    # Label(f3, text="    ").grid(row=0, column=3)
     button3 = Button(
         f3,
         text="ADD BUS DETAILS",
@@ -857,73 +1213,125 @@ def tab2():
         pady=10,
         command=add_bus,
     ).grid(row=1, column=4)
-    Label(f3, text="For Admins Only", fg="red").grid(row=2, column=4)
+
+    adminlabel = Label(f3, text="For Admins Only", fg="red")
+    adminlabel.grid(row=2, column=4)
+
     button4 = Button(f2, image=home_img, anchor=CENTER, command=tab2).grid(
         row=3, column=0, columnspan=5
     )
 
+    # bg varibale 0 = white and  bg variable 1 = dark mode
+    def change_theme():
+        current_bg = f2.cget("bg")  # Get the current background color
 
+        if current_bg == "white":
+            f2.configure(bg="gray70")
+            f3.configure(bg="gray70")
+            adminlabel.config(bg="gray70")
+        else:
+            f2.configure(bg="white")
+            f3.configure(bg="white")
+            adminlabel.config(bg="white")
+
+    button5 = Button(f2, text="Theme", command=change_theme, width=35).grid(
+        row=4, column=0, columnspan=5
+    )
+
+
+# first or landing page
 def tab1():
     f1 = Frame()
     f1.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
     my_label = Label(f1, image=my_img, anchor=CENTER).pack()
-    Label(
-        f1, text="Python Bus Service", font=("Arial", 25), bg="yellow", fg="red"
-    ).pack()
+    PythonBusService = Label(
+        f1,
+        text="Python Bus Service",
+        font=("Arial", 25),
+        bg="yellow",
+        fg="red",
+    ).pack(padx=0, pady=50)
+
     Label(
         f1,
-        text="Name : Pranjal Agarwal",
+        text="Name :  Pranjal Agarwal",
         font=("Arial", 15),
-        fg="blue",
+        fg="white",
         anchor=S,
-        pady=50,
-    ).pack()
+        pady=0,
+        bg="gray70",
+    ).pack(padx=0, pady=0)
     # Label(f1,text = "Enrollment No. : 211B218", font=("Arial",14),fg='blue',anchor = S).pack()
     Label(
         f1,
         text="Mobile : +919451492673",
         font=("Arial", 14),
-        fg="blue",
+        fg="white",
         anchor=S,
-        pady=50,
-    ).pack()
+        pady=0,
+        bg="gray70",
+    ).pack(padx=0, pady=50)
     # Label(f1,text = "Submitted to : Dr. Mahesh Kumar", font=("Arial",20), bg = 'yellow', fg = 'red' , pady = 10).pack()
     # Label(f1,text = "Project Based learning",font="Arial 16 bold",fg='red').pack()
 
-    button1 = Button(f1, text="Start", command=tab2).pack()
+    button1 = Button(f1, text="Start", command=tab2, width=35).pack(pady=(0, 50))
+
+    # bg varibale 0 = white and  bg variable 1 = dark mode
+    def change_theme():
+        current_bg = f1.cget("bg")  # Get the current background color
+
+        if current_bg == "white":
+            f1.configure(bg="gray70")
+        else:
+            f1.configure(bg="white")
+
+    buttonTheme = Button(f1, text="Theme", command=change_theme, width=35).pack(
+        anchor=S
+    )
+
+    def delete_account():
+        Acc_delete.AccountDelete().mainloop()
+
+    buttonDeleteAccount = Button(
+        f1, text="Delete Your Account", command=delete_account, width=35
+    )
+    buttonDeleteAccount.pack(anchor=W, padx=(20, 0), pady=(150, 0))
+
 
 def download_ticket():
-  from fpdf import FPDF
-  pdf = FPDF()
-  pdf.add_page()
+    from fpdf import FPDF
 
-  # Set font as heading font
-  pdf.set_font("Arial", style="B", size=22)
-  pdf.multi_cell(0, 10, txt="Python Bus Service", align='C')
-  pdf.multi_cell(0, 10, txt="", align='C')
-  pdf.multi_cell(0, 10, txt="", align='C')
-  pdf.multi_cell(0, 10, txt="Booked Ticket Details : ", align='L')
-  pdf.multi_cell(0, 10, txt="", align='C')
- 
-  # Set font for the remaining lines
-  pdf.set_font("Arial", size=15)
+    pdf = FPDF()
+    pdf.add_page()
 
-  # Split the text into individual lines
-  lines = text.splitlines()
+    # Set font as heading font
+    pdf.set_font("Arial", style="B", size=22)
+    pdf.multi_cell(0, 10, txt="Python Bus Service", align="C")
+    pdf.multi_cell(0, 10, txt="", align="C")
+    pdf.multi_cell(0, 10, txt="", align="C")
+    pdf.multi_cell(0, 10, txt="Booked Ticket Details : ", align="L")
+    pdf.multi_cell(0, 10, txt="", align="C")
 
-  # Add the remaining lines to the PDF
-  for line in lines:
-     pdf.multi_cell(0, 10, txt=line, align='L')
+    # Set font for the remaining lines
+    pdf.set_font("Arial", size=15)
 
-  pdf.output("Ticket_Details.pdf")
+    # Split the text into individual lines
+    lines = text.splitlines()
 
-  from tkinter import messagebox
-  messagebox.showinfo("PDF Downloaded", "Your Ticket has been downloaded.")
+    # Add the remaining lines to the PDF
+    for line in lines:
+        pdf.multi_cell(0, 10, txt=line, align="L")
+
+    pdf.output("Ticket_Details.pdf")
+
+    from tkinter import messagebox
+
+    messagebox.showinfo("PDF Downloaded", "Your Ticket has been downloaded.")
 
 
 # -------------------------------------------------------------------------------------------------------------
 
-my_img = PhotoImage(file="Bus_for_project.png")
-home_img = PhotoImage(file="home.png")
+my_img = PhotoImage(file="Image/Bus_for_project.png")
+home_img = PhotoImage(file="Image/home.png")
 tab1()
 root.mainloop()

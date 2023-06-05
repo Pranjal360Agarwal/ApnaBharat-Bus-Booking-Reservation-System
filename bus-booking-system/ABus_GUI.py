@@ -208,6 +208,7 @@ def show_info_box(message):
         font=("Calibri", 12),
     ).pack(pady=10)
 
+
 def main():
     # Create the main window
     window = tk.Tk()
@@ -225,24 +226,19 @@ def main():
         ribbon,
         text="ApnaBharat Bus Booking Reservation - Signin/Register to continue",
         bg="#B1D6C6",
-        font=("Calibri Light", 14)
+        font=("Calibri Light", 14),
     )
     welcome_text.place(relx=0.5, rely=0.5, anchor="center")
 
     # Add text on the left edge of the window
     edge_text = tk.Label(
-        window,
-        text="Welcome to ApnaBharat Bus",
-        bg="#B7C3EC",
-        font=("Georgia", 35)
+        window, text="Welcome to ApnaBharat Bus", bg="#B7C3EC", font=("Georgia", 35)
     )
     edge_text.place(relx=0.5, rely=0.15, anchor="center")
 
-    tk.Label(
-        text="Username",
-        bg="#B7C3EC",
-        font=("Calibri", 20)
-    ).place(relx=0.5, rely=0.45, anchor="center")
+    tk.Label(text="Username", bg="#B7C3EC", font=("Calibri", 20)).place(
+        relx=0.5, rely=0.45, anchor="center"
+    )
 
     username = tk.StringVar()
     usernm = ttk.Entry(textvariable=username)
@@ -253,7 +249,7 @@ def main():
         command=new_user,
         bg="#113870",
         fg="#B1D6C6",
-        font=("Calibri", 12)
+        font=("Calibri", 12),
     ).place(anchor="center", relx=0.5, rely=0.55, height=40, width=100)
 
     window.mainloop()
@@ -273,7 +269,10 @@ def connect_to_mysql():
         sql_cursor.execute(table)
     else:
         show_info_box("MySQL connection failed.")
-        show_info_box("Please restart the app after logging in to your MySQL interface.")
+        show_info_box(
+            "Please restart the app after logging in to your MySQL interface."
+        )
+
 
 def data_entry(username, password):
     cmd = f"INSERT INTO passwords_data (username, password) VALUES ('{username}', '{password}')"
@@ -284,6 +283,7 @@ def data_entry(username, password):
     except (sql_conn.ProgrammingError, sql_conn.IntegrityError):
         err = "Only one password per URL is allowed for data integrity. Please try again with a unique URL."
         show_info_box(err)
+
 
 def mysql_pass():
     infobox = tk.Toplevel(window)
@@ -320,6 +320,6 @@ def mysql_pass():
 
     infobox.mainloop()
     return mysql_pass_entry.get()
-window.mainloop()
 
-       
+
+window.mainloop()
