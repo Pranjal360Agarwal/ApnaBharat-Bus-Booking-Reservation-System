@@ -38,7 +38,7 @@ class Login(customtkinter.CTk):
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
-            Image.open("/Users/vedanshudhawani/Documents/GitHub/ApnaBharat-Bus-Booking-Reservation-System/bus-booking-system/Image/Background_gradient.jpg"), size=(self.width, self.height)
+            Image.open("bus-booking-system/Image/Background_gradient.jpg"), size=(self.width, self.height)
         )
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
@@ -82,10 +82,8 @@ class Login(customtkinter.CTk):
             text="Show Password",
             variable=self.show_password_var,
             command=self.toggle_password_visibility,
-            bg=self.login_frame["background"],  # Set the background color of the checkbox
-            fg="white"
         )
-        self.show_password_checkbutton.grid(row=4, column=0, padx=30, sticky="w")
+        self.show_password_checkbutton.grid(row=4, column=0, padx=30, sticky="w", pady=(0, 15))
 
 
         # TEXT : LOGIN BUTTON TEXT
