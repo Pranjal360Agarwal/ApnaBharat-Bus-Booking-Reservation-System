@@ -38,7 +38,7 @@ class Login(customtkinter.CTk):
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
-            Image.open("bus-booking-system/Image/Background_gradient.jpg"), size=(self.width, self.height)
+            Image.open("Image/Background_gradient.jpg"), size=(self.width, self.height)
         )
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
@@ -83,8 +83,9 @@ class Login(customtkinter.CTk):
             variable=self.show_password_var,
             command=self.toggle_password_visibility,
         )
-        self.show_password_checkbutton.grid(row=4, column=0, padx=30, sticky="w", pady=(0, 15))
-
+        self.show_password_checkbutton.grid(
+            row=4, column=0, padx=30, sticky="w", pady=(0, 15)
+        )
 
         # TEXT : LOGIN BUTTON TEXT
         self.login_button = customtkinter.CTkButton(
@@ -99,6 +100,7 @@ class Login(customtkinter.CTk):
             font=customtkinter.CTkFont(size=12, weight="normal"),
         )
         self.login_label_3.grid(row=7, column=0, padx=30, pady=(20, 5))
+
         # TEXT : Register BUTTON TEXT
         self.login_button = customtkinter.CTkButton(
             self.login_frame, text="Register", command=self.Register_event, width=200
@@ -110,6 +112,7 @@ class Login(customtkinter.CTk):
             self.login_frame, text="Appearance Mode", anchor="s"
         )
         self.appearance_mode_label.grid(row=12, column=0, padx=10, pady=(5, 0))
+
         # Theme mode buttom
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(
             self.login_frame,
