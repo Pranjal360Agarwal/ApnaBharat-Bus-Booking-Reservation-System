@@ -76,11 +76,22 @@ class Login(customtkinter.CTk):
         )
         self.password_entry.grid(row=3, column=0, padx=30, pady=(0, 15))
 
+        self.show_password_var = tkinter.BooleanVar()
+        self.show_password_checkbutton = tkinter.Checkbutton(
+            self.login_frame,
+            text="Show Password",
+            variable=self.show_password_var,
+            command=self.toggle_password_visibility,
+        )
+        self.show_password_checkbutton.grid(
+            row=4, column=0, padx=30, sticky="w", pady=(0, 15)
+        )
+
         # TEXT : LOGIN BUTTON TEXT
         self.login_button = customtkinter.CTkButton(
             self.login_frame, text="Login", command=self.login_event, width=200
         )
-        self.login_button.grid(row=4, column=0, padx=30, pady=(15, 15))
+        self.login_button.grid(row=5, column=0, padx=30, pady=(15, 15))
 
         # TEXT to register
         self.login_label_3 = customtkinter.CTkLabel(
@@ -88,28 +99,36 @@ class Login(customtkinter.CTk):
             text="Register now if you don't have an account.",
             font=customtkinter.CTkFont(size=12, weight="normal"),
         )
-        self.login_label_3.grid(row=6, column=0, padx=30, pady=(20, 5))
+        self.login_label_3.grid(row=7, column=0, padx=30, pady=(20, 5))
+
         # TEXT : Register BUTTON TEXT
         self.login_button = customtkinter.CTkButton(
             self.login_frame, text="Register", command=self.Register_event, width=200
         )
-        self.login_button.grid(row=7, column=0, padx=30, pady=(0, 15))
+        self.login_button.grid(row=8, column=0, padx=30, pady=(0, 15))
 
         # Theme button
         self.appearance_mode_label = customtkinter.CTkLabel(
             self.login_frame, text="Appearance Mode", anchor="s"
         )
-        self.appearance_mode_label.grid(row=11, column=0, padx=10, pady=(5, 0))
+        self.appearance_mode_label.grid(row=12, column=0, padx=10, pady=(5, 0))
+
         # Theme mode buttom
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(
             self.login_frame,
             values=["Light", "Dark", "System"],
             command=self.change_appearance_mode_event,
         )
-        self.appearance_mode_optionemenu.grid(row=12, column=0, padx=20, pady=(10, 10))
+        self.appearance_mode_optionemenu.grid(row=13, column=0, padx=20, pady=(10, 10))
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
+
+    def toggle_password_visibility(self):
+        if self.show_password_var.get():
+            self.password_entry.configure(show="")
+        else:
+            self.password_entry.configure(show="*")
 
     def login_event(self):
         entered_username = self.username_entry.get()
