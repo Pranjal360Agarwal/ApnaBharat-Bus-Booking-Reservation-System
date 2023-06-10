@@ -23,7 +23,6 @@ def Transition_LoginToMain():
     value = bool(content)
     # For debugging
     # print(value)
-
     if not value:
         exit()
 
@@ -1091,6 +1090,58 @@ def check_booked_seat(f2):
 
 
 def add_bus():
+    def all_bus():
+        root = Toplevel()
+        root.geometry("600x800")
+        root.title("AlL BUS")
+        Label(root, text="All Bus Availabe : ").place(x=20, y=20)
+
+        Label(root, text="Bus ID", font=("Arial", 15)).place(x=20, y=80)
+        Label(root, text="Bus Type", font=("Arial", 15)).place(x=100, y=80)
+        Label(root, text="Capacity", font=("Arial", 15)).place(x=230, y=80)
+        Label(root, text="Fare", font=("Arial", 15)).place(x=320, y=80)
+        Label(root, text="Operator ID", font=("Arial", 15)).place(x=420, y=80)
+        Label(root, text="Route ID", font=("Arial", 15)).place(x=480, y=80)
+
+        sql = "Select * from Bus ;"
+        cur.execute(sql)
+        data = cur.fetchall()
+
+        a = 0
+        for i in data:
+            a += 30
+            Label(root, text=i[0]).place(x=20, y=80 + a)
+            Label(root, text=i[1]).place(x=100, y=80 + a)
+            Label(root, text=i[2]).place(x=230, y=80 + a)
+            Label(root, text=i[3]).place(x=300, y=80 + a)
+            Label(root, text=i[4]).place(x=420, y=80 + a)
+            Label(root, text=i[5]).place(x=480, y=80 + a)
+
+        root.mainloop()
+
+    def all_routes():
+        root = Toplevel()
+        root.geometry("600x800")
+        root.title("AlL Rutes")
+        Label(root, text="All Routes Availabe : ").place(x=20, y=20)
+
+        Label(root, text="Route Id", font=("Arial", 15)).place(x=20, y=80)
+        Label(root, text="Station Name", font=("Arial", 15)).place(x=100, y=80)
+        Label(root, text="Station ID", font=("Arial", 15)).place(x=230, y=80)
+
+        sql = "Select * from route ;"
+        cur.execute(sql)
+        data = cur.fetchall()
+
+        a = 0
+        for i in data:
+            a += 30
+            Label(root, text=i[0]).place(x=20, y=80 + a)
+            Label(root, text=i[1]).place(x=100, y=80 + a)
+            Label(root, text=i[2]).place(x=230, y=80 + a)
+
+        root.mainloop()
+
     f9 = Frame()
     f9.place(x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
     my_label = Label(f9, image=my_img, anchor=CENTER, width=width).grid(
@@ -1146,6 +1197,25 @@ def add_bus():
         anchor=CENTER,
         command=new_run,
     ).grid(row=0, column=3, padx=20)
+
+    button14 = Button(
+        f10,
+        text="All Bus",
+        font=("Arial", 15),
+        bg="green",
+        anchor=CENTER,
+        command=all_bus,
+    ).grid(column=1, row=3)
+
+    button15 = Button(
+        f10,
+        text="All Routes",
+        font=("Arial", 15),
+        bg="blue",
+        anchor=CENTER,
+        command=all_routes,
+    ).grid(column=2, row=3)
+
     button23 = Button(f9, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
     )
