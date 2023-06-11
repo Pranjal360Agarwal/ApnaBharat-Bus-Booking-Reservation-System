@@ -11,6 +11,20 @@ body:
     validations:
       required: true
   - type: textarea
+    id: file_path
+    attributes:
+      label: filepath
+      description: Please mention the path of the file in which you found the documentation error
+    validations:
+      required: true
+   - type: textarea
+    id: line_number
+    attributes:
+      label: linenumber
+      description: Please Enter the Line number in which the error was found
+    validations:
+      required: true
+  - type: textarea
     id: screenshots
     attributes:
       label: Screenshots
@@ -20,8 +34,8 @@ body:
   - type: textarea
     id: extrainfo
     attributes:
-      label: Additional information
-      description: Is there anything else we should know about this issue?
+      label: Additional information about the execution environment such as OS name and version
+      description: 
     validations:
       required: false
    - type: checkboxes
@@ -32,3 +46,11 @@ body:
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
+  - type: checkboxes
+    id: want_to_work
+    attributes:
+      label: I want to work on this (optional)
+      description: Select if you want to work on this Issue
+      options:
+        - label: I want to work on this issue
+          required: false
