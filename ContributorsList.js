@@ -86,7 +86,7 @@ let contributors = [
   },
   {
    github: "https://github.com/Bharadwajshivam28",
-    name: "Shivam Kumar"
+    name: "Shivam Kumar",
     linkedin: "https://www.linkedin.com/in/shivam-kumar-70a746256/",
     },
   {
