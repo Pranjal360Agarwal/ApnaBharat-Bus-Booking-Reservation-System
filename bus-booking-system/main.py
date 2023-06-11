@@ -251,24 +251,24 @@ def new_bus():
         x=0, y=0, width=root.winfo_screenwidth(), height=root.winfo_screenheight()
     )
     my_label = Label(f13, image=my_img, anchor=CENTER, width=width).grid(
-        row=0, column=0, columnspan=5
+        row=0, column=0, columnspan=5, sticky="nsew"
     )
     Label(
         f13, text="Python Bus Service", font=("Arial", 25), bg="deep sky blue", fg="red"
-    ).grid(row=1, column=0, columnspan=5)
+    ).grid(row=1, column=0, columnspan=5, sticky="nsew")
     Label(f13, text="Add Bus Details", font=("Arial", 25), fg="light green").grid(
-        row=2, column=0, columnspan=5, pady=20
+        row=2, column=0, columnspan=1, pady=20, sticky="nsew"
     )
 
     f14 = Frame(f13)
-    f14.grid(row=3, column=0, columnspan=15, pady=20)
+    f14.grid(row=3, column=0, columnspan=15, pady=2, sticky="nsew")
     Label(f14, text="Bus Id ", font=("Arial", 15), fg="light green").grid(
-        row=0, column=0, padx=20
+        row=0, column=0, sticky="nsew"
     )
     e14 = Entry(f14)
-    e14.grid(row=0, column=1)
+    e14.grid(row=0, column=1, sticky="nsew")
     Label(f14, text="Bus Type ", font=("Arial", 15), fg="light green").grid(
-        row=0, column=2, padx=20
+        row=0, column=2, sticky="nsew"
     )
     menu1 = StringVar()
     menu1.set("CHOOSE")
@@ -281,27 +281,28 @@ def new_bus():
         "Non-AC 3x2",
         "AC Sleeper 2x2",
         "Non-AC Sleeper 2x2",
-    ).grid(row=0, column=3)
+    )
+    drop2.grid(row=0, column=3, sticky="nsew")
     Label(f14, text="Capacity ", font=("Arial", 15), fg="light green").grid(
-        row=0, column=4, padx=20
+        row=0, column=4, sticky="nsew"
     )
     e16 = Entry(f14)
-    e16.grid(row=0, column=5)
+    e16.grid(row=0, column=5, sticky="nsew")
     Label(f14, text="Fare Rs ", font=("Arial", 15), fg="light green").grid(
-        row=0, column=6, padx=15
+        row=1, column=0, sticky="nsew"
     )
     e17 = Entry(f14)
-    e17.grid(row=0, column=7)
+    e17.grid(row=1, column=1, sticky="nsew")
     Label(f14, text="Operator ID", font=("Arial", 15), fg="light green").grid(
-        row=0, column=8, padx=19
+        row=1, column=2, sticky="nsew"
     )
     e18 = Entry(f14)
-    e18.grid(row=0, column=9)
+    e18.grid(row=1, column=3, sticky="nsew")
     Label(f14, text="Route ID", font=("Arial", 15), fg="light green").grid(
-        row=0, column=10, padx=19
+        row=1, column=4, sticky="nsew"
     )
     e19 = Entry(f14)
-    e19.grid(row=0, column=11)
+    e19.grid(row=1, column=5, sticky="nsew")
 
     def add_bus():
         cur.execute(
@@ -346,7 +347,8 @@ def new_bus():
         bg="light green",
         anchor=CENTER,
         command=add_bus,
-    ).grid(row=1, column=4, padx=20, pady=20)
+    )
+    button17.grid(row=2, column=3, padx=20, pady=20, sticky="nsew")
     button18 = Button(
         f14,
         text="Delete",
@@ -354,7 +356,8 @@ def new_bus():
         bg="light green",
         anchor=CENTER,
         command=delete_bus,
-    ).grid(row=1, column=6, padx=20, pady=20)
+    )
+    button18.grid(row=2, column=5, padx=20, pady=20, sticky="nsew")
 
     button19 = Button(f13, image=home_img, anchor=CENTER, command=tab2).grid(
         row=4, column=0, columnspan=5
