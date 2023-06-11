@@ -4,8 +4,10 @@ from tkinter import PhotoImage
 from tkinter import messagebox
 from tkinter.font import Font
 import customtkinter
+import re
 from PIL import Image, ImageTk
-import tkinter as tk
+
+# import tkinter as tk
 
 
 customtkinter.set_appearance_mode("dark")
@@ -34,7 +36,7 @@ class Login(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        # OPENEING WINDOW SIZE
+        # OPENING WINDOW SIZE
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
@@ -113,13 +115,13 @@ class Login(customtkinter.CTk):
         )
         self.appearance_mode_label.grid(row=12, column=0, padx=10, pady=(5, 0))
 
-        # Theme mode buttom
-        self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(
+        # Theme mode button
+        self.appearance_mode_optionmenu = customtkinter.CTkOptionMenu(
             self.login_frame,
             values=["Light", "Dark", "System"],
             command=self.change_appearance_mode_event,
         )
-        self.appearance_mode_optionemenu.grid(row=13, column=0, padx=20, pady=(10, 10))
+        self.appearance_mode_optionmenu.grid(row=13, column=0, padx=20, pady=(10, 10))
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
@@ -160,12 +162,32 @@ class Login(customtkinter.CTk):
             username = entry_username.get()
             password = entry_password.get()
 
+            def validate_password(password):
+                # Check if the password has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number
+                if (
+                    re.search(r"[A-Z]", password)
+                    and re.search(r"[a-z]", password)
+                    and re.search(r"\d", password)
+                    and re.search(r"\W", password)
+                ):
+                    return True
+                else:
+                    return False
+
+            if not validate_password(password):
+                window.geometry("600x200")
+                error_label.config(
+                    text="Password is invalid!\n "
+                    "Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number."
+                )
+                return
+
             # Save username and password in text files
             with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
                 username_file.write(username + "\n")
             with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
                 password_file.write(password + "\n")
-            
+
             messagebox.showinfo("Registration", "Registration successful!")
 
             # print("Username:", username)
@@ -187,6 +209,9 @@ class Login(customtkinter.CTk):
 
         entry_password = tk.Entry(window, show="*")
         entry_password.pack()
+
+        error_label = tk.Label(window, fg="red")
+        error_label.pack(pady=(5, 0))
 
         btn_register = tk.Button(window, text="Register", command=register)
         btn_register.pack()
