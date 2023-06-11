@@ -6,7 +6,7 @@ from tkinter.font import Font
 import customtkinter
 import re
 from PIL import Image, ImageTk
-import tkinter as tk
+#import tkinter as tk
 
 
 customtkinter.set_appearance_mode("dark")
@@ -35,7 +35,7 @@ class Login(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        # OPENEING WINDOW SIZE
+        # OPENING WINDOW SIZE
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
@@ -114,13 +114,13 @@ class Login(customtkinter.CTk):
         )
         self.appearance_mode_label.grid(row=12, column=0, padx=10, pady=(5, 0))
 
-        # Theme mode buttom
-        self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(
+        # Theme mode button
+        self.appearance_mode_optionmenu = customtkinter.CTkOptionMenu(
             self.login_frame,
             values=["Light", "Dark", "System"],
             command=self.change_appearance_mode_event,
         )
-        self.appearance_mode_optionemenu.grid(row=13, column=0, padx=20, pady=(10, 10))
+        self.appearance_mode_optionmenu.grid(row=13, column=0, padx=20, pady=(10, 10))
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
@@ -175,9 +175,6 @@ class Login(customtkinter.CTk):
                 error_label.config(
                     text="Password is invalid!\n Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number.")
                 return
-            # else:
-               # window.geometry("300x200")
-               # error_label.config(text="")
 
             # Save username and password in text files
             with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
