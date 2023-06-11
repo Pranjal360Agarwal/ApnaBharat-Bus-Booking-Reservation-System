@@ -6,6 +6,7 @@ from tkinter.messagebox import *
 from tkcalendar import *
 import Modules.SignIn_Module.SignIn_page as SignIn
 import Modules.DeleteAccount.AccountDelete as Acc_delete
+import Modules.UserProfile.profile as profile
 
 con=sqlite3.Connection("My_database")
 cur=con.cursor()
@@ -1069,12 +1070,17 @@ def tab1():
     
     buttonTheme = Button(f1, text="Theme", command=change_theme,width=35).pack(anchor=S)
 
+    def show_profile():
+        profile_window = profile.Profile()
+
+    buttonprofile = Button(f1, text="show profile", command=show_profile, width=35)
+    buttonprofile.pack(anchor=W, padx=(20,0),pady=(100,0))
 
     def delete_account():
         Acc_delete.AccountDelete().mainloop()
 
     buttonDeleteAccount = Button(f1, text="Delete Your Account", command=delete_account, width=35)
-    buttonDeleteAccount.pack(anchor=W, padx=(20,0),pady=(150,0))
+    buttonDeleteAccount.pack(anchor=W, padx=(20,0),pady=(0,0))
 
 
 def download_ticket():
