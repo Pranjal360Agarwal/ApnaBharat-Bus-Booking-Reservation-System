@@ -163,7 +163,8 @@ class Login(customtkinter.CTk):
 
             def validate_password(password):
                 # Check if the password has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number
-                if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and re.search(r"\d",password) and re.search(r"\W", password):
+                if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and \
+                        re.search(r"\d",password) and re.search(r"\W", password):
                     return True
                 else:
                     return False
