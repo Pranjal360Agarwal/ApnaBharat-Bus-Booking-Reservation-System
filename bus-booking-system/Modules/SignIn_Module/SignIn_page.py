@@ -6,7 +6,8 @@ from tkinter.font import Font
 import customtkinter
 import re
 from PIL import Image, ImageTk
-#import tkinter as tk
+
+# import tkinter as tk
 
 
 customtkinter.set_appearance_mode("dark")
@@ -163,8 +164,12 @@ class Login(customtkinter.CTk):
 
             def validate_password(password):
                 # Check if the password has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number
-                if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and \
-                        re.search(r"\d",password) and re.search(r"\W", password):
+                if (
+                    re.search(r"[A-Z]", password)
+                    and re.search(r"[a-z]", password)
+                    and re.search(r"\d", password)
+                    and re.search(r"\W", password)
+                ):
                     return True
                 else:
                     return False
@@ -173,7 +178,8 @@ class Login(customtkinter.CTk):
                 window.geometry("600x200")
                 error_label.config(
                     text="Password is invalid!\n "
-                         "Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number.")
+                    "Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number."
+                )
                 return
 
             # Save username and password in text files
@@ -181,7 +187,7 @@ class Login(customtkinter.CTk):
                 username_file.write(username + "\n")
             with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
                 password_file.write(password + "\n")
-            
+
             messagebox.showinfo("Registration", "Registration successful!")
 
             # print("Username:", username)
