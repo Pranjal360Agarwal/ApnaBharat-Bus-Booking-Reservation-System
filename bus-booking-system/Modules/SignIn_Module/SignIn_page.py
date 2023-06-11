@@ -4,6 +4,8 @@ from tkinter import PhotoImage
 from tkinter import messagebox
 from tkinter.font import Font
 import customtkinter
+import re
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import tkinter as tk
 
@@ -160,6 +162,27 @@ class Login(customtkinter.CTk):
             username = entry_username.get()
             password = entry_password.get()
 
+            def validate_password(password):
+                # Check if the password has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number
+                if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and re.search(r"\d",
+                                                                                                 password) and re.search(
+                        r"\W", password):
+                    return True
+                else:
+                    return False
+
+             # Get the password from the input box
+            if not validate_password(password):
+                # increase size to accomodate the error message
+                window.geometry("600x300")
+                error_label.config(
+                    text="Password is invalid!\n Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number.")
+                return
+            else:
+                window.geometry("300x200")
+                error_label.config(text="")
+
+
             # Save username and password in text files
             with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
                 username_file.write(username + "\n")
@@ -185,6 +208,9 @@ class Login(customtkinter.CTk):
 
         entry_password = tk.Entry(window, show="*")
         entry_password.pack()
+
+        error_label = tk.Label(window, fg="red")
+        error_label.pack(pady=(5, 0))
 
         btn_register = tk.Button(window, text="Register", command=register)
         btn_register.pack()
