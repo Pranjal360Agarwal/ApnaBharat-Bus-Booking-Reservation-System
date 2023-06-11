@@ -163,9 +163,7 @@ class Login(customtkinter.CTk):
 
             def validate_password(password):
                 # Check if the password has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number
-                if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and re.search(r"\d",
-                                                                                                 password) and re.search(
-                        r"\W", password):
+                if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and re.search(r"\d",password) and re.search(r"\W", password):
                     return True
                 else:
                     return False
@@ -173,7 +171,8 @@ class Login(customtkinter.CTk):
             if not validate_password(password):
                 window.geometry("600x200")
                 error_label.config(
-                    text="Password is invalid!\n Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number.")
+                    text="Password is invalid!\n "
+                         "Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number.")
                 return
 
             # Save username and password in text files
