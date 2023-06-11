@@ -188,6 +188,8 @@ class Login(customtkinter.CTk):
                 username_file.write(username + "\n")
             with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
                 password_file.write(password + "\n")
+            
+            messagebox.showinfo("Registration", "Registration successful!")
 
             # print("Username:", username)
             # print("Password:", password)
