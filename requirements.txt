@@ -1,3 +1,11 @@
 numpy
 pandas
 matplotlib
+seaborn
+requests
+opencage
+tkcalendar
+pillow
+customtkinter
+ast
+datetime
