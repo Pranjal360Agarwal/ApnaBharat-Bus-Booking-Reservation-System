@@ -6,6 +6,7 @@ from tkinter.font import Font
 import customtkinter
 import re
 from PIL import Image, ImageTk
+import sqlite3
 
 # import tkinter as tk
 
@@ -14,19 +15,23 @@ customtkinter.set_appearance_mode("dark")
 
 
 def check_credentials(username, password):
-    # Read the stored usernames and passwords from text files
-    with open("Modules\\SignIn_Database\\username.txt", "r") as f_username, open(
-        "Modules\\SignIn_Database\\password.txt", "r"
-    ) as f_password:
-        stored_usernames = f_username.read().splitlines()
-        stored_passwords = f_password.read().splitlines()
+    # Connect to the database
+    conn = sqlite3.connect("user_credentials.db")
+    cursor = conn.cursor()
+
+    # Execute a SELECT query to retrieve the stored usernames and passwords
+    cursor.execute("SELECT username, password FROM users")
+    stored_credentials = cursor.fetchall()
 
     # Check if the entered credentials match any of the stored values
-    for stored_username, stored_password in zip(stored_usernames, stored_passwords):
+    for stored_username, stored_password in stored_credentials:
         if username == stored_username and password == stored_password:
+            conn.close()
             return True
 
+    conn.close()
     return False
+
 
 
 class Login(customtkinter.CTk):
@@ -78,8 +83,8 @@ class Login(customtkinter.CTk):
         )
         self.password_entry.grid(row=3, column=0, padx=30, pady=(0, 15))
 
-        self.show_password_var = tkinter.BooleanVar()
-        self.show_password_checkbutton = tkinter.Checkbutton(
+        self.show_password_var = tk.BooleanVar()
+        self.show_password_checkbutton = tk.Checkbutton(
             self.login_frame,
             text="Show Password",
             variable=self.show_password_var,
@@ -182,16 +187,35 @@ class Login(customtkinter.CTk):
                 )
                 return
 
-            # Save username and password in text files
-            with open("Modules\\SignIn_Database\\username.txt", "a") as username_file:
-                username_file.write(username + "\n")
-            with open("Modules\\SignIn_Database\\password.txt", "a") as password_file:
-                password_file.write(password + "\n")
+            # Save username and password in the database
+            import sqlite3
 
-            messagebox.showinfo("Registration", "Registration successful!")
+            conn = sqlite3.connect("user_credentials.db")
+            c = conn.cursor()
 
-            # print("Username:", username)
-            # print("Password:", password)
+            # Create table if it doesn't exist
+            c.execute(
+                "CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)"
+            )
+
+            # Check if the username already exists
+            c.execute("SELECT * FROM users WHERE username=?", (username,))
+            existing_user = c.fetchone()
+
+            if existing_user:
+                messagebox.showerror(
+                    "Registration Error", "Username already exists. Please choose a different username."
+                )
+            else:
+                # Insert new user into the database
+                c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                conn.commit()
+
+                messagebox.showinfo("Registration", "Registration successful!")
+
+            c.close()
+            conn.close()
+
             window.destroy()
 
         window = tk.Tk()
