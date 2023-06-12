@@ -98,5 +98,10 @@ let contributors = [
     GitHub: "https://github.com/Dragonstac",
     name: "Shreyash Srivastava",
     linkedin: "https://www.linkedin.com/in/dragonstac/",
+  },
+  {
+    GitHub: "https://github.com/gulshanjakhon",
+    name: "Gulshan Kumar Jakhon",
+    linkedin: "https://linkedin.com/in/gulshankumarjakhon/",
   }
   ];
