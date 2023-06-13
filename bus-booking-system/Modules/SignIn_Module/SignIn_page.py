@@ -33,7 +33,6 @@ def check_credentials(username, password):
     return False
 
 
-
 class Login(customtkinter.CTk):
     width = 1240  # helps in image width
     height = 1080  # helps in image height
@@ -45,7 +44,8 @@ class Login(customtkinter.CTk):
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
-            Image.open("Image/Background_gradient.jpg"), size=(self.width, self.height)
+            Image.open("Image/Background_gradient.jpg"),
+            size=(self.width, self.height),
         )
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
@@ -110,9 +110,25 @@ class Login(customtkinter.CTk):
 
         # TEXT : Register BUTTON TEXT
         self.login_button = customtkinter.CTkButton(
-            self.login_frame, text="Register", command=self.Register_event, width=200
+            self.login_frame, text="Register", command=self.register_event, width=200
         )
         self.login_button.grid(row=8, column=0, padx=30, pady=(0, 15))
+
+        # Forgot Password label
+        self.forgot_password_label = customtkinter.CTkLabel(
+            self.login_frame,
+            text="Forgot password ?",
+            font=customtkinter.CTkFont(underline=True),
+            cursor="hand2",
+        )
+        self.forgot_password_label.grid(
+            row=4, column=0, padx=(0, 30), pady=(0, 15), sticky="e"
+        )
+
+        # Bind the callback function to the label's click event
+        self.forgot_password_label.bind(
+            "<Button-1>", lambda event: self.forgot_password_event()
+        )
 
         # Theme button
         self.appearance_mode_label = customtkinter.CTkLabel(
@@ -160,7 +176,7 @@ class Login(customtkinter.CTk):
         # for debugging if any error encountered
         # print("Login pressed - username:", entered_username, "password:",entered_password)
 
-    def Register_event(self):
+    def register_event(self):
         import tkinter as tk
 
         def register():
@@ -194,9 +210,7 @@ class Login(customtkinter.CTk):
             c = conn.cursor()
 
             # Create table if it doesn't exist
-            c.execute(
-                "CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)"
-            )
+            c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)")
 
             # Check if the username already exists
             c.execute("SELECT * FROM users WHERE username=?", (username,))
@@ -204,11 +218,15 @@ class Login(customtkinter.CTk):
 
             if existing_user:
                 messagebox.showerror(
-                    "Registration Error", "Username already exists. Please choose a different username."
+                    "Registration Error",
+                    "Username already exists. Please choose a different username.",
                 )
             else:
                 # Insert new user into the database
-                c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                c.execute(
+                    "INSERT INTO users (username, password) VALUES (?, ?)",
+                    (username, password),
+                )
                 conn.commit()
 
                 messagebox.showinfo("Registration", "Registration successful!")
@@ -239,6 +257,105 @@ class Login(customtkinter.CTk):
 
         btn_register = tk.Button(window, text="Register", command=register)
         btn_register.pack()
+
+        window.mainloop()
+
+    def forgot_password_event(self):
+        import tkinter as tk
+
+        def send_password():
+            username = entry_username.get()
+
+            conn = sqlite3.connect("user_credentials.db")
+            c = conn.cursor()
+
+            c.execute("SELECT * FROM users WHERE username=?", (username,))
+            user = c.fetchone()
+
+            if user:
+                # Close the current window
+                window.destroy()
+
+                # Open a new window to prompt for a new password
+                def update_password():
+                    new_password = entry_new_password.get()
+
+                    def validate_password(password):
+                        # Check if the password has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number
+                        if (
+                            re.search(r"[A-Z]", password)
+                            and re.search(r"[a-z]", password)
+                            and re.search(r"\d", password)
+                            and re.search(r"\W", password)
+                        ):
+                            return True
+                        else:
+                            return False
+
+                    if not validate_password(new_password):
+                        messagebox.showerror(
+                            "Invalid Password",
+                            "Password is invalid!\nPlease make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number.",
+                        )
+                        return
+
+                    conn = sqlite3.connect("user_credentials.db")
+                    c = conn.cursor()
+
+                    # Update the password in the database
+                    c.execute(
+                        "UPDATE users SET password=? WHERE username=?",
+                        (new_password, username),
+                    )
+                    conn.commit()
+
+                    messagebox.showinfo(
+                        "Password Updated", "Password updated successfully!"
+                    )
+
+                    # Close the new window
+                    new_window.destroy()
+
+                    c.close()
+                    conn.close()
+
+                new_window = tk.Toplevel()
+                new_window.title("Reset Password")
+                new_window.geometry("300x150")
+
+                label_new_password = tk.Label(new_window, text="New Password:")
+                label_new_password.pack()
+
+                entry_new_password = tk.Entry(new_window, show="*")
+                entry_new_password.pack()
+
+                btn_update = tk.Button(
+                    new_window, text="Update Password", command=update_password
+                )
+                btn_update.pack()
+
+            else:
+                messagebox.showerror(
+                    "Forgot Password", "Invalid username. Please try again."
+                )
+
+            c.close()
+            conn.close()
+
+            window.destroy()
+
+        window = tk.Tk()
+        window.title("Forgot Password")
+        window.geometry("300x150")
+
+        label_username = tk.Label(window, text="Username:")
+        label_username.pack()
+
+        entry_username = tk.Entry(window)
+        entry_username.pack()
+
+        btn_send = tk.Button(window, text="Send Password", command=send_password)
+        btn_send.pack()
 
         window.mainloop()
 
