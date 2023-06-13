@@ -44,7 +44,8 @@ class Login(customtkinter.CTk):
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
-            Image.open("bus-booking-system/Image/Background_gradient.jpg"), size=(self.width, self.height)
+            Image.open("bus-booking-system/Image/Background_gradient.jpg"),
+            size=(self.width, self.height),
         )
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
@@ -115,12 +116,19 @@ class Login(customtkinter.CTk):
 
         # Forgot Password label
         self.forgot_password_label = customtkinter.CTkLabel(
-            self.login_frame, text="Forgot password ?", font=customtkinter.CTkFont(underline=True),cursor="hand2"
+            self.login_frame,
+            text="Forgot password ?",
+            font=customtkinter.CTkFont(underline=True),
+            cursor="hand2",
         )
-        self.forgot_password_label.grid(row=4, column=0, padx=(0, 30), pady=(0, 15), sticky="e")
+        self.forgot_password_label.grid(
+            row=4, column=0, padx=(0, 30), pady=(0, 15), sticky="e"
+        )
 
         # Bind the callback function to the label's click event
-        self.forgot_password_label.bind("<Button-1>", lambda event: self.forgot_password_event())
+        self.forgot_password_label.bind(
+            "<Button-1>", lambda event: self.forgot_password_event()
+        )
 
         # Theme button
         self.appearance_mode_label = customtkinter.CTkLabel(
@@ -202,9 +210,7 @@ class Login(customtkinter.CTk):
             c = conn.cursor()
 
             # Create table if it doesn't exist
-            c.execute(
-                "CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)"
-            )
+            c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)")
 
             # Check if the username already exists
             c.execute("SELECT * FROM users WHERE username=?", (username,))
@@ -212,11 +218,15 @@ class Login(customtkinter.CTk):
 
             if existing_user:
                 messagebox.showerror(
-                    "Registration Error", "Username already exists. Please choose a different username."
+                    "Registration Error",
+                    "Username already exists. Please choose a different username.",
                 )
             else:
                 # Insert new user into the database
-                c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                c.execute(
+                    "INSERT INTO users (username, password) VALUES (?, ?)",
+                    (username, password),
+                )
                 conn.commit()
 
                 messagebox.showinfo("Registration", "Registration successful!")
@@ -293,17 +303,21 @@ class Login(customtkinter.CTk):
                     c = conn.cursor()
 
                     # Update the password in the database
-                    c.execute("UPDATE users SET password=? WHERE username=?", (new_password, username))
+                    c.execute(
+                        "UPDATE users SET password=? WHERE username=?",
+                        (new_password, username),
+                    )
                     conn.commit()
 
-                    messagebox.showinfo("Password Updated", "Password updated successfully!")
+                    messagebox.showinfo(
+                        "Password Updated", "Password updated successfully!"
+                    )
 
                     # Close the new window
                     new_window.destroy()
 
                     c.close()
                     conn.close()
-
 
                 new_window = tk.Toplevel()
                 new_window.title("Reset Password")
@@ -315,11 +329,15 @@ class Login(customtkinter.CTk):
                 entry_new_password = tk.Entry(new_window, show="*")
                 entry_new_password.pack()
 
-                btn_update = tk.Button(new_window, text="Update Password", command=update_password)
+                btn_update = tk.Button(
+                    new_window, text="Update Password", command=update_password
+                )
                 btn_update.pack()
 
             else:
-                messagebox.showerror("Forgot Password", "Invalid username. Please try again.")
+                messagebox.showerror(
+                    "Forgot Password", "Invalid username. Please try again."
+                )
 
             c.close()
             conn.close()
@@ -345,4 +363,3 @@ class Login(customtkinter.CTk):
 if __name__ == "__main__":
     app9 = Login()
     app9.mainloop()
-
