@@ -342,7 +342,7 @@ class Login(customtkinter.CTk):
             c.close()
             conn.close()
 
-            #win.destroy()
+            # win.destroy()
 
         win = tk.Tk()
         win.title("Forgot Password")
