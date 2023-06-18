@@ -44,7 +44,7 @@ class Login(customtkinter.CTk):
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
-            Image.open("bus-booking-system/Image/Background_gradient.jpg"),
+            Image.open("Image/Background_gradient.jpg"),
             size=(self.width, self.height),
         )
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
