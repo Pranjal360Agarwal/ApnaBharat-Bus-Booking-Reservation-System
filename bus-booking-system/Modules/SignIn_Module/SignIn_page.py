@@ -40,7 +40,7 @@ class Login(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        # OPENING WINDOW SIZE
+        # OPENING win SIZE
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
@@ -50,7 +50,7 @@ class Login(customtkinter.CTk):
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
 
-        # LOGIN FRAME INSIDE WINDOW
+        # LOGIN FRAME INSIDE win
         # TEXT : "Welcome!\nUnified Travelling & Transport System"
         self.login_frame = customtkinter.CTkFrame(self, corner_radius=15)
         self.login_frame.grid(row=0, column=0, sticky="ns")
@@ -160,13 +160,13 @@ class Login(customtkinter.CTk):
         if check_credentials(entered_username, entered_password):
             self.destroy()
             # writing data in buffer
-            with open("BufferData\\CurrentUser\\username.txt", "w") as username:
+            with open("BufferData/CurrentUser/username.txt", "w") as username:
                 username.write(str(entered_username))
-            with open("BufferData\\CurrentUser\\password.txt", "w") as password:
+            with open("BufferData/CurrentUser/password.txt", "w") as password:
                 password.write(str(entered_password))
             # correct transition check
             value = True
-            with open("Modules\\SignIn_Module\\SignIn_Check.txt", "w") as file:
+            with open("Modules/SignIn_Module/SignIn_Check.txt", "w") as file:
                 file.write(str(value))
 
         else:
@@ -196,7 +196,7 @@ class Login(customtkinter.CTk):
                     return False
 
             if not validate_password(password):
-                window.geometry("600x200")
+                win.geometry("600x200")
                 error_label.config(
                     text="Password is invalid!\n "
                     "Please make sure it has at least 1 uppercase, 1 lowercase, 1 special character, and 1 number."
@@ -234,31 +234,31 @@ class Login(customtkinter.CTk):
             c.close()
             conn.close()
 
-            window.destroy()
+            win.destroy()
 
-        window = tk.Tk()
-        window.title("Registration")
-        window.geometry("300x200")
+        win = tk.Tk()
+        win.title("Registration")
+        win.geometry("300x200")
 
-        label_username = tk.Label(window, text="Username:")
+        label_username = tk.Label(win, text="Username:")
         label_username.pack()
 
-        entry_username = tk.Entry(window)
+        entry_username = tk.Entry(win)
         entry_username.pack()
 
-        label_password = tk.Label(window, text="Password:")
+        label_password = tk.Label(win, text="Password:")
         label_password.pack()
 
-        entry_password = tk.Entry(window, show="*")
+        entry_password = tk.Entry(win, show="*")
         entry_password.pack()
 
-        error_label = tk.Label(window, fg="red")
+        error_label = tk.Label(win, fg="red")
         error_label.pack(pady=(5, 0))
 
-        btn_register = tk.Button(window, text="Register", command=register)
+        btn_register = tk.Button(win, text="Register", command=register)
         btn_register.pack()
 
-        window.mainloop()
+        win.mainloop()
 
     def forgot_password_event(self):
         import tkinter as tk
@@ -273,10 +273,10 @@ class Login(customtkinter.CTk):
             user = c.fetchone()
 
             if user:
-                # Close the current window
-                window.destroy()
+                # Close the current win
+                win.destroy()
 
-                # Open a new window to prompt for a new password
+                # Open a new win to prompt for a new password
                 def update_password():
                     new_password = entry_new_password.get()
 
@@ -313,24 +313,24 @@ class Login(customtkinter.CTk):
                         "Password Updated", "Password updated successfully!"
                     )
 
-                    # Close the new window
-                    new_window.destroy()
+                    # Close the new win
+                    new_win.destroy()
 
                     c.close()
                     conn.close()
 
-                new_window = tk.Toplevel()
-                new_window.title("Reset Password")
-                new_window.geometry("300x150")
+                new_win = tk.Toplevel()
+                new_win.title("Reset Password")
+                new_win.geometry("300x150")
 
-                label_new_password = tk.Label(new_window, text="New Password:")
+                label_new_password = tk.Label(new_win, text="New Password:")
                 label_new_password.pack()
 
-                entry_new_password = tk.Entry(new_window, show="*")
+                entry_new_password = tk.Entry(new_win, show="*")
                 entry_new_password.pack()
 
                 btn_update = tk.Button(
-                    new_window, text="Update Password", command=update_password
+                    new_win, text="Update Password", command=update_password
                 )
                 btn_update.pack()
 
@@ -342,22 +342,22 @@ class Login(customtkinter.CTk):
             c.close()
             conn.close()
 
-            window.destroy()
+            # win.destroy()
 
-        window = tk.Tk()
-        window.title("Forgot Password")
-        window.geometry("300x150")
+        win = tk.Tk()
+        win.title("Forgot Password")
+        win.geometry("300x150")
 
-        label_username = tk.Label(window, text="Username:")
+        label_username = tk.Label(win, text="Username:")
         label_username.pack()
 
-        entry_username = tk.Entry(window)
+        entry_username = tk.Entry(win)
         entry_username.pack()
 
-        btn_send = tk.Button(window, text="Send Password", command=send_password)
+        btn_send = tk.Button(win, text="Send Password", command=send_password)
         btn_send.pack()
 
-        window.mainloop()
+        win.mainloop()
 
 
 if __name__ == "__main__":
