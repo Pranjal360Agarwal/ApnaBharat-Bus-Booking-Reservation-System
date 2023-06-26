@@ -9,10 +9,10 @@ import tkinter as tk
 
 
 customtkinter.set_appearance_mode("dark")
-
+ 
 def check_credentials(username, password):
     # Read the stored usernames and passwords from text files
-    with open('bus-booking-system\\Database\\Modules\\SignIn_Database\\username.txt', 'r') as f_username, open('bus-booking-system\\Database\\Modules\\SignIn_Database\\password.txt', 'r') as f_password:
+    with open('bus_booking_system\\Database\\Modules\\SignIn_Database\\username.txt', 'r') as f_username, open('bus_booking_system\\Database\\Modules\\SignIn_Database\\password.txt', 'r') as f_password:
         stored_usernames = f_username.read().splitlines()
         stored_passwords = f_password.read().splitlines()
 
@@ -21,7 +21,7 @@ def check_credentials(username, password):
         if username == stored_username and password == stored_password:
             return True
 
-    return False
+    return False 
 
 
 
@@ -34,7 +34,7 @@ class Login(customtkinter.CTk):
         # OPENEING WINDOW SIZE
         self.title("Login")
         self.geometry(f"{1240}x{720}")
-        self.bg_image = customtkinter.CTkImage(Image.open("bus-booking-system\Database\Image\Background_gradient.jpg"),size=(self.width, self.height))
+        self.bg_image = customtkinter.CTkImage(Image.open("bus_booking_system\Database\Image\Background_gradient.jpg"),size=(self.width, self.height))
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
 
@@ -87,13 +87,13 @@ class Login(customtkinter.CTk):
         if check_credentials(entered_username, entered_password):
             self.destroy()       
             #writing data in buffer 
-            with open('bus-booking-system\\Database\\BufferData\\CurrentUser\\username.txt', 'w') as username:
+            with open('bus_booking_system\\Database\\BufferData\\CurrentUser\\username.txt', 'w') as username:
                 username.write(str(entered_username))  
-            with open('bus-booking-system\\Database\\BufferData\\CurrentUser\\password.txt', 'w') as password:
+            with open('bus_booking_system\\Database\\BufferData\\CurrentUser\\password.txt', 'w') as password:
                 password.write(str(entered_password))    
             #correct transition check
             value = True
-            with open('bus-booking-system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file:
+            with open('bus_booking_system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt', 'w') as file:
                 file.write(str(value))            
 
         else:
@@ -112,9 +112,9 @@ class Login(customtkinter.CTk):
             password = entry_password.get()
 
             # Save username and password in text files
-            with open("bus-booking-system\\Database\\Modules\\SignIn_Database\\username.txt", "a") as username_file:
+            with open("bus_booking_system\\Database\\Modules\\SignIn_Database\\username.txt", "a") as username_file:
                 username_file.write(username+"\n")
-            with open("bus-booking-system\\Database\\Modules\\SignIn_Database\\password.txt", "a") as password_file:
+            with open("bus_booking_system\\Database\\Modules\\SignIn_Database\\password.txt", "a") as password_file:
                 password_file.write(password+"\n")
 
             # print("Username:", username)

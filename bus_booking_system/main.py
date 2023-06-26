@@ -18,7 +18,7 @@ Check = SignIn.Login().mainloop()
 
 
 def Transition_LoginToMain():
-    with open("bus-booking-system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt", "r") as file:
+    with open("bus_booking_system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt", "r") as file:
         content = file.read()
     value = bool(content)
     # For debugging
@@ -26,7 +26,7 @@ def Transition_LoginToMain():
     if not value:
         exit()
 
-    with open("bus-booking-system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt", "w") as file2:
+    with open("bus_booking_system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt", "w") as file2:
         file2.truncate(0)
 
 
@@ -1404,7 +1404,7 @@ def download_ticket():
 
 # -------------------------------------------------------------------------------------------------------------
 
-my_img = PhotoImage(file="bus-booking-system/Database/Image/Bus_for_project.png")
-home_img = PhotoImage(file="bus-booking-system/Database/Image/home.png")
+my_img = PhotoImage(file="bus_booking_system/Database/Image/Bus_for_project.png")
+home_img = PhotoImage(file="bus_booking_system/Database/Image/home.png")
 tab1()
 root.mainloop()
