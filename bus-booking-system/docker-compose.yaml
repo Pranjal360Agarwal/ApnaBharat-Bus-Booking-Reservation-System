@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .     
+    environment:
+      - DISPLAY=:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - bus:/app/
+      - user:/app/
+      - .:/app
+volumes:
+  bus:
+  user:

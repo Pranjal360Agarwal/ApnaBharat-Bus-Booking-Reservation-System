@@ -1,5 +1,6 @@
 # import modules
 
+import re
 from tkinter import *
 import os
 
