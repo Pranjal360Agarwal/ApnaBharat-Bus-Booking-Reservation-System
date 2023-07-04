@@ -8,8 +8,8 @@ from tkinter.messagebox import *
 import requests
 from opencage.geocoder import RateLimitExceededError
 from tkcalendar import *
-import Modules.SignIn_Module.SignIn_page as SignIn
-import Modules.DeleteAccount.AccountDelete as Acc_delete
+import Database.Modules.SignIn_Module.SignIn_page as SignIn
+import Database.Modules.DeleteAccount.AccountDelete as Acc_delete
 
 con = sqlite3.Connection("My_database")
 cur = con.cursor()
@@ -18,7 +18,7 @@ Check = SignIn.Login().mainloop()
 
 
 def Transition_LoginToMain():
-    with open("Modules\\SignIn_Module\\SignIn_Check.txt", "r") as file:
+    with open("Bus_booking_system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt", "r") as file:
         content = file.read()
     value = bool(content)
     # For debugging
@@ -26,7 +26,7 @@ def Transition_LoginToMain():
     if not value:
         exit()
 
-    with open("Modules\\SignIn_Module\\SignIn_Check.txt", "w") as file2:
+    with open("Bus_booking_system\\Database\\Modules\\SignIn_Module\\SignIn_Check.txt", "w") as file2:
         file2.truncate(0)
 
 
@@ -1404,7 +1404,7 @@ def download_ticket():
 
 # -------------------------------------------------------------------------------------------------------------
 
-my_img = PhotoImage(file="Image/Bus_for_project.png")
-home_img = PhotoImage(file="Image/home.png")
+my_img = PhotoImage(file="Bus_booking_system/Database/Image/Bus_for_project.png")
+home_img = PhotoImage(file="Bus_booking_system/Database/Image/home.png")
 tab1()
 root.mainloop()

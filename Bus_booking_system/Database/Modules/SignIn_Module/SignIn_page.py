@@ -44,7 +44,7 @@ class Login(customtkinter.CTk):
         self.title("Login")
         self.geometry(f"{1240}x{720}")
         self.bg_image = customtkinter.CTkImage(
-            Image.open("Image/Background_gradient.jpg"),
+            Image.open("Bus_booking_system\Database\Image\Background_gradient.jpg"),
             size=(self.width, self.height),
         )
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
@@ -160,13 +160,14 @@ class Login(customtkinter.CTk):
         if check_credentials(entered_username, entered_password):
             self.destroy()
             # writing data in buffer
-            with open("BufferData/CurrentUser/username.txt", "w") as username:
+            #used in delete mechanism
+            with open("Bus_booking_system/Database/BufferData/CurrentUser/username.txt", "w") as username:
                 username.write(str(entered_username))
-            with open("BufferData/CurrentUser/password.txt", "w") as password:
+            with open("Bus_booking_system/Database/BufferData/CurrentUser/password.txt", "w") as password:
                 password.write(str(entered_password))
             # correct transition check
             value = True
-            with open("Modules/SignIn_Module/SignIn_Check.txt", "w") as file:
+            with open("Bus_booking_system/Database/Modules/SignIn_Module/SignIn_Check.txt", "w") as file:
                 file.write(str(value))
 
         else:

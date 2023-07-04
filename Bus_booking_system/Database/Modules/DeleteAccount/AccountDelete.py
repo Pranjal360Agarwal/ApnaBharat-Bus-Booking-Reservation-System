@@ -12,17 +12,17 @@ customtkinter.set_appearance_mode("dark")
 
 def write_feedback(username, feedback):
     # Read the current count from the file
-    with open("Feedbacks\\feedbackCount.txt", "r") as count_file:
+    with open("Bus_booking_system\\Database\\Feedbacks\\feedbackCount.txt", "r") as count_file:
         count = int(count_file.read())
 
     # Increment the count by 1
     count += 1
     # Write the updated count back to the file
-    with open("Feedbacks\\feedbackCount.txt", "w") as count_file:
+    with open("Bus_booking_system\\Database\\Feedbacks\\feedbackCount.txt", "w") as count_file:
         count_file.write(str(count))
 
     # Create the new filename using the updated count and the username
-    filename = "Feedbacks\\" + str((count - 1)) + username + ".txt"
+    filename = "Bus_booking_system\\Database\\Feedbacks\\" + str((count - 1)) + username + ".txt"
 
     # Write the feedback to the new file
     with open(filename, "w") as feedback_file:
@@ -31,8 +31,8 @@ def write_feedback(username, feedback):
 
 def check_credentials(username, password):
     # Read the stored usernames and passwords from text files
-    with open("BufferData\\CurrentUser\\username.txt", "r") as f_username, open(
-        "BufferData\\CurrentUser\\password.txt", "r"
+    with open("Bus_booking_system\\Database\\BufferData\\CurrentUser\\username.txt", "r") as f_username, open(
+        "Bus_booking_system\\Database\\BufferData\\CurrentUser\\password.txt", "r"
     ) as f_password:
         stored_usernames = f_username.read().splitlines()
         stored_passwords = f_password.read().splitlines()
@@ -93,7 +93,7 @@ class AccountDelete(customtkinter.CTk):
             title="Feedback Window",
         )
 
-        with open("BufferData\\CurrentUser\\username.txt", "r") as file:
+        with open("Bus_booking_system\\Database\\BufferData\\CurrentUser\\username.txt", "r") as file:
             username = file.read()
         write_feedback(username, dialog.get_input())
 
@@ -112,19 +112,19 @@ class AccountDelete(customtkinter.CTk):
                         if line.strip() != line_to_delete:
                             file.write(line)
 
-            username_file_path = "Modules\\SignIn_Database\\username.txt"
-            password_file_path = "Modules\\SignIn_Database\\password.txt"
+            username_file_path = "Bus_booking_system\\Database\\Modules\\SignIn_Database\\username.txt"
+            password_file_path = "Bus_booking_system\\Database\\Modules\\SignIn_Database\\password.txt"
 
             delete_line(username_file_path, entered_username)
             delete_line(password_file_path, entered_password)
-            with open("Modules\\DeleteAccount\\DeleteTransition.txt", "w") as file:
+            with open("Bus_booking_system\\Database\\Modules\\DeleteAccount\\DeleteTransition.txt", "w") as file:
                 file.write(str(True))
 
             self.destroy()
 
         else:
             print("error")
-            with open("Modules\\DeleteAccount\\DeleteTransition.txt", "w") as file:
+            with open("Bus_booking_system\\Database\\Modules\\DeleteAccount\\DeleteTransition.txt", "w") as file:
                 file.write(str(False))
             return messagebox.showerror("Error", "Enter Correct Credentials")
 
