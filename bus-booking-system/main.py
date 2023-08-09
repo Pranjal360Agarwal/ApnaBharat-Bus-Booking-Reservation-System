@@ -904,6 +904,7 @@ def seat_book():
                 + str(e2.get())
                 + '" and r.s_id>s.s_id'
             )
+            data = sorted(data, key = lamdba l:l[4])
             f6 = Frame(f5)
             f6.grid(row=5, column=0, columnspan=10, pady=20)
             Label(f6, text="Select BUS ", font=("Arial", 15), fg="light green").grid(
