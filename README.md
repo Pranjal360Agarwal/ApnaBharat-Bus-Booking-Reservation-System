@@ -225,7 +225,7 @@ git push -u origin <your_branch_name>
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/73153808/156029225-91362c76-b04e-4af9-84fa-3d61b7ed52b1.png">
 
-<a href="https://kwoc.kossiitkgp.org/"><img alt="Dark" src="https://user-images.githubusercontent.com/77617189/205456062-b28a333d-c48b-41ef-96c3-676ef2363ade.png" width="80%" height="600"></a>
+<a href="https://kwoc.kossiitkgp.org/"><img alt="Dark" src="https://user-images.githubusercontent.com/77617189/205456062-b28a333d-c48b-41ef-96c3-676ef2363ade.png" width="80%" height="500"></a>
 
 ![iwoc](https://user-images.githubusercontent.com/108119109/219447750-c45f57d6-c9b7-4648-a287-f98e6a256e7b.png)
 
