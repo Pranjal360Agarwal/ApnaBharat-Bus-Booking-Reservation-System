@@ -1,4 +1,4 @@
-## Tkinter- Login/SignUp Page
+## Tkinter - Login/SignUp Page
 <ul>
   <li>Tkinter is a Python binding to the Tk GUI toolkit.</li>
   <li>It is the standard Python interface to the Tk GUI toolkit, and is Python's de facto standard GUI.</li>
