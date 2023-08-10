@@ -95,6 +95,9 @@ Bus Reservation System is a pretty fully functional system developed using Tkint
 📌 Check out our Blog on Hashnode
 🔗 https://codeshivam28.hashnode.dev/apnabharat-bus-booking-reservation-system
 
+📌 Check out our Blog on Medium
+🔗 https://medium.com/@pranjal99agarwal/my-mentoring-experience-kharagpur-winter-of-code-kwoc-207b83a4ee43
+
 ---
 
 <p align ="right"><a href = "#top">Back to top</a></p>
