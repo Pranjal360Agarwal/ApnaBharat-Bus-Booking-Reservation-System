@@ -364,3 +364,8 @@ FodyWeavers.xsd
 
 #temp code runner file
 tempCodeRunnerFile.py
+
+#Python virtual environments
+virtualenv/
+virt/
+venv/
