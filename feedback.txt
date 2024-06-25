@@ -1,0 +1,67 @@
+import sqlite3
+import tkinter as tk
+from tkinter import messagebox
+
+# Set up the database
+def setup_database():
+    conn = sqlite3.connect('feedback.db')
+    c = conn.cursor()
+    c.execute('''
+    CREATE TABLE IF NOT EXISTS feedback (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        comments TEXT NOT NULL
+    )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Function to submit feedback to the database
+def submit_feedback():
+    name = entry_name.get()
+    email = entry_email.get()
+    comments = text_comments.get("1.0", tk.END)
+    
+    if not name or not email or not comments.strip():
+        messagebox.showwarning("Input Error", "Please fill in all fields")
+        return
+
+    conn = sqlite3.connect('feedback.db')
+    c = conn.cursor()
+    c.execute('INSERT INTO feedback (name, email, comments) VALUES (?, ?, ?)', (name, email, comments))
+    conn.commit()
+    conn.close()
+    
+    messagebox.showinfo("Success", "Thank you for your feedback!")
+    entry_name.delete(0, tk.END)
+    entry_email.delete(0, tk.END)
+    text_comments.delete("1.0", tk.END)
+
+# Set up the Tkinter GUI
+def setup_gui():
+    global entry_name, entry_email, text_comments
+    
+    root = tk.Tk()
+    root.title("Feedback and Improvement Requests")
+    
+    tk.Label(root, text="Name:").grid(row=0, column=0, padx=10, pady=10)
+    entry_name = tk.Entry(root)
+    entry_name.grid(row=0, column=1, padx=10, pady=10)
+    
+    tk.Label(root, text="Email:").grid(row=1, column=0, padx=10, pady=10)
+    entry_email = tk.Entry(root)
+    entry_email.grid(row=1, column=1, padx=10, pady=10)
+    
+    tk.Label(root, text="Comments:").grid(row=2, column=0, padx=10, pady=10)
+    text_comments = tk.Text(root, width=40, height=10)
+    text_comments.grid(row=2, column=1, padx=10, pady=10)
+    
+    submit_button = tk.Button(root, text="Submit Feedback", command=submit_feedback)
+    submit_button.grid(row=3, columnspan=2, pady=10)
+    
+    root.mainloop()
+
+if __name__ == "__main__":
+    setup_database()
+    setup_gui()
